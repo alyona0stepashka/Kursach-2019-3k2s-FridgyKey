@@ -1,0 +1,11 @@
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\bin\Debug\netcoreapp2.0\WebFridgyKey.deps.json
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\bin\Debug\netcoreapp2.0\WebFridgyKey.runtimeconfig.json
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\bin\Debug\netcoreapp2.0\WebFridgyKey.runtimeconfig.dev.json
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\bin\Debug\netcoreapp2.0\WebFridgyKey.dll
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\bin\Debug\netcoreapp2.0\WebFridgyKey.pdb
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\obj\Debug\netcoreapp2.0\WebFridgyKey.csprojResolveAssemblyReference.cache
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\obj\Debug\netcoreapp2.0\WebFridgyKey.csproj.CoreCompileInputs.cache
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\obj\Debug\netcoreapp2.0\WebFridgyKey.AssemblyInfoInputs.cache
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\obj\Debug\netcoreapp2.0\WebFridgyKey.AssemblyInfo.cs
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\obj\Debug\netcoreapp2.0\WebFridgyKey.dll
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\WebFridgyKey\WebFridgyKey\obj\Debug\netcoreapp2.0\WebFridgyKey.pdb
