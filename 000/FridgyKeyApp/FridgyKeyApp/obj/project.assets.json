@@ -5056,7 +5056,7 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
-      "FridgyKeyApp.Models/1.0.0": {
+      "FridgyKeyApp.DAL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
@@ -5066,10 +5066,10 @@
           "Microsoft.EntityFrameworkCore.Tools": "2.2.3"
         },
         "compile": {
-          "bin/placeholder/FridgyKeyApp.Models.dll": {}
+          "bin/placeholder/FridgyKeyApp.DAL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/FridgyKeyApp.Models.dll": {}
+          "bin/placeholder/FridgyKeyApp.DAL.dll": {}
         }
       }
     }
@@ -13256,15 +13256,15 @@
         "windowsazure.storage.nuspec"
       ]
     },
-    "FridgyKeyApp.Models/1.0.0": {
+    "FridgyKeyApp.DAL/1.0.0": {
       "type": "project",
-      "path": "../FridgyKeyApp.Models/FridgyKeyApp.Models.csproj",
-      "msbuildProject": "../FridgyKeyApp.Models/FridgyKeyApp.Models.csproj"
+      "path": "../FridgyKeyApp.Models/FridgyKeyApp.DAL.csproj",
+      "msbuildProject": "../FridgyKeyApp.Models/FridgyKeyApp.DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "FridgyKeyApp.Models >= 1.0.0",
+      "FridgyKeyApp.DAL >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 2.0.2",
       "Microsoft.NETCore.App >= 2.0.0",
@@ -13304,8 +13304,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\000\\FridgyKeyApp\\FridgyKeyApp.Models\\FridgyKeyApp.Models.csproj": {
-              "projectPath": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\000\\FridgyKeyApp\\FridgyKeyApp.Models\\FridgyKeyApp.Models.csproj"
+            "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\000\\FridgyKeyApp\\FridgyKeyApp.Models\\FridgyKeyApp.DAL.csproj": {
+              "projectPath": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\000\\FridgyKeyApp\\FridgyKeyApp.Models\\FridgyKeyApp.DAL.csproj"
             }
           }
         }
@@ -13351,7 +13351,7 @@
     {
       "code": "NU1605",
       "level": "Error",
-      "message": "Обнаружено понижение версии пакета Microsoft.EntityFrameworkCore.Tools с 2.2.3 на 2.0.2. Чтобы выбрать другую версию, создайте ссылку на пакет напрямую из проекта. \r\n FridgyKeyApp -> FridgyKeyApp.Models -> Microsoft.EntityFrameworkCore.Tools (>= 2.2.3) \r\n FridgyKeyApp -> Microsoft.EntityFrameworkCore.Tools (>= 2.0.2)",
+      "message": "Обнаружено понижение версии пакета Microsoft.EntityFrameworkCore.Tools с 2.2.3 на 2.0.2. Чтобы выбрать другую версию, создайте ссылку на пакет напрямую из проекта. \r\n FridgyKeyApp -> FridgyKeyApp.DAL -> Microsoft.EntityFrameworkCore.Tools (>= 2.2.3) \r\n FridgyKeyApp -> Microsoft.EntityFrameworkCore.Tools (>= 2.0.2)",
       "libraryId": "Microsoft.EntityFrameworkCore.Tools",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.0"

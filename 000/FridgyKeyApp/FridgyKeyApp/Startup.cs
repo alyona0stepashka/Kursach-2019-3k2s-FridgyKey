@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FridgyKeyApp.Data;
-using FridgyKeyApp.Models;
+using FridgyKeyApp.DAL;
 using FridgyKeyApp.Services;
 
 namespace FridgyKeyApp

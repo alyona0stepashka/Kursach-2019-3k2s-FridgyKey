@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using FridgyKeyApp.Models;
-using FridgyKeyApp.Models.ManageViewModels;
+using FridgyKeyApp.DAL;
+using FridgyKeyApp.DAL.ManageViewModels;
 using FridgyKeyApp.Services;
 
 namespace FridgyKeyApp.Controllers

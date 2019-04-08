@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FridgyKeyApp.Models.Migrations
+namespace FridgyKeyApp.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20190407133907_init222")]
@@ -21,7 +21,7 @@ namespace FridgyKeyApp.Models.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FridgyKeyApp.Models.ApplicationUser", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -72,7 +72,7 @@ namespace FridgyKeyApp.Models.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("FridgyKeyApp.Models.Fridge", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.Fridge", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +91,7 @@ namespace FridgyKeyApp.Models.Migrations
                     b.ToTable("Fridge");
                 });
 
-            modelBuilder.Entity("FridgyKeyApp.Models.FridgeProduct", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.FridgeProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,7 +126,7 @@ namespace FridgyKeyApp.Models.Migrations
                     b.ToTable("FridgeProduct");
                 });
 
-            modelBuilder.Entity("FridgyKeyApp.Models.Product", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.Product", b =>
                 {
                     b.Property<int>("Id");
 
@@ -148,7 +148,7 @@ namespace FridgyKeyApp.Models.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("FridgyKeyApp.Models.UserFridge", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.UserFridge", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,35 +277,35 @@ namespace FridgyKeyApp.Models.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FridgyKeyApp.Models.FridgeProduct", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.FridgeProduct", b =>
                 {
-                    b.HasOne("FridgyKeyApp.Models.Fridge", "Fridge")
+                    b.HasOne("FridgyKeyApp.DAL.Fridge", "Fridge")
                         .WithMany("FridgeProducts")
                         .HasForeignKey("FridgeId");
 
-                    b.HasOne("FridgyKeyApp.Models.Product", "Product")
+                    b.HasOne("FridgyKeyApp.DAL.Product", "Product")
                         .WithMany("FridgeProducts")
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("FridgyKeyApp.Models.ApplicationUser", "User")
+                    b.HasOne("FridgyKeyApp.DAL.ApplicationUser", "User")
                         .WithMany("FridgeProducts")
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("FridgyKeyApp.Models.Product", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.Product", b =>
                 {
-                    b.HasOne("FridgyKeyApp.Models.ApplicationUser", "User")
+                    b.HasOne("FridgyKeyApp.DAL.ApplicationUser", "User")
                         .WithMany("Products")
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("FridgyKeyApp.Models.UserFridge", b =>
+            modelBuilder.Entity("FridgyKeyApp.DAL.UserFridge", b =>
                 {
-                    b.HasOne("FridgyKeyApp.Models.Fridge", "Fridge")
+                    b.HasOne("FridgyKeyApp.DAL.Fridge", "Fridge")
                         .WithMany("UserFridges")
                         .HasForeignKey("FridgeId");
 
-                    b.HasOne("FridgyKeyApp.Models.ApplicationUser", "User")
+                    b.HasOne("FridgyKeyApp.DAL.ApplicationUser", "User")
                         .WithMany("UserFridges")
                         .HasForeignKey("UserId");
                 });
@@ -320,7 +320,7 @@ namespace FridgyKeyApp.Models.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("FridgyKeyApp.Models.ApplicationUser")
+                    b.HasOne("FridgyKeyApp.DAL.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -328,7 +328,7 @@ namespace FridgyKeyApp.Models.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("FridgyKeyApp.Models.ApplicationUser")
+                    b.HasOne("FridgyKeyApp.DAL.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -341,7 +341,7 @@ namespace FridgyKeyApp.Models.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FridgyKeyApp.Models.ApplicationUser")
+                    b.HasOne("FridgyKeyApp.DAL.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -349,7 +349,7 @@ namespace FridgyKeyApp.Models.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("FridgyKeyApp.Models.ApplicationUser")
+                    b.HasOne("FridgyKeyApp.DAL.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

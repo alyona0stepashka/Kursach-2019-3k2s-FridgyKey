@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace FridgyKeyApp.Models.ManageViewModels
+namespace FridgyKeyApp.DAL.ManageViewModels
 {
     public class ExternalLoginsViewModel
     {

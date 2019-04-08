@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace FridgyKeyApp.Models.ManageViewModels
+namespace FridgyKeyApp.DAL.ManageViewModels
 {
     public class EnableAuthenticatorViewModel
     {
