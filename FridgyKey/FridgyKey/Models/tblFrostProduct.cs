@@ -14,7 +14,10 @@ namespace FridgyKey.Models
         public int ProductId { get; set; }
         public int FrostId { get; set; }
         public int UserId { get; set; }
-        public int Amount { get; set; }
+        public float Amount { get; set; }
+        [Required]
+        [StringLength(300)]
+        public string EI { get; set; }
         public DateTime ValidDate { get; set; }
         public float PriceAmount { get; set; } 
         public virtual ICollection<tblFrostProduct> FrostProducts { get; set; }

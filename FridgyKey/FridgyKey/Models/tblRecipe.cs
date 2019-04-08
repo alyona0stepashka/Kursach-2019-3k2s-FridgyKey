@@ -12,9 +12,15 @@ namespace FridgyKey.Models
     {
         public int Id { get; set; }
         public int FrostId { get; set; }
+        [Required]
+        [StringLength(300)]
         public string Name{ get; set; }
+        [Required]
+        [StringLength(300)]
         public string Text { get; set; }
         public float Kkal { get; set; }
+        [Required]
+        [StringLength(300)]
         public string Notation { get; set; }
         public float Price { get; set; }
         public virtual ICollection<tblRecipe> Recipes { get; set; }

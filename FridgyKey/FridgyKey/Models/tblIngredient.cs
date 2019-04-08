@@ -12,8 +12,8 @@ namespace FridgyKey.Models
     {
         public int Id { get; set; }
         public int RecipeId { get; set; }
-        public int KkalId { get; set; }
-        public int Amount { get; set; }  
+        public int ProductId { get; set; }
+        public float Amount { get; set; }  
         public virtual ICollection<tblIngredient> Ingredients { get; set; }
         public tblIngredient()
         {

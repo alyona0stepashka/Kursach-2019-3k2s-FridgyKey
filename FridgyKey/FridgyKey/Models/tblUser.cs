@@ -11,8 +11,13 @@ namespace FridgyKey.Models
     public partial class tblUser
     {
         public int Id { get; set; }
+        [Required]
+        [StringLength(300)]
         public string Username { get; set; }
+        [Required]
+        [StringLength(300)]
         public string Password { get; set; } 
+        public int Role { get; set; }
         public virtual ICollection<tblUser> Users { get; set; }
         public tblUser()
         {

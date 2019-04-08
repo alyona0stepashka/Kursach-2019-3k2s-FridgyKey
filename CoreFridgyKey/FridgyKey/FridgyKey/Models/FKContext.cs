@@ -18,18 +18,18 @@ namespace FridgyKey.Models
     }
     public class FKDBInitializer: DropCreateDatabaseAlways<FKContext>
     {
-        protected override void Seed(FKContext db)
-        {
-            db.Users.Add(new tblUser { Username = "admin", Password = "admin" });
-            db.Users.Add(new tblUser { Username = "client", Password = "client" });
+        //protected override void Seed(FKContext db)
+        //{
+        //    db.Users.Add(new tblUser { Username = "admin", Password = "admin" });
+        //    db.Users.Add(new tblUser { Username = "client", Password = "client" });
 
-            //db.Storages.Add(new tblStorage { })
+        //    //db.Storages.Add(new tblStorage { })
 
-            db.Kkals.Add(new tblKkal { });
+        //    db.Kkals.Add(new tblKkal { });
 
 
 
-            base.Seed(db);
-        }
+        //    base.Seed(db);
+        //}
     }
 }

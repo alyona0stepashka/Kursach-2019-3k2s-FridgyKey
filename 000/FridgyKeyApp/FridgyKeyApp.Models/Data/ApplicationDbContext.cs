@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; 
+using FridgyKeyApp.Models;
+
+namespace FridgyKeyApp.Data
+{
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+                : base(options)
+        {
+        }
+
+        public virtual DbSet<Fridge> Fridges { get; set; }
+        public virtual DbSet<FridgeProduct> FridgeProducts { get; set; }
+        public virtual DbSet<Product> Products { get; set; } 
+        public virtual DbSet<UserFridge> UserFridges { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<FridgeProduct>()
+                .HasOne<ApplicationUser>(y => y.User)
+                .WithMany(o => o.FridgeProducts);
+             
+
+            modelBuilder.Entity<UserFridge>()
+                .HasOne<ApplicationUser>(m => m.User)
+                .WithMany(m => m.UserFridges);
+
+            modelBuilder.Entity<UserFridge>()
+                .HasOne<Fridge>(m => m.Fridge)
+                .WithMany(m => m.UserFridges); 
+
+               
+
+            //modelBuilder.Entity<FridgeProduct>()
+            //    .Property(e => e.Price)
+            //    .HasPrecision(18, 0);
+
+            //modelBuilder.Entity<Product>()
+            //    .Property(e => e.Name)
+            //    .IsFixedLength();
+
+            //modelBuilder.Entity<Product>()
+            //    .Property(e => e.Description)
+            //    .IsFixedLength();
+        }
+     
+    }
+}
