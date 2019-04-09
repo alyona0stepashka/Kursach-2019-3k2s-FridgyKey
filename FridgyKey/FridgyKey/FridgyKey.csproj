@@ -157,7 +157,6 @@
     </Compile>
     <Compile Include="Interface\IFrostProductRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
-    <Compile Include="Models1\ApplicationDB.cs" />
     <Compile Include="Models\FKContext.cs" />
     <Compile Include="Models\tblFrost.cs" />
     <Compile Include="Models\tblFrostProduct.cs" />
@@ -222,7 +221,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models1\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

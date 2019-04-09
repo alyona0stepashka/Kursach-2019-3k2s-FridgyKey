@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FridgyKeyApp.Models\FridgyKeyApp.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

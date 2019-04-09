@@ -1,6 +1,6 @@
 using System;
 
-namespace FridgyKeyApp.Models
+namespace FridgyKeyApp.DAL
 {
     public class ErrorViewModel
     {

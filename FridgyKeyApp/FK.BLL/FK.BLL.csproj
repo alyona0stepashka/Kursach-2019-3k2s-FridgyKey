@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FK.DAL\FK.DAL.csproj" />
+    <ProjectReference Include="..\FK.Models\FK.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>
+
+</Project>

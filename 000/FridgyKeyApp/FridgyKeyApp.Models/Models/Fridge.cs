@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FridgyKeyApp.Models
+namespace FridgyKeyApp.DAL
 {
     [Table("Fridge")]
     public partial class Fridge

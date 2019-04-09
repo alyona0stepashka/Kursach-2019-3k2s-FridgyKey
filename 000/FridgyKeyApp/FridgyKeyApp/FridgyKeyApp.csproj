@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FridgyKeyApp.Models\FridgyKeyApp.Models.csproj" />
+    <ProjectReference Include="..\FridgyKeyApp.Models\FridgyKeyApp.DAL.csproj" />
   </ItemGroup>
 
 </Project>

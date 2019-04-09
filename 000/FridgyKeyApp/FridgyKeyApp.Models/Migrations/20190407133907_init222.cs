@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FridgyKeyApp.Models.Migrations
+namespace FridgyKeyApp.DAL.Migrations
 {
     public partial class init222 : Migration
     {
