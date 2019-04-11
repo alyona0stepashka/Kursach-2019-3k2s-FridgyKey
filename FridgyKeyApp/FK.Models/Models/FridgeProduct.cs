@@ -26,6 +26,8 @@ namespace FK.Models
 
         public decimal? Price { get; set; }
 
+        public DateTime? DateBuy { get; set; }
+
         public DateTime? DateValid { get; set; }
 
         public virtual Fridge Fridge { get; set; }
