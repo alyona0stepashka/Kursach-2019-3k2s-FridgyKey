@@ -11,8 +11,8 @@ namespace FK.BLL.Interfaces
         void Update(Fridge fridge);  //изменить холодильник
         void Delete(Fridge fridge);  //удалить холодильник
         IEnumerable<Fridge> GetAll();  //получить все холодильники
-        IEnumerable<Fridge> GetAllByUserId(int? user_id);  //получить все холодильники этого юзера
-        Fridge GetFridge(int? fridge_id);  //получить холодильник по его id
+        IEnumerable<Fridge> GetAllByUserId(string user_id);  //получить все холодильники этого юзера
+        Fridge GetFridge(int fridge_id);  //получить холодильник по его id
 
     }
 }

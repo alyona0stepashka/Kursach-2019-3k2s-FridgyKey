@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FK.BLL.Interfaces
+namespace FK.BLL.Services
 {
-    public interface IUserService
-    { 
-
+    class UserService
+    {
     }
 }
