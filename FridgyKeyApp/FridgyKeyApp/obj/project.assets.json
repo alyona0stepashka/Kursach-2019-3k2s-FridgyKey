@@ -2923,6 +2923,19 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "Ninject/3.3.4": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ninject.dll": {}
+        }
+      },
       "NuGet.Frameworks/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -5116,7 +5129,8 @@
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
           "FK.DAL": "1.0.0",
-          "FK.Models": "1.0.0"
+          "FK.Models": "1.0.0",
+          "Ninject": "3.3.4"
         },
         "compile": {
           "bin/placeholder/FK.BLL.dll": {}
@@ -8238,6 +8252,20 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "Ninject/3.3.4": {
+      "sha512": "pfBwjaYJ306C3KaFa5WToDJUCgMYefnoLKpSevj+EPidcNEUhvveCmNeWtPl6N6DfPTJJv7vRVcbRIofO0U/QA==",
+      "type": "package",
+      "path": "ninject/3.3.4",
+      "files": [
+        ".signature.p7s",
+        "lib/net45/Ninject.dll",
+        "lib/net45/Ninject.xml",
+        "lib/netstandard2.0/Ninject.dll",
+        "lib/netstandard2.0/Ninject.xml",
+        "ninject.3.3.4.nupkg.sha512",
+        "ninject.nuspec"
       ]
     },
     "NuGet.Frameworks/4.0.0": {
@@ -13490,7 +13518,6 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "FK.BLL >= 1.0.0",
-      "FK.DAL >= 1.0.0",
       "FK.Models >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 2.0.2",
@@ -13533,9 +13560,6 @@
           "projectReferences": {
             "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\FridgyKeyApp\\FK.BLL\\FK.BLL.csproj": {
               "projectPath": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\FridgyKeyApp\\FK.BLL\\FK.BLL.csproj"
-            },
-            "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\FridgyKeyApp\\FK.DAL\\FK.DAL.csproj": {
-              "projectPath": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\FridgyKeyApp\\FK.DAL\\FK.DAL.csproj"
             },
             "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\FridgyKeyApp\\FK.Models\\FK.Models.csproj": {
               "projectPath": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\FridgyKeyApp\\FK.Models\\FK.Models.csproj"

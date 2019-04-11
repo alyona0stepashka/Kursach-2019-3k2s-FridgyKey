@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FK.BLL\FK.BLL.csproj" />
-    <ProjectReference Include="..\FK.DAL\FK.DAL.csproj" />
     <ProjectReference Include="..\FK.Models\FK.Models.csproj" />
   </ItemGroup>
 
