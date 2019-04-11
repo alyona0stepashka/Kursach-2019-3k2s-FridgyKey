@@ -73,7 +73,7 @@ namespace FK.BLL.Services
         {
             try
             {
-                return db.Products.Find()
+                return db.Products.GetAll();//.Find();
             }
             catch (Exception e)
             {
@@ -85,7 +85,7 @@ namespace FK.BLL.Services
         {
             try
             {
-                return db.Products.Find()
+                return db.Products.GetAll();//.Find();
             }
             catch (Exception e)
             {
