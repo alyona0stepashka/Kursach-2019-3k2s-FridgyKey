@@ -17,7 +17,7 @@ namespace FK.DAL.Repositories
         private FridgeProductRepository fridgeProductRepository;
         private StickerRepository stickerRepository;
 
-        public EFUnitOfWork(string connectionString)
+        public EFUnitOfWork()
         {
             db = new ApplicationDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<ApplicationDbContext>());  //?????
         }
