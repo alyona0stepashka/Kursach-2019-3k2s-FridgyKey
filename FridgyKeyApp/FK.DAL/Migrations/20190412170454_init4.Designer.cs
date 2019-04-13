@@ -4,14 +4,16 @@ using FK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FK.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190412170454_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,8 +78,6 @@ namespace FK.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<DateTime?>("DateCreate");
 
                     b.Property<string>("Description")
@@ -89,9 +89,12 @@ namespace FK.DAL.Migrations
                     b.Property<string>("PasswordHash")
                         .HasMaxLength(50);
 
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450);
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Fridge");
                 });
@@ -120,8 +123,7 @@ namespace FK.DAL.Migrations
 
                     b.Property<int?>("ProductId");
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(450);
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -136,9 +138,7 @@ namespace FK.DAL.Migrations
 
             modelBuilder.Entity("FK.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Description")
                         .HasMaxLength(255);
@@ -172,8 +172,7 @@ namespace FK.DAL.Migrations
                     b.Property<string>("Text")
                         .HasMaxLength(450);
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(450);
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -192,8 +191,7 @@ namespace FK.DAL.Migrations
 
                     b.Property<int?>("FridgeId");
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(450);
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -316,9 +314,9 @@ namespace FK.DAL.Migrations
 
             modelBuilder.Entity("FK.Models.Fridge", b =>
                 {
-                    b.HasOne("FK.Models.ApplicationUser")
+                    b.HasOne("FK.Models.ApplicationUser", "User")
                         .WithMany("Fridges")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("FK.Models.FridgeProduct", b =>

@@ -4,14 +4,16 @@ using FK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FK.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190412170142_init3")]
+    partial class init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,8 +122,7 @@ namespace FK.DAL.Migrations
 
                     b.Property<int?>("ProductId");
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(450);
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -136,9 +137,7 @@ namespace FK.DAL.Migrations
 
             modelBuilder.Entity("FK.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Description")
                         .HasMaxLength(255);
@@ -172,8 +171,7 @@ namespace FK.DAL.Migrations
                     b.Property<string>("Text")
                         .HasMaxLength(450);
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(450);
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -192,8 +190,7 @@ namespace FK.DAL.Migrations
 
                     b.Property<int?>("FridgeId");
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(450);
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 

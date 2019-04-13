@@ -12,7 +12,10 @@ namespace FK.Models
     {
         public int Id { get; set; }
 
-        public int? FridgeId { get; set; } 
+        public int? FridgeId { get; set; }
+
+        [StringLength(450)]
+        public virtual string UserId { get; set; }
 
         public virtual Fridge Fridge { get; set; }
 

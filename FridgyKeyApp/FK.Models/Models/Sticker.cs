@@ -12,11 +12,16 @@ namespace FK.Models
         public int Id { get; set; }
 
         [StringLength(450)]
+        public virtual string UserId { get; set; }
+
+        [StringLength(450)]
         public string Text { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime DateAdd { get; set; }
+
         public virtual ApplicationUser User { get; set; }
+
         public virtual Fridge Fridge { get; set; }
     }
 }    

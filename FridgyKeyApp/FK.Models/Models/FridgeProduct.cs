@@ -16,6 +16,9 @@ namespace FK.Models
 
         public int? ProductId { get; set; }
 
+        [StringLength(450)] 
+        public virtual string UserId { get; set; }
+
         public double? Amount { get; set; }
 
         [StringLength(50)]

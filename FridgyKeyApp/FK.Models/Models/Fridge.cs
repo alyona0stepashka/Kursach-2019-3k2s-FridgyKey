@@ -16,9 +16,9 @@ namespace FK.Models
             UserFridges = new HashSet<UserFridge>();
         }
 
-        public int Id { get; set; }
+        public int Id { get; set; } 
 
-        [StringLength(50)] //???
+        [StringLength(50)] 
         public string PasswordHash { get; set; }
 
         [StringLength(50)]
@@ -32,6 +32,6 @@ namespace FK.Models
         public virtual ICollection<Sticker> Stickers { get; set; }
         public virtual ICollection<FridgeProduct> FridgeProducts { get; set; }
          
-        public virtual ICollection<UserFridge> UserFridges { get; set; }
+        public virtual ICollection<UserFridge> UserFridges { get; set; } 
     }
 }

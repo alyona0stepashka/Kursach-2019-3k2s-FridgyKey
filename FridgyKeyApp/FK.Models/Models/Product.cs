@@ -14,10 +14,11 @@ namespace FK.Models
         {
             FridgeProducts = new HashSet<FridgeProduct>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
          
+        public int Id { get; set; }
+
+        [StringLength(450)]
+        public virtual string UserId { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }

@@ -14,3 +14,5 @@ D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.DAL\obj\Debug\n
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.DAL\obj\Debug\netcoreapp2.0\FK.DAL.csproj.CopyComplete
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.DAL\obj\Debug\netcoreapp2.0\FK.DAL.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.DAL\obj\Debug\netcoreapp2.0\FK.DAL.pdb
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.DAL\bin\Debug\netcoreapp2.0\FK.DAL.runtimeconfig.json
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.DAL\bin\Debug\netcoreapp2.0\FK.DAL.runtimeconfig.dev.json
