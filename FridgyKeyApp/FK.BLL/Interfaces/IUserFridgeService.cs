@@ -15,6 +15,8 @@ namespace FK.BLL.Interfaces
         IEnumerable<ApplicationUser> GetAllUsersByFridgeId(int fridge_id);  //получить всех юзеров этого холодильника  
         UserFridge GetUserFridge(int usfridge_id);  //получить связь конкретного юзера с конкретным холодосом
         UserFridge GetUserFridgeByFridgeIdUserId(int fridge_id, string user_id);  //получить связь конкретного юзера с конкретным холодосом по параметрам
+        IEnumerable<Fridge> GetFridgeByUserId(string user_id);  //получить связь конкретного юзера с конкретным холодосом по параметрам
+        void Dispose();
 
     }
 }

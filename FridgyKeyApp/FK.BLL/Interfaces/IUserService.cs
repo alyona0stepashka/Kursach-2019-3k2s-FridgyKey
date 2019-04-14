@@ -12,6 +12,7 @@ namespace FK.BLL.Interfaces
         void Delete(ApplicationUser ApplicationUser);
         IEnumerable<ApplicationUser> GetAll();  //все юзеры
         IEnumerable<ApplicationUser> GetAllUser();  //все юзеры (роль=юзер) 
-        ApplicationUser GetUser(string user_id);  
+        ApplicationUser GetUser(string user_id);
+        void Dispose();
     }
 }

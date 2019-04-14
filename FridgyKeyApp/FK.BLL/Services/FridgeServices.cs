@@ -109,5 +109,22 @@ namespace FK.BLL.Services
                 return null;
             }
         }
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public int GetCountOwner(int fridge_id)
+        {
+            try
+            {
+                return 1;
+            }
+            catch (Exception e)
+            {
+
+                return 0;
+            }
+        }
     }
 }

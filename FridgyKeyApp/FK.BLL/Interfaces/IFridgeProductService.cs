@@ -20,6 +20,6 @@ namespace FK.BLL.Interfaces
         IEnumerable<FridgeProduct> SearchByDateBuy(DateTime date,int fridge_id);  //продукты, что куплены в этот день
         IEnumerable<FridgeProduct> SearchByDateBuy(DateTime date, int fridge_id, string user_id);  //продукты, что куплены в этот день
         FridgeProduct GetFridgeProduct(int frproduct_id);
-
+        void Dispose();
     }
 }

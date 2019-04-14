@@ -144,5 +144,27 @@ namespace FK.BLL.Services
                 return null;
             }
         }
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public IEnumerable<Fridge> GetFridgeByUserId(string user_id)
+        {
+            try
+            {
+                var userFridge = db.UserFridges.Find(m => m.User.Id == user_id).ToList();
+                if (userFridge.Count() != 1)
+                {
+                    throw new Exception("Невалидные параметры");
+                }
+                var fridge = db.Fridges.Find(m => m.Id == userFridge[0].FridgeId).ToList();
+                return fridge;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

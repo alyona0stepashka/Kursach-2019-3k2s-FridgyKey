@@ -1,0 +1,39 @@
+﻿@model UserFridgeViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>My Fridges</h2>
+
+@*<form asp-controller="Fridge" asp-action="OpenFridge">*@
+    <div>
+        <table class="table-striped" style="width:100%">
+            <thead>
+                <tr> 
+                    <th class="text-center">FridgeName</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">DateCreate</th> 
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (int i = 0; i < Model.fridges.Count(); i++)
+    {  
+                    @Html.HiddenFor(m => m.fridges[i].Id)
+                    @Html.HiddenFor(m => m.fridges[i].Name) 
+                    @Html.HiddenFor(m => m.fridges[i].Description)
+                    @Html.HiddenFor(m => m.fridges[i].DateCreate)                  
+                <tr>
+                    <td>@Model.fridges[i].Name</td>
+                    <td>@Model.fridges[i].Description</td>
+                    <td>@Model.fridges[i].DateCreate</td>
+                    <td><a href="Fridge/Open/@Model.fridges[i].Id">[Open]</a></td>
+                    <td><a href="Fridge/Edit/@Model.fridges[i].Id">[Edit]</a></td>
+                </tr>
+
+}
+            </tbody>
+            </table>
+</div>
+@*</form>*@
+

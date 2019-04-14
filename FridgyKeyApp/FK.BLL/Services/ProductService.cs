@@ -116,5 +116,9 @@ namespace FK.BLL.Services
                 return null;
             }
         }
+        public void Dispose()
+        {
+            db.Dispose();
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model List<FridgyKeyApp.Models.UsersFridgeViewModel>
+
+@{
+    ViewData["Title"] = "All Fridges";
+} 
+
+<h2>All Application Fridges</h2>
+
+@*<form asp-controller="Fridge" asp-action="OpenFridge">*@
+    <div>
+        <table class="table-striped" style="width:100%">
+            <thead>
+                <tr> 
+                    <th class="text-center">FridgeName</th>
+                    <th class="text-center">Owners</th>
+                    <th class="text-center">DateCreate</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                <tr>
+                    <td><a href="/Fridge/Open/@Model[i].fridge.Id">@Model[i].fridge.Name</a></td> 
+                    <td>
+                        @for (int j = 0; j < Model[i].Users.Count(); j++)
+                        {
+                    <a href="/User/Show/@Model[i].Users[j].Id"> @Model[i].Users[j].UserName</a><p/>
+                        }
+                    </td>
+                <td>@Model[i].fridge.DateCreate</td>
+                <td><a href="/Fridge/Delete/@Model[i].fridge.Id">[Delete]</a></td>
+                </tr> 
+                }
+            </tbody>
+        </table>
+    </div>
+@*</form>*@

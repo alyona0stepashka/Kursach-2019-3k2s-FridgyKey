@@ -15,7 +15,7 @@ namespace FK.BLL.Interfaces
         IEnumerable<Sticker> GetAllByFridgeId(int fridge_id);  //получить все записи на этом холодильнике 
         IEnumerable<Sticker> SearchByWord(string word, string user_id, int fridge_id);  //найти записи этого юзера на этом холодильнике, в которых есть это слово
         IEnumerable<Sticker> SearchByDate(DateTime date);  //найти все записи с этой датой
-
         Sticker GetSticker(int sticker_id);
+        void Dispose();
     }
 }
