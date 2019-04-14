@@ -1,0 +1,37 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Products</h2>
+
+<h4>Products</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <table class="table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">Image</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">f/c/p</th>
+                    <th class="text-center">kkal</th> 
+                </tr>
+            </thead> 
+
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td><img src="@Model[i].ImgURL" height="100"/></td>
+                        <td><a href="/Product/Show/@Model[i].Id">@Model[i].Name</a></td> 
+                        <td><a href="/User/Show/@Model[i].User.Id">@Model[i].User.UserName</a></td>
+                        <td>@Model[i].Fat / @Model[i].Carb / @Model[i].Protein</td>
+                        <td>@Model[i].Kkal</td> 
+                    </tr>
+                }
+            </tbody>
+        </table>
+         
+    </div> 
+</div>
+

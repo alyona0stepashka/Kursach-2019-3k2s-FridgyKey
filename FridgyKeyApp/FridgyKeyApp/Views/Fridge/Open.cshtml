@@ -1,4 +1,4 @@
-﻿@model FK.Models.Fridge
+﻿@model FridgeProductViewModel
 
 @{
     ViewData["Title"] = "Open";
@@ -15,38 +15,61 @@
                 <tr>
                     <th class="text-center">Product</th>
                     <th class="text-center">Amount</th>
+                    <th class="text-center">EI</th>
                     <th class="text-center">Owner</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">DateBuy</th>
                     <th class="text-center">DateValid</th>
                 </tr>
             </thead>
+            @Html.HiddenFor(m => m.fridge)
+
 
             <tbody>
-                @*@for (int i = 0; i < Model.FridgeProducts.Count; i++)
-                {
-                    @Html.EditorFor(m=>m.FridgeProducts[i].)
-                }*@
-
-        
-                @foreach (FridgeProduct prod in Model.FridgeProducts)
-                {
-            <tr>
-
-                <td><a href="/Product/Show/@prod.Product.Id">@prod.Product.Name</a></td>
-                @*<td><input asp-for=""</td>*@
-                <td>@prod.Amount @prod.EI</td>
-                <td><a href="/User/Show/@prod.User.Id">@prod.User.UserName</a></td>
-                <td>@prod.Price</td>
-                <td>@prod.DateBuy</td>
-                <td>@prod.DateValid</td>
-            </tr>
-                }
-                @Html.HiddenFor(m => m.FridgeProducts)
+                @for (int i = 0; i < Model.products.Count; i++)
+            {
+                <tr>
+                    <td><a href="/Product/Show/@Model.products[i].Product.Id">@Model.products[i].Product.Name</a></td>
+                    <td>@Html.EditorFor(m => m.products[i].Amount)</td>
+                    <td>@Html.EditorFor(m => m.products[i].EI)</td>
+                    <td><a href="/User/Show/@Model.products[i].User.Id">@Model.products[i].User.UserName</a></td>
+                    <td>@Model.products[i].Price</td>
+                    <td>@Model.products[i].DateBuy</td>
+                    <td>@Model.products[i].DateValid</td>
+                </tr>
+        }
             </tbody>
-        </table> 
+        </table>
 
-</div> 
+
+
+
+        <table class="table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">User</th>
+                    <th class="text-center">Text</th>
+                    <th class="text-center">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.stickers.Count; i++)
+        {
+            <tr>
+                <td><a href="/Product/Show/@Model.stickers[i].UserId">@Model.stickers[i].User.UserName</a></td> 
+                <td>@Model.stickers[i].Text</td> 
+                <td>@Model.stickers[i].DateAdd</td>
+            </tr>
+}
+                @*<tr>
+                <td>@Html.EditorFor(m => m.stickers[].Text)</td>
+                <td><a asp-action="Send" asp-controller="Sticker">[Send]</a></td>  //???
+                </tr>*@
+            </tbody>
+
+        </table>
+
+    </div> 
     <a asp-action="Edit" asp-controller="Fridge">Save Changes</a>
     <a asp-action="Index" asp-controller="UserFridge">Back to List</a>
 </div>

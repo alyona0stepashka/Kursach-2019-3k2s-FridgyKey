@@ -9,7 +9,7 @@ using System.Text;
 
 namespace FK.BLL.Services
 {
-    class FridgeProductService : IFridgeProductService
+    public class FridgeProductService : IFridgeProductService
     {
         IUnitOfWork db { get; set; }
 

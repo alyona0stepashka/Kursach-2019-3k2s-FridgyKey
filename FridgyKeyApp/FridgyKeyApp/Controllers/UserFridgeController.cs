@@ -21,12 +21,17 @@ namespace FridgyKeyApp.Controllers
         private UserManager<ApplicationUser> _userManager;
 
       
-        public UserFridgeController(UserManager<ApplicationUser> userManager)
+        //public UserFridgeController(UserManager<ApplicationUser> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
+        public UserFridgeController(
+            UserManager<ApplicationUser> userManager,
+            IUserFridgeService serv,
+            IUserService serv2
+            )
         {
             _userManager = userManager;
-        }
-        public UserFridgeController(IUserFridgeService serv,IUserService serv2)
-        {
             userFridgeService = serv;
             userService = serv2;
         }

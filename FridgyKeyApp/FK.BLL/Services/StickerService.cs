@@ -10,7 +10,7 @@ using System.Text;
 
 namespace FK.BLL.Services
 {
-    class StickerService : IStickerService
+    public class StickerService : IStickerService
     {
         IUnitOfWork db { get; set; }
 

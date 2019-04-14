@@ -14,25 +14,37 @@ namespace FridgyKeyApp.Controllers
     public class FridgeController : Controller
     {
         IFridgeService fridgeService;
+        IFridgeProductService fridgeProductService;
         IUserFridgeService userFridgeService;
         IUserService userService;
+        IStickerService stickerservice;
 
         private UserManager<ApplicationUser> _userManager;
 
 
-        public FridgeController(UserManager<ApplicationUser> userManager)
+        //public FridgeController(UserManager<ApplicationUser> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
+        public FridgeController(
+            UserManager<ApplicationUser> userManager,
+            IUserFridgeService serv, 
+            IUserService serv2, 
+            IFridgeService serv3, 
+            IFridgeProductService serv4,
+            IStickerService serv5
+            )
         {
             _userManager = userManager;
-        }
-        public FridgeController(IUserFridgeService serv, IUserService serv2, IFridgeService serv3)
-        {
             userFridgeService = serv;
             userService = serv2;
             fridgeService = serv3;
+            fridgeProductService = serv4;
+            stickerservice = serv5;
         }
 
 
-        [Authorize(Roles ="admin")]
+        [Authorize]
         public IActionResult Index()
         {
             List<UsersFridgeViewModel> model = new List<UsersFridgeViewModel>();
@@ -62,9 +74,12 @@ namespace FridgyKeyApp.Controllers
         [HttpGet]
         [Authorize]
         public ActionResult Open(int fridge_id)
-        {
+        { 
             var fridge = fridgeService.GetFridge(fridge_id);
-            return View(fridge);
+            var products = fridge.FridgeProducts.ToList();
+            var stickers = stickerservice.GetAllByFridgeId(fridge_id).ToList();
+
+            return View(new FridgeProductViewModel(products, fridge, stickers));
         }
     }
 }

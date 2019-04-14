@@ -14,6 +14,7 @@ namespace FK.DAL
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
                 : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public virtual DbSet<Sticker> Stickers { get; set; }
@@ -24,6 +25,21 @@ namespace FK.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //string adminRoleName = "admin";
+            //string userRoleName = "user";
+
+            //string adminEmail = "admin@mail.ru";
+            //string adminPassword = "Parol_01";
+
+            //// добавляем роли
+            //IdentityRole adminRole = new IdentityRole { Name = adminRoleName };
+            //IdentityRole userRole = new IdentityRole { Name = userRoleName };
+            //ApplicationUser adminUser = new ApplicationUser { Email = adminEmail, PasswordHash=adminPassword };  //???
+
+            //modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole[] { adminRole, userRole });
+            //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser[] { adminUser });
+
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<FridgeProduct>()
