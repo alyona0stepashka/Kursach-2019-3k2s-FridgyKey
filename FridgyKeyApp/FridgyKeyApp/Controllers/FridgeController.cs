@@ -66,10 +66,29 @@ namespace FridgyKeyApp.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(Fridge fridge)
+        public ActionResult Create(Fridge fridge)
         {
             fridgeService.Update(fridge);
-            return Redirect("UserFridge/Index/");
+            return Redirect("/UserFridge/Index");
+        }
+        [HttpGet]
+        [Authorize]
+        public ActionResult Create()
+        {
+            var fridge = new Fridge();
+            return View(fridge);
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> EditAsync(Fridge fridge)
+        {
+            var user_id = _userManager.GetUserId(User); 
+            var user = await _userManager.FindByIdAsync(user_id);
+            fridge.DateCreate = DateTime.Now;
+            fridge.PasswordHash = fridge.PasswordHash.GetHashCode().ToString();
+            fridgeService.Create(fridge);
+            userFridgeService.Create(new UserFridge { Fridge=fridge, FridgeId=fridge.Id,User=user, UserId=user_id}); 
+            return Redirect("/UserFridge/Index");
         }
         [HttpGet]
         [Authorize]
@@ -80,6 +99,13 @@ namespace FridgyKeyApp.Controllers
             var stickers = stickerservice.GetAllByFridgeId(fridge_id).ToList();
 
             return View(new FridgeProductViewModel(products, fridge, stickers));
+        }
+        [HttpGet]
+        [Authorize]
+        public ActionResult Delete(int fridge_id)
+        {
+            fridgeService.Delete(fridgeService.GetFridge(fridge_id)); 
+            return View("Index");
         }
     }
 }

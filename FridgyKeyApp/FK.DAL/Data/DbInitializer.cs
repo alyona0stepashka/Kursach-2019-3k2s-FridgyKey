@@ -6,36 +6,29 @@ using System.Text;
 
 namespace FK.DAL.Data
 {
-    //public class DbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
-    //{ 
-
-    //    protected override void Seed(ApplicationDbContext context)
+    //public class RoleInitializer
+    //{
+    //    public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
     //    {
-    //        var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-
-    //        var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-
-    //        // создаем две роли
-    //        var role1 = new IdentityRole { Name = "admin" };
-    //        var role2 = new IdentityRole { Name = "user" };
-
-    //        // добавляем роли в бд
-    //        roleManager.Create(role1);
-    //        roleManager.Create(role2);
-
-    //        // создаем пользователей
-    //        var admin = new ApplicationUser { Email = "mail@mail.ru", UserName = "mail@mail.ru" };
-    //        string password = "ad46D_ewr3";
-    //        var result = userManager.Create(admin, password);
-
-    //        // если создание пользователя прошло успешно
-    //        if (result.Succeeded)
+    //        string adminEmail = "admin@mail.com";
+    //        string password = "_Aa123456";
+    //        if (await roleManager.FindByNameAsync("admin") == null)
     //        {
-    //            // добавляем для пользователя роль
-    //            userManager.AddToRole(admin.Id, role1.Name); 
+    //            await roleManager.CreateAsync(new IdentityRole("admin"));
     //        }
-
-    //        base.Seed(context);
+    //        if (await roleManager.FindByNameAsync("user") == null)
+    //        {
+    //            await roleManager.CreateAsync(new IdentityRole("user"));
+    //        }
+    //        if (await userManager.FindByNameAsync(adminEmail) == null)
+    //        {
+    //            ApplicationUser admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail };
+    //            IdentityResult result = await userManager.CreateAsync(admin, password);
+    //            if (result.Succeeded)
+    //            {
+    //                await userManager.AddToRoleAsync(admin, "admin");
+    //            }
+    //        }
     //    }
     //}
 }

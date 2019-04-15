@@ -45,7 +45,14 @@ namespace FK.BLL.Services
 
         public void Delete(ApplicationUser ApplicationUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //db.Users.Delete(ApplicationUser.Id);  ???string/int
+            }
+            catch(Exception e)
+            {
+
+            }
         }
 
         public IEnumerable<ApplicationUser> GetAll()

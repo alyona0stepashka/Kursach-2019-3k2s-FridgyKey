@@ -45,8 +45,33 @@ namespace FridgyKeyApp.Controllers
             return View(products);
         }
 
+        [HttpGet] 
+        public ActionResult  Show(int product_id)
+        {
+            var product = productService.GetProduct(product_id);
+            return View(product);
+        }
         [HttpGet]
         [Authorize]
-        public ActionResult 
+        public ActionResult Edit(int product_id)
+        {
+            var product = productService.GetProduct(product_id);
+            return View(product);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Edit(Product product)
+        {
+            productService.Update(product);
+            return Redirect("/Product/Index");
+        }
+        [HttpGet]
+        [Authorize]
+        public ActionResult Delete(int product_id)
+        {
+            productService.Delete(productService.GetProduct(product_id));
+            return View("Index");
+        }
     }
 }

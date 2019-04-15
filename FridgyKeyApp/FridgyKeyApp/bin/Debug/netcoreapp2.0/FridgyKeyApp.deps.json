@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "d02b8dec5d1798fe087bf12726653d9e075f5aa7"
+    "signature": "b3bd4dbbb9580074fddc8cbdbf06d01e4f704e2c"
   },
   "compilationOptions": {
     "defines": [
@@ -242,7 +242,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.4",
           "Microsoft.EntityFrameworkCore.Sqlite": "2.0.2",
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "2.0.2",
-          "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Tools": "2.2.4",
           "Microsoft.Extensions.Caching.Abstractions": "2.2.0",
           "Microsoft.Extensions.Caching.Memory": "2.2.0",
           "Microsoft.Extensions.Caching.Redis": "2.0.1",
@@ -1696,7 +1696,7 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/2.0.2": {
+      "Microsoft.EntityFrameworkCore.Tools/2.2.4": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "2.2.4"
         }
@@ -2507,18 +2507,6 @@
         },
         "compile": {
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
-        }
-      },
-      "Ninject/3.3.4": {
-        "dependencies": {
-          "System.Reflection.Emit.ILGeneration": "4.3.0",
-          "System.Reflection.Emit.Lightweight": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Ninject.dll": {}
-        },
-        "compile": {
-          "lib/netstandard2.0/Ninject.dll": {}
         }
       },
       "NuGet.Frameworks/4.0.0": {
@@ -4113,8 +4101,7 @@
       "FK.BLL/1.0.0": {
         "dependencies": {
           "FK.DAL": "1.0.0",
-          "FK.Models": "1.0.0",
-          "Ninject": "3.3.4"
+          "FK.Models": "1.0.0"
         },
         "runtime": {
           "FK.BLL.dll": {}
@@ -4128,7 +4115,8 @@
           "FK.Models": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.2.4",
           "Microsoft.EntityFrameworkCore.Design": "2.2.4",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.4"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.4",
+          "Microsoft.EntityFrameworkCore.Tools": "2.2.4"
         },
         "runtime": {
           "FK.DAL.dll": {}
@@ -5097,12 +5085,12 @@
       "path": "microsoft.entityframeworkcore.sqlserver/2.2.4",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.2.2.4.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Tools/2.0.2": {
+    "Microsoft.EntityFrameworkCore.Tools/2.2.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-GBgyVDSZhYwja4cy+muVBocjlgbLhV5m29J3tHHf02utM8zo1jDSuarDGKV0O+kj5d3bgBuHe+0/Tf78GanTHQ==",
-      "path": "microsoft.entityframeworkcore.tools/2.0.2",
-      "hashPath": "microsoft.entityframeworkcore.tools.2.0.2.nupkg.sha512"
+      "sha512": "sha512-5TYZQLKhj/zVeletm28nu9MSXsQtFTIrv9/Xdc1V2gYcETsRv6ktslnvcPd4VwPc7g92f7mCcYsjmtolwDOjhw==",
+      "path": "microsoft.entityframeworkcore.tools/2.2.4",
+      "hashPath": "microsoft.entityframeworkcore.tools.2.2.4.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/2.2.0": {
       "type": "package",
@@ -5558,13 +5546,6 @@
       "sha512": "sha512-5PYT/IqQ+UK31AmZiSS102R6EsTo+LGTSI8bp7WAUqDKaF4wHXD8U9u4WxTI1vc64tYi++8p3dk3WWNqPFgldw==",
       "path": "newtonsoft.json.bson/1.0.1",
       "hashPath": "newtonsoft.json.bson.1.0.1.nupkg.sha512"
-    },
-    "Ninject/3.3.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-pfBwjaYJ306C3KaFa5WToDJUCgMYefnoLKpSevj+EPidcNEUhvveCmNeWtPl6N6DfPTJJv7vRVcbRIofO0U/QA==",
-      "path": "ninject/3.3.4",
-      "hashPath": "ninject.3.3.4.nupkg.sha512"
     },
     "NuGet.Frameworks/4.0.0": {
       "type": "package",
