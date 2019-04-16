@@ -1,6 +1,7 @@
 ﻿
 using FK.DAL.Interfaces;
 using FK.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,10 +17,11 @@ namespace FK.DAL.Repositories
         private ProductRepository productRepository;
         private FridgeProductRepository fridgeProductRepository;
         private StickerRepository stickerRepository;
+        private ProductInfoRepository productInfoRepository;
 
-        public EFUnitOfWork()
+        public EFUnitOfWork(DbContextOptions<ApplicationDbContext> ortions)
         {
-            db = new ApplicationDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<ApplicationDbContext>());  //?????
+            db = new ApplicationDbContext(ortions);   
         }
         public IRepository<ApplicationUser> Users
         {
@@ -28,6 +30,15 @@ namespace FK.DAL.Repositories
                 if (userRepository == null)
                     userRepository = new UserRepository(db);
                 return userRepository;
+            }
+        }
+        public IRepository<ProductInfo> ProductInfos
+        {
+            get
+            {
+                if (productInfoRepository == null)
+                    productInfoRepository = new ProductInfoRepository(db);
+                return productInfoRepository;
             }
         }
 

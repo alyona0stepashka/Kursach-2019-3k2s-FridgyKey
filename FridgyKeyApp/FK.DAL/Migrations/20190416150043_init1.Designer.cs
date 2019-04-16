@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FK.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190412170142_init3")]
-    partial class init3
+    [Migration("20190416150043_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,7 +122,8 @@ namespace FK.DAL.Migrations
 
                     b.Property<int?>("ProductId");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450);
 
                     b.HasKey("Id");
 
@@ -137,16 +138,26 @@ namespace FK.DAL.Migrations
 
             modelBuilder.Entity("FK.Models.Product", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<float>("Carb");
 
                     b.Property<string>("Description")
                         .HasMaxLength(255);
 
+                    b.Property<float>("Fat");
+
                     b.Property<string>("ImgURL")
                         .HasMaxLength(255);
 
+                    b.Property<float>("Kkal");
+
                     b.Property<string>("Name")
                         .HasMaxLength(50);
+
+                    b.Property<float>("Protein");
 
                     b.Property<string>("UserId")
                         .HasMaxLength(450);
@@ -156,6 +167,29 @@ namespace FK.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("FK.Models.ProductInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<float>("Carb");
+
+                    b.Property<float>("Fat");
+
+                    b.Property<float>("Kkal");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<float>("Protein");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductInfo");
                 });
 
             modelBuilder.Entity("FK.Models.Sticker", b =>
@@ -171,7 +205,8 @@ namespace FK.DAL.Migrations
                     b.Property<string>("Text")
                         .HasMaxLength(450);
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450);
 
                     b.HasKey("Id");
 
@@ -190,7 +225,8 @@ namespace FK.DAL.Migrations
 
                     b.Property<int?>("FridgeId");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450);
 
                     b.HasKey("Id");
 
@@ -338,6 +374,14 @@ namespace FK.DAL.Migrations
                     b.HasOne("FK.Models.ApplicationUser", "User")
                         .WithMany("Products")
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("FK.Models.ProductInfo", b =>
+                {
+                    b.HasOne("FK.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FK.Models.Sticker", b =>

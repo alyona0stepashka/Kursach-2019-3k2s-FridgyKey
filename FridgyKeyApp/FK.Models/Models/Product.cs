@@ -15,11 +15,7 @@ namespace FK.Models
             FridgeProducts = new HashSet<FridgeProduct>();
         }
          
-        public int Id { get; set; }
-        public float Fat { get; set; }
-        public float Carb { get; set; }
-        public float Protein { get; set; }
-        public float Kkal { get; set; }
+        public int Id { get; set; } 
 
         [StringLength(450)]
         public virtual string UserId { get; set; }

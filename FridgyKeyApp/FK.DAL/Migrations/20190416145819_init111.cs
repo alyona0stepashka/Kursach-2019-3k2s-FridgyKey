@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace FK.DAL.Migrations
 {
-    public partial class init2 : Migration
+    public partial class init111 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,9 +13,9 @@ namespace FK.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,20 +27,20 @@ namespace FK.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,9 +53,9 @@ namespace FK.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<string>(nullable: false)
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -75,9 +74,9 @@ namespace FK.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -160,11 +159,11 @@ namespace FK.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<string>(nullable: true),
-                    DateCreate = table.Column<DateTime>(nullable: true),
-                    Description = table.Column<string>(maxLength: 50, nullable: true),
+                    PasswordHash = table.Column<string>(maxLength: 50, nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: true),
-                    PasswordHash = table.Column<string>(maxLength: 50, nullable: true)
+                    Description = table.Column<string>(maxLength: 50, nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -181,11 +180,16 @@ namespace FK.DAL.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(maxLength: 255, nullable: true),
-                    ImgURL = table.Column<string>(maxLength: 255, nullable: true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Fat = table.Column<float>(nullable: false),
+                    Carb = table.Column<float>(nullable: false),
+                    Protein = table.Column<float>(nullable: false),
+                    Kkal = table.Column<float>(nullable: false),
+                    UserId = table.Column<string>(maxLength: 450, nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
+                    ImgURL = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -204,10 +208,10 @@ namespace FK.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateAdd = table.Column<DateTime>(nullable: false),
-                    FridgeId = table.Column<int>(nullable: true),
+                    UserId = table.Column<string>(maxLength: 450, nullable: true),
                     Text = table.Column<string>(maxLength: 450, nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    DateAdd = table.Column<DateTime>(nullable: false),
+                    FridgeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -233,7 +237,7 @@ namespace FK.DAL.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FridgeId = table.Column<int>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -258,15 +262,15 @@ namespace FK.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Amount = table.Column<double>(nullable: true),
-                    DateBuy = table.Column<DateTime>(nullable: true),
-                    DateValid = table.Column<DateTime>(nullable: true),
-                    Description = table.Column<string>(maxLength: 255, nullable: true),
-                    EI = table.Column<string>(maxLength: 50, nullable: true),
                     FridgeId = table.Column<int>(nullable: true),
-                    Price = table.Column<decimal>(nullable: true),
                     ProductId = table.Column<int>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(maxLength: 450, nullable: true),
+                    Amount = table.Column<double>(nullable: true),
+                    EI = table.Column<string>(maxLength: 50, nullable: true),
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
+                    Price = table.Column<decimal>(nullable: true),
+                    DateBuy = table.Column<DateTime>(nullable: true),
+                    DateValid = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -289,6 +293,29 @@ namespace FK.DAL.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductInfo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Fat = table.Column<float>(nullable: false),
+                    Carb = table.Column<float>(nullable: false),
+                    Protein = table.Column<float>(nullable: false),
+                    Kkal = table.Column<float>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductInfo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductInfo_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -356,6 +383,11 @@ namespace FK.DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductInfo_ProductId",
+                table: "ProductInfo",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sticker_FridgeId",
                 table: "Sticker",
                 column: "FridgeId");
@@ -395,6 +427,9 @@ namespace FK.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "FridgeProduct");
+
+            migrationBuilder.DropTable(
+                name: "ProductInfo");
 
             migrationBuilder.DropTable(
                 name: "Sticker");

@@ -13,6 +13,7 @@ namespace FK.DAL.Interfaces
         IRepository<FridgeProduct> FridgeProducts { get; }
         IRepository<Product> Products { get; }
         IRepository<Sticker> Stickers { get; }
+        IRepository<ProductInfo> ProductInfos { get; }
         void Save();
     }
 }

@@ -1,16 +1,17 @@
-﻿@model FK.Models.ProductInfo
+﻿ 
+@model FK.Models.ProductInfo
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h2>Edit Product Info</h2>
+<h2>Create Product Info</h2>
 
 <h4>Product</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(m => m.Id)
             @Html.HiddenFor(m => m.Product)

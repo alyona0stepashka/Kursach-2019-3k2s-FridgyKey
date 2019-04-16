@@ -18,6 +18,7 @@ namespace FridgyKeyApp.Controllers
         IUserFridgeService userFridgeService;
         IUserService userService;
         IProductService productService;
+        IProductInfoService productInfoService;
 
         private UserManager<ApplicationUser> _userManager;
          
@@ -27,7 +28,8 @@ namespace FridgyKeyApp.Controllers
             IUserService serv2,
             IFridgeService serv3,
             IFridgeProductService serv4,
-            IProductService serv5
+            IProductService serv5,
+            IProductInfoService serv6
             )
         {
             _userManager = userManager;
@@ -36,34 +38,52 @@ namespace FridgyKeyApp.Controllers
             fridgeService = serv3;
             fridgeProductService = serv4;
             productService = serv5;
+            productInfoService = serv6;
         }
 
 
         public IActionResult Index()
         {
-            var products = productService.GetAll().ToList();
+            var products = productInfoService.GetAll().ToList();
             return View(products);
         }
 
         [HttpGet] 
         public ActionResult  Show(int product_id)
         {
-            var product = productService.GetProduct(product_id);
+            var product = productInfoService.GetProductInfoByProductId(product_id); 
             return View(product);
+        }
+        [HttpGet]
+        [Authorize]
+        public ActionResult Create()
+        { 
+            return View(new ProductInfo());
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Create(ProductInfo product)
+        {
+            string user_id = _userManager.GetUserId(User);
+            product.Product.UserId = user_id;
+            product.Product.User = userService.GetUser(user_id);
+            productInfoService.Create(product);
+            return Redirect("/Product/Index");
         }
         [HttpGet]
         [Authorize]
         public ActionResult Edit(int product_id)
         {
-            var product = productService.GetProduct(product_id);
+            var product = productInfoService.GetProductInfoByProductId(product_id);
             return View(product);
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(ProductInfo product)
         {
-            productService.Update(product);
+            productInfoService.Update(product);
             return Redirect("/Product/Index");
         }
         [HttpGet]

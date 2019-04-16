@@ -14,13 +14,14 @@ namespace FK.DAL
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
                 : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public virtual DbSet<Sticker> Stickers { get; set; }
         public virtual DbSet<Fridge> Fridges { get; set; }
         public virtual DbSet<FridgeProduct> FridgeProducts { get; set; }
         public virtual DbSet<Product> Products { get; set; } 
+        public virtual DbSet<ProductInfo> ProductInfos { get; set; } 
         public virtual DbSet<UserFridge> UserFridges { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

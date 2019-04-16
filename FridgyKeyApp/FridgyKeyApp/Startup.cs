@@ -14,6 +14,8 @@ using FK.DAL;
 using FK.Models;
 using FK.BLL.Interfaces;
 using FK.BLL.Services;
+using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 
 namespace FridgyKeyApp
 {
@@ -38,9 +40,10 @@ namespace FridgyKeyApp
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-
+            services.AddTransient<IUnitOfWork, EFUnitOfWork>();
             services.AddTransient<IFridgeService, FridgeService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductInfoService, ProductInfoService>();
             services.AddTransient<IStickerService, StickerService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserFridgeService, UserFridgeService>();

@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model List<ProductInfo>
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,6 +8,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <a href="/Product/Create">[CreateProduct]</a><p/>
         <table class="table-striped" style="width:100%">
             <thead>
                 <tr>
@@ -22,12 +23,12 @@
                 @for (int i = 0; i < Model.Count; i++)
                 {
                     <tr>
-                        <td><img src="@Model[i].ImgURL" height="100"/></td>
-                        <td><a href="/Product/Show/@Model[i].Id">@Model[i].Name</a></td> 
-                        <td><a href="/User/Show/@Model[i].User.Id">@Model[i].User.UserName</a></td>
+                        <td><img src="@Model[i].Product.ImgURL" height="100"/></td>
+                        <td><a href="/Product/Show/@Model[i].Product.Id">@Model[i].Product.Name</a></td> 
+                        <td><a href="/User/Show/@Model[i].Product.User.Id">@Model[i].Product.User.UserName</a></td>
                         <td>@Model[i].Fat / @Model[i].Carb / @Model[i].Protein</td>
                         <td>@Model[i].Kkal</td> 
-                        <td><a href="/Product/Edit/@Model[i].Id">[Edit]</a><p/><a href="/Product/Delete/@Model[i].Id">[Delete]</a></td>
+                        <td><a href="/Product/Edit/@Model[i].Product.Id">[Edit]</a><p/><a href="/Product/Delete/@Model[i].Product.Id">[Delete]</a></td>
                     </tr>
                 }
             </tbody>

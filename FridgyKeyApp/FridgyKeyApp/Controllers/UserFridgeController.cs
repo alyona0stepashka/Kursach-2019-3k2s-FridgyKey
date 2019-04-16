@@ -14,6 +14,11 @@ namespace FridgyKeyApp.Controllers
 {
     public class UserFridgeController : Controller
     { 
+        //transient - new for every обращение
+        //score - дл одного запроса
+        //singltone - для всего приложения
+
+        //private readonly ...
 
         IUserFridgeService userFridgeService;
         IUserService userService;
