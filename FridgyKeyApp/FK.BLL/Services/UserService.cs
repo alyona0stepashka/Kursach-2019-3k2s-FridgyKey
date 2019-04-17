@@ -43,11 +43,11 @@ namespace FK.BLL.Services
             }
         }
 
-        public void Delete(ApplicationUser ApplicationUser)
+        public void Delete(string user_id)
         {
             try
             {
-                //db.Users.Delete(ApplicationUser.Id);  ???string/int
+                //db.Users.Delete(user_id);  //???string/int
             }
             catch(Exception e)
             {
@@ -85,7 +85,7 @@ namespace FK.BLL.Services
         public ApplicationUser GetUser(string user_id)
         {
             try
-            {
+            { 
                 var users = db.Users.Find(m => m.Id == user_id).ToList();
                 return users[0];
             }

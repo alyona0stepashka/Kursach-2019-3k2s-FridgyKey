@@ -9,7 +9,7 @@ namespace FK.BLL.Interfaces
     {
         void Create(ApplicationUser ApplicationUser);
         void Update(ApplicationUser ApplicationUser);
-        void Delete(ApplicationUser ApplicationUser);
+        void Delete(string user_id);
         IEnumerable<ApplicationUser> GetAll();  //все юзеры
         IEnumerable<ApplicationUser> GetAllUser();  //все юзеры (роль=юзер) 
         ApplicationUser GetUser(string user_id);

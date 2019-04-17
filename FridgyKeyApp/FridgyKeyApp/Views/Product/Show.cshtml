@@ -1,4 +1,4 @@
-﻿@model FK.Models.ProductInfo
+﻿@model ProductInfoViewModel
 
 @{
     ViewData["Title"] = "Show Product";
@@ -11,31 +11,32 @@
 <div class="row">
     <div class="col-md-4">
         @Html.HiddenFor(m => m.Id)
-        @Html.HiddenFor(m => m.Product)
+        @Html.HiddenFor(m => m.ProductId)         
+        @Html.HiddenFor(m => m.UserId)
 
-        @Html.HiddenFor(m => m.Product.Id)
-        @Html.HiddenFor(m => m.Product.UserId)
         <div class="form-group">
-            <img src="@Model.Product.ImgURL" height="250" /><p />
-            <label asp-for="Product.Name" class="control-label"></label>
-            @Html.DisplayFor(m => m.Product.Name)
+            <img src="@Model.ImgURL" height="250" /><p />
+            @Html.LabelFor(m => m.Name)
+         @Html.DisplayFor(m => m.Name)
+
         </div>
         <div class="form-group">
-            <label asp-for="Product.Description" class="control-label"></label>
-            @Html.DisplayFor(m => m.Product.Description)
+            @Html.LabelFor(m => m.Description)
+         @Html.DisplayFor(m => m.Description)
+
         </div>
         <div class="form-group">
             <b>Kkal: </b> @Model.Kkal<p />
             <b>f/c/p: </b> @Model.Fat / @Model.Carb / @Model.Protein <p />
         </div>
         <div class="form-group">
-            <a href="/Product/Edit/@Model.Product.Id">[Edit]</a><p />
-            <a href="Product/Delete/@Model.Product.Id">[Delete]</a>
+            <a href="/Product/Edit/@Model.ProductId">[Edit]</a><p />
+            <a href="Product/Delete/@Model.ProductId">[Delete]</a>
         </div>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" asp-controller="UserFridge">Back to List</a>
+    <a href="/UserFridge/Index">[Back to List (MyFridge)]</a><p /> 
 </div>
 

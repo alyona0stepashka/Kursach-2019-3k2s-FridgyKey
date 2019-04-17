@@ -166,5 +166,18 @@ namespace FK.BLL.Services
                 return null;
             }
         }
+
+        public void Update(UserFridge userFridge)
+        {
+            try
+            {
+                db.UserFridges.Update(userFridge);
+                db.Save();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
     }
 }

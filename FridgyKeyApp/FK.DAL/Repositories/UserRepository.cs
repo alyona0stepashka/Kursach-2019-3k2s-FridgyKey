@@ -27,6 +27,10 @@ namespace FK.DAL.Repositories
         {
             return db.Users.Find(id);
         }
+        public ApplicationUser GetByStringId(string id)
+        {
+            return db.Users.Find(id);
+        }
 
         public void Create(ApplicationUser user)
         {

@@ -1,0 +1,50 @@
+﻿@model FK.Models.UserFridge
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Fridge</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Create", "Fridge", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Fridge)
+        @Html.HiddenFor(m => m.Fridge.Id)
+        @Html.HiddenFor(m => m.Fridge.DateCreate)
+        @Html.HiddenFor(m => m.User)
+        @Html.HiddenFor(m => m.User.Id)
+        @Html.HiddenFor(m => m.UserId)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Fridge.Name)
+            @Html.EditorFor(m => m.Fridge.Name)
+            @Html.ValidationMessageFor(m => m.Fridge.Name)
+        </div><p />
+        <div class="form-group">
+            @Html.LabelFor(m => m.Fridge.Description)
+            @Html.EditorFor(m => m.Fridge.Description)
+            @Html.ValidationMessageFor(m => m.Fridge.Description)
+        </div><p />
+        <div class="form-group">
+            @Html.LabelFor(m => m.Fridge.PasswordHash)
+            @Html.EditorFor(m => m.Fridge.PasswordHash)
+            @Html.ValidationMessageFor(m => m.Fridge.PasswordHash)
+        </div><p />
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+}
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List (My fridges)</a>
+</div>
+

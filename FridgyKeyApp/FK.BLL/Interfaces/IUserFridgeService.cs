@@ -9,6 +9,7 @@ namespace FK.BLL.Interfaces
     {
         void Create(UserFridge userFridge);  //запись о конретном холодильнике конкретного юзера (добавить холодос юзеру) 
         void Delete(UserFridge userFridge);  //удалить холодос от юзера
+        void Update(UserFridge product); //update
         IEnumerable<UserFridge> GetAll();  //вся инфа о связи всех юзеров и их холодильников
         IEnumerable<UserFridge> GetDeadFridges();  //холодильники без юзеров ("мертвые")
         IEnumerable<UserFridge> GetAliveFridges();  //холодильники с юзерами ("живые")
