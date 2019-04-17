@@ -48,5 +48,9 @@ namespace FridgyKeyApp.Models
             Description = product.Description;
             UserId = product.UserId;            
         }
+        public ProductInfoViewModel()
+        {
+
+        }
     }
 }

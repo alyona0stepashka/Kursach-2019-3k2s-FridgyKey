@@ -140,22 +140,14 @@ namespace FK.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<float>("Carb");
-
                     b.Property<string>("Description")
                         .HasMaxLength(255);
-
-                    b.Property<float>("Fat");
 
                     b.Property<string>("ImgURL")
                         .HasMaxLength(255);
 
-                    b.Property<float>("Kkal");
-
                     b.Property<string>("Name")
                         .HasMaxLength(50);
-
-                    b.Property<float>("Protein");
 
                     b.Property<string>("UserId")
                         .HasMaxLength(450);
@@ -185,7 +177,8 @@ namespace FK.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("ProductInfo");
                 });
@@ -377,8 +370,8 @@ namespace FK.DAL.Migrations
             modelBuilder.Entity("FK.Models.ProductInfo", b =>
                 {
                     b.HasOne("FK.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
+                        .WithOne("ProdInfo")
+                        .HasForeignKey("FK.Models.ProductInfo", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -64,7 +64,10 @@ namespace FK.DAL
                 .HasOne<Fridge>(m => m.Fridge)
                 .WithMany(m => m.Stickers);
 
-
+            modelBuilder.Entity<ProductInfo>()
+                .HasOne<Product>(m => m.Product)
+                .WithOne(m => m.ProdInfo);
+             
 
             //modelBuilder.Entity<FridgeProduct>()
             //    .Property(e => e.Price)

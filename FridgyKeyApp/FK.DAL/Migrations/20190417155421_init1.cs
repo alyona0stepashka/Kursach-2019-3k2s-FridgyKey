@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FK.DAL.Migrations
 {
-    public partial class init111 : Migration
+    public partial class init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -182,10 +182,6 @@ namespace FK.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Fat = table.Column<float>(nullable: false),
-                    Carb = table.Column<float>(nullable: false),
-                    Protein = table.Column<float>(nullable: false),
-                    Kkal = table.Column<float>(nullable: false),
                     UserId = table.Column<string>(maxLength: 450, nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: true),
                     Description = table.Column<string>(maxLength: 255, nullable: true),
@@ -385,7 +381,8 @@ namespace FK.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductInfo_ProductId",
                 table: "ProductInfo",
-                column: "ProductId");
+                column: "ProductId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sticker_FridgeId",

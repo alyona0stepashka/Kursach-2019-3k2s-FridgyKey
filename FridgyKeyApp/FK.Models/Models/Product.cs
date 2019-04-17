@@ -32,6 +32,8 @@ namespace FK.Models
 
         public virtual ICollection<FridgeProduct> FridgeProducts { get; set; }
 
+        public virtual ProductInfo ProdInfo { get; set; }
+
         public virtual ApplicationUser User { get; set; }
     }
 }

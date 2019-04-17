@@ -45,8 +45,13 @@ namespace FridgyKeyApp.Controllers
 
         public IActionResult Index()
         {
+            List<ProductInfoViewModel> list = new List<ProductInfoViewModel>();
             var products = productInfoService.GetAll().ToList();
-            return View(products);
+            foreach (var prod in products)
+            {
+                list.Add(new ProductInfoViewModel(prod.Product, prod));
+            }
+            return View(list);
         }
 
         [HttpGet] 
@@ -78,6 +83,7 @@ namespace FridgyKeyApp.Controllers
         [Authorize]
         public ActionResult Create(ProductInfoViewModel product)
         {
+
             var prod = new ProductInfo
             {
                 Carb = product.Carb,
@@ -85,7 +91,13 @@ namespace FridgyKeyApp.Controllers
                 Kkal = product.Kkal,
                 Protein = product.Protein,
                 ProductId = product.ProductId,
-                Product = productService.GetProduct(product.ProductId)
+                Product = new Product
+                {
+                    Description=product.Description,
+                    ImgURL=product.ImgURL,
+                    Name=product.Name,
+                    UserId= _userManager.GetUserId(User)          
+                }
             };
             //string user_id = _userManager.GetUserId(User);
             //product.Product.UserId = user_id;
@@ -98,14 +110,24 @@ namespace FridgyKeyApp.Controllers
         public ActionResult Edit(int product_id)
         {
             var product = productInfoService.GetProductInfoByProductId(product_id);
-            return View(product);
+            var prod = new ProductInfoViewModel(product.Product, product);
+            return View(prod);
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(ProductInfo product)
+        public ActionResult Edit(ProductInfoViewModel product)
         {
-            productInfoService.Update(product);
+            var prod = new ProductInfo
+            {
+                Carb = product.Carb,
+                Fat = product.Fat,
+                Kkal = product.Kkal,
+                Protein = product.Protein,
+                ProductId = product.ProductId,
+                Product = productService.GetProduct(product.ProductId)
+            };
+            productInfoService.Update(prod);
             return Redirect("/Product/Index");
         }
         [HttpGet]
