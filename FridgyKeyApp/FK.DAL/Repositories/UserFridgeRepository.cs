@@ -20,7 +20,7 @@ namespace FK.DAL.Repositories
 
         public IEnumerable<UserFridge> GetAll()
         {
-            return db.UserFridges;
+            return db.UserFridges.Include(m => m.Fridge).Include(m => m.User);
         }
 
         public UserFridge Get(int id)

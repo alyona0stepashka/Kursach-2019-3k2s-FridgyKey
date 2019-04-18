@@ -20,7 +20,7 @@ namespace FK.DAL.Repositories
 
         public IEnumerable<Product> GetAll()
         {
-            return db.Products;
+            return db.Products.Include(m => m.FridgeProducts).Include(m => m.ProdInfo).Include(m => m.User);
         }
 
         public Product Get(int id)

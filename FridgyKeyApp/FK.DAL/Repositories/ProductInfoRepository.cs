@@ -20,7 +20,8 @@ namespace FK.DAL.Repositories
 
         public IEnumerable<ProductInfo> GetAll()
         {
-            return db.ProductInfos.Include(m=>m.Product).Include(m=>m.Id).Include(m=>m.Kkal).Include(m=>m.Fat).Include(m => m.Carb).Include(m => m.ProductId).Include(m => m.Protein);
+            //return db.ProductInfos;
+            return db.ProductInfos.Include(m => m.Product);
         }
 
         public ProductInfo Get(int id)

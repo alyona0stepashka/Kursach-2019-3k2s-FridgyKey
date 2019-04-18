@@ -20,7 +20,7 @@ namespace FK.DAL.Repositories
 
         public IEnumerable<Sticker> GetAll()
         {
-            return db.Stickers;
+            return db.Stickers.Include(m => m.Fridge).Include(m => m.User);
         }
 
         public Sticker Get(int id)
