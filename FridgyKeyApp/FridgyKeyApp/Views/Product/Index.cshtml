@@ -25,7 +25,7 @@
                     <tr class="text-center">
                         <td><img src="@Model[i].ImgURL" height="100"/></td>
                         <td><a href="/Product/Show/@Model[i].ProductId">@Model[i].Name</a></td> 
-                        <td><a href="/User/Show/@Model[i].UserId">@ViewBag.UserName</a></td>
+                        <td><a href="/User/Show/@Model[i].UserId">@ViewBag.UserName[i]</a></td>
                         <td>@Model[i].Fat / @Model[i].Carb / @Model[i].Protein</td>
                         <td>@Model[i].Kkal</td> 
                         <td><a href="/Product/Edit/@Model[i].ProductId">[Edit]</a><p/><a href="/Product/Delete/@Model[i].ProductId">[Delete]</a></td>

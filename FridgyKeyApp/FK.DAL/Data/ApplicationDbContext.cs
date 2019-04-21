@@ -23,7 +23,11 @@ namespace FK.DAL
         public virtual DbSet<Product> Products { get; set; } 
         public virtual DbSet<ProductInfo> ProductInfos { get; set; } 
         public virtual DbSet<UserFridge> UserFridges { get; set; }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .UseLazyLoadingProxies();
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //string adminRoleName = "admin";

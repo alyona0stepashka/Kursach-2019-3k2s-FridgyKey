@@ -9,7 +9,7 @@
     <div>
         <table class="table-striped" style="width:100%">
             <thead>
-                <tr> 
+                <tr class="text-center"> 
                     <th class="text-center">FridgeName</th>
                     <th class="text-center">Description</th>
                     <th class="text-center">DateCreate</th> 
@@ -23,12 +23,12 @@
                     @Html.HiddenFor(m => m.fridges[i].Name) 
                     @Html.HiddenFor(m => m.fridges[i].Description)
                     @Html.HiddenFor(m => m.fridges[i].DateCreate)                  
-                <tr>
+                <tr class="text-center">
                     <td>@Model.fridges[i].Name</td>
                     <td>@Model.fridges[i].Description</td>
                     <td>@Model.fridges[i].DateCreate</td>
-                    <td><a href="Fridge/Open/@Model.fridges[i].Id">[Open]</a></td>
-                    <td><a href="Fridge/Edit/@Model.fridges[i].Id">[Edit]</a></td>
+                    <td><a href="Fridge/Open/@Model.fridges[i].Id"><img resource="/wwwroot/images/Go.png" class="btn"/> [Open]</a></td>
+                    <td><a href="Fridge/Edit/@Model.fridges[i].Id"><img resource="/wwwroot/images/Edit.png" class="btn" /> [Edit]</a></td>
                 </tr>
 
 }

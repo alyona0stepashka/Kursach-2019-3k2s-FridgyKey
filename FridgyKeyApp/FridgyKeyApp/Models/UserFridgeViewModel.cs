@@ -8,6 +8,10 @@ namespace FridgyKeyApp.Models
 {
     public class UserFridgeViewModel
     {
+        
+
+
+
         public List<Fridge> fridges { get; set; }
         public ApplicationUser user { get; set; }
         public UserFridgeViewModel(List<Fridge> fridges1, ApplicationUser user1)

@@ -61,9 +61,9 @@ namespace FridgyKeyApp.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult Edit(int fridge_id)  //??? создание каскадное и удаление, нужно перед созданием и удалением проиниициализировать все поля
+        public ActionResult Edit(int id)  //???  fridge_id создание каскадное и удаление, нужно перед созданием и удалением проиниициализировать все поля
         {
-            var fridge = fridgeService.GetFridge(fridge_id);
+            var fridge = fridgeService.GetFridge(id);
             return View(fridge);
         }
         [HttpPost]

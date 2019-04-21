@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FridgyKeyApp.Controllers
 {
     [Authorize]
-    public class ProductController : Controller
+    public class FridgeProductController : Controller
     {
 
         IFridgeService fridgeService;
@@ -23,8 +23,8 @@ namespace FridgyKeyApp.Controllers
         IProductInfoService productInfoService;
 
         private UserManager<ApplicationUser> _userManager;
-         
-        public ProductController(
+
+        public FridgeProductController(
             UserManager<ApplicationUser> userManager,
             IUserFridgeService serv,
             IUserService serv2,
@@ -42,23 +42,15 @@ namespace FridgyKeyApp.Controllers
             productService = serv5;
             productInfoService = serv6;
         }
-
-        [AllowAnonymous]
-        public IActionResult Index()
+        [HttpGet]
+        [Authorize]
+        public IActionResult Index(int id)  //fridge_id
         {
-            List<ProductInfoViewModel> list = new List<ProductInfoViewModel>();
-            var products = productInfoService.GetAll().ToList();
-            ViewBag.Username = new List<string>();
-            foreach (var prod in products)
-            {
-                list.Add(new ProductInfoViewModel(prod.Product, prod));
-                ViewBag.Username.Add(prod.Product.User.UserName);
-            }
-            return View(list);
+            return View();
         }
         [AllowAnonymous]
-        [HttpGet] 
-        public ActionResult Show(int id)
+        [HttpGet]
+        public ActionResult Show(int id) //fridgeproduct_id
         {
             var product = productInfoService.GetProductInfoByProductId(id);
             var prod_info = new ProductInfoViewModel(product.Product, product);
@@ -68,8 +60,7 @@ namespace FridgyKeyApp.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            string user_id = _userManager.GetUserId(User);
-            var user = userService.GetUser(user_id);
+            string user_id = _userManager.GetUserId(User); 
             var product = new ProductInfoViewModel
                 (
                 new Product
@@ -95,10 +86,10 @@ namespace FridgyKeyApp.Controllers
                 ProductId = product.ProductId,
                 Product = new Product
                 {
-                    Description=product.Description,
-                    ImgURL=product.ImgURL,
-                    Name=product.Name,
-                    UserId= _userManager.GetUserId(User)          
+                    Description = product.Description,
+                    ImgURL = product.ImgURL,
+                    Name = product.Name,
+                    UserId = _userManager.GetUserId(User)
                 }
             };
             //string user_id = _userManager.GetUserId(User);

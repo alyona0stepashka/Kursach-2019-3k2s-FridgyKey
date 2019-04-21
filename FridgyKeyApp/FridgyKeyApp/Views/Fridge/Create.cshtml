@@ -1,0 +1,43 @@
+﻿@model FridgyKeyApp.Models.FridgeViewModel.FridgeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>FridgeViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4"> 
+            @using (Html.BeginForm("Create", "Fridge", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(m => m.Id) 
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.EditorFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div><p />
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description)
+            @Html.EditorFor(m => m.Description)
+            @Html.ValidationMessageFor(m => m.Description)
+        </div><p /> 
+        <div class="form-group">
+            @Html.LabelFor(m => m.PasswordHash)
+            @Html.EditorFor(m => m.PasswordHash)
+            @Html.ValidationMessageFor(m => m.PasswordHash)
+        </div><p />
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+} 
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

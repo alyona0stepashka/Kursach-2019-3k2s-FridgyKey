@@ -9,10 +9,10 @@
 <h4>Fridge</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div>
         <table class="table-striped" style="width:100%">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th class="text-center">Product</th>
                     <th class="text-center">Amount</th>
                     <th class="text-center">EI</th>
@@ -21,14 +21,13 @@
                     <th class="text-center">DateBuy</th>
                     <th class="text-center">DateValid</th>
                 </tr>
-            </thead>
-            @Html.HiddenFor(m => m.fridge)
+            </thead> 
 
 
             <tbody>
                 @for (int i = 0; i < Model.products.Count; i++)
             {
-                <tr>
+                <tr class="text-center">
                     <td><a href="/Product/Show/@Model.products[i].Product.Id">@Model.products[i].Product.Name</a></td>
                     <td>@Html.EditorFor(m => m.products[i].Amount)</td>
                     <td>@Html.EditorFor(m => m.products[i].EI)</td>

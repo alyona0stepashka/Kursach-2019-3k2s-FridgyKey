@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FK.BLL.Interfaces;
 using FK.Models;
 using FridgyKeyApp.Models;
+using FridgyKeyApp.Models.FridgeViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -97,21 +98,51 @@ namespace FridgyKeyApp.Controllers
         //    userFridgeService.Create(new UserFridge { Fridge=fridge, FridgeId=fridge.Id,User=user, UserId=user_id}); 
         //    return Redirect("/UserFridge/Index");
         //}
+
         [HttpGet]
         [Authorize]
-        public ActionResult Open(int fridge_id)
-        { 
-            var fridge = fridgeService.GetFridge(fridge_id);
-            var products = fridge.FridgeProducts.ToList();
-            var stickers = stickerservice.GetAllByFridgeId(fridge_id).ToList();
+        public IActionResult Create()  
+        {
+            return View(new FridgeViewModel());
+        }
 
-            return View(new FridgeProductViewModel(products, fridge, stickers));
+        [HttpPost]
+        [Authorize]
+        public IActionResult Create(FridgeViewModel model)
+        {
+            var user_id = _userManager.GetUserId(User);
+            var fridge = new UserFridge()
+            {
+                UserId = user_id,
+                //User = userService.GetUser(user_id),
+                Fridge = new Fridge()
+                {
+                    Name = model.Name,
+                    DateCreate = DateTime.Now,
+                    Description = model.Description,
+                    PasswordHash = Convert.ToString(model.GetHashCode())
+                }
+            };
+            userFridgeService.Create(fridge);
+            return Index();
+        }
+
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Open(int id)  //fridge_id
+        { 
+            var fridge = fridgeService.GetFridge(id);
+            var products = fridge.FridgeProducts.ToList();
+            var stickers = stickerservice.GetAllByFridgeId(id).ToList();
+
+            return View(new FridgeProductViewModel(products, stickers));
         }
         [HttpGet]
         [Authorize]
-        public ActionResult Delete(int fridge_id)
+        public IActionResult Delete(int id)  //fridge_id
         {
-            fridgeService.Delete(fridgeService.GetFridge(fridge_id)); 
+            fridgeService.Delete(fridgeService.GetFridge(id)); 
             return View("Index");
         }
     }
