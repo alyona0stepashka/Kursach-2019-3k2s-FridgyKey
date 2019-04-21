@@ -32,7 +32,7 @@ namespace FridgyKeyApp.Models
         {
             if (product.ImgURL == "" || product.ImgURL == null)
             {
-                ImgURL = "https://cdn.shopify.com/s/files/1/1078/0310/products/fruit-banana-dole-1_1024x1024.jpg?v=1500709708";
+                ImgURL = "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg";
             }
             else
             {

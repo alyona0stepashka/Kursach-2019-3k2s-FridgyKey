@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FridgyKeyApp.Controllers
 {
+    [Authorize]
     public class UserFridgeController : Controller
     {
         //transient - new for every обращение

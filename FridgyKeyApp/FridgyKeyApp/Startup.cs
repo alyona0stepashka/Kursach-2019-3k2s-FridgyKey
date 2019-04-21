@@ -49,6 +49,9 @@ namespace FridgyKeyApp
             services.AddTransient<IUserFridgeService, UserFridgeService>();
             services.AddTransient<IFridgeProductService, FridgeProductService>();
 
+            //services.AddAuthentication().AddGoogle(googleOptions => { ... });
+
+
             services.AddMvc();
         }
 

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FridgyKeyApp.Controllers
 {
+    [Authorize]
     public class FridgeController : Controller
     {
         IFridgeService fridgeService;

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FridgyKeyApp.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
 
@@ -42,7 +43,7 @@ namespace FridgyKeyApp.Controllers
             productInfoService = serv6;
         }
 
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             List<ProductInfoViewModel> list = new List<ProductInfoViewModel>();
@@ -53,11 +54,11 @@ namespace FridgyKeyApp.Controllers
             }
             return View(list);
         }
-
+        [AllowAnonymous]
         [HttpGet] 
-        public ActionResult  Show(int product_id)
+        public ActionResult Show(int id)
         {
-            var product = productInfoService.GetProductInfoByProductId(product_id);
+            var product = productInfoService.GetProductInfoByProductId(id);
             var prod_info = new ProductInfoViewModel(product.Product, product);
             return View(prod_info);
         }
@@ -83,7 +84,6 @@ namespace FridgyKeyApp.Controllers
         [Authorize]
         public ActionResult Create(ProductInfoViewModel product)
         {
-
             var prod = new ProductInfo
             {
                 Carb = product.Carb,
@@ -132,7 +132,7 @@ namespace FridgyKeyApp.Controllers
         }
         [HttpGet]
         [Authorize]
-        public ActionResult Delete(int product_id)
+        public ActionResult Delete(int id)
         {
             productService.Delete(productService.GetProduct(product_id));
             return View("Index");
