@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using FK.BLL.Interfaces;
 using FK.Models;
-using FridgyKeyApp.Models;
+using FridgyKeyApp.Models; 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FridgyKeyApp.Controllers
 {
@@ -48,59 +49,54 @@ namespace FridgyKeyApp.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        [HttpGet]
-        public ActionResult Show(int id) //fridgeproduct_id
-        {
-            var product = productInfoService.GetProductInfoByProductId(id);
-            var prod_info = new ProductInfoViewModel(product.Product, product);
-            return View(prod_info);
-        }
+        //[AllowAnonymous]
+        //[HttpGet]
+        //public ActionResult Show(int id) //fridgeproduct_id
+        //{
+        //    var product = fridgeProductService.GetFridgeProduct(id); 
+        //    return View(product);
+        //}
         [HttpGet]
         [Authorize]
-        public ActionResult Create()
+        public IActionResult Create(int id)  //fridge_id
         {
-            string user_id = _userManager.GetUserId(User); 
-            var product = new ProductInfoViewModel
-                (
-                new Product
-                {
-                    UserId = user_id,
-                    User = user
-                },
-                new ProductInfo()
-                );
-            return View(product);
+            //    string user_id = _userManager.GetUserId(User); 
+            //    var product = new ProductInfoViewModel
+            //        (
+            //        new Product
+            //        {
+            //            UserId = user_id 
+            //        },
+            //        new ProductInfo()
+            //        );
+            SelectList productName = new SelectList(productService.GetAllAccess(_userManager.GetUserId(User)), "Name", "Name");
+            ViewBag.ProductName = productName;
+            return View(new OneFridgeProductViewModel() { FridgeId = id});
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Create(ProductInfoViewModel product)
+        public IActionResult Create(OneFridgeProductViewModel model)
         {
-            var prod = new ProductInfo
+            var user_id = _userManager.GetUserId(User);
+            var product = new FridgeProduct()
             {
-                Carb = product.Carb,
-                Fat = product.Fat,
-                Kkal = product.Kkal,
-                Protein = product.Protein,
-                ProductId = product.ProductId,
-                Product = new Product
-                {
-                    Description = product.Description,
-                    ImgURL = product.ImgURL,
-                    Name = product.Name,
-                    UserId = _userManager.GetUserId(User)
-                }
+                Amount = model.Amount,
+                DateBuy = DateTime.Now,
+                DateValid = model.DateValid,
+                Description = model.Description,
+                EI = model.EI,
+                FridgeId = model.FridgeId,
+                Price = model.Price,
+                UserId = user_id,
+                ProductId = productService.GetProductByUserIdProductName(user_id, model.Name).Id 
             };
-            //string user_id = _userManager.GetUserId(User);
-            //product.Product.UserId = user_id;
-            //product.Product.User = userService.GetUser(user_id);
-            productInfoService.Create(prod);
-            return Redirect("/Product/Index");
+            fridgeProductService.Create(product); 
+            return Redirect("/Fridge/Open/"+model.FridgeId);
         }
         [HttpGet]
         [Authorize]
-        public ActionResult Edit(int product_id)
+        public IActionResult Edit(int product_id)
         {
             var product = productInfoService.GetProductInfoByProductId(product_id);
             var prod = new ProductInfoViewModel(product.Product, product);
@@ -109,7 +105,7 @@ namespace FridgyKeyApp.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(ProductInfoViewModel product)
+        public IActionResult Edit(ProductInfoViewModel product)
         {
             var prod = new ProductInfo
             {
@@ -125,10 +121,10 @@ namespace FridgyKeyApp.Controllers
         }
         [HttpGet]
         [Authorize]
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)  //fridgeproduct_id
         {
-            productService.Delete(productService.GetProduct(id));
-            return View("Index");
+            fridgeProductService.Delete(fridgeProductService.GetFridgeProduct(id));
+            return Redirect("/Product/Index");
         }
     }
 }

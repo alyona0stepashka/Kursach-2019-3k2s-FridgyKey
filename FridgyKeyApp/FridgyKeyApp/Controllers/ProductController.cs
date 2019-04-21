@@ -109,9 +109,9 @@ namespace FridgyKeyApp.Controllers
         }
         [HttpGet]
         [Authorize]
-        public ActionResult Edit(int product_id)
+        public ActionResult Edit(int id)  //product_id
         {
-            var product = productInfoService.GetProductInfoByProductId(product_id);
+            var product = productInfoService.GetProductInfoByProductId(id);
             var prod = new ProductInfoViewModel(product.Product, product);
             return View(prod);
         }

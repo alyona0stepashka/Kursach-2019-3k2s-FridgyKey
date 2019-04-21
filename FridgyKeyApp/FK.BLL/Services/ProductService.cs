@@ -11,6 +11,7 @@ namespace FK.BLL.Services
 {
     public class ProductService : IProductService
     {
+        string admin_id = "f1c6f1a3-6d1b-4ea3-8695-c031c8f7cc21";
         IUnitOfWork db { get; set; }
 
         public ProductService(IUnitOfWork uow)
@@ -69,11 +70,11 @@ namespace FK.BLL.Services
             }
         }
 
-        public IEnumerable<Product> GetAllGeneral() //???
+        public IEnumerable<Product> GetAllAccess(string user_id) //???
         {
             try
             {
-                return db.Products.GetAll();//.Find();
+                return db.Products.Find(m=>m.UserId==user_id || m.UserId==admin_id).ToList();//.Find();
             }
             catch (Exception e)
             {
@@ -81,7 +82,7 @@ namespace FK.BLL.Services
             }
         }
 
-        public IEnumerable<Product> GetAllCustom()  //???
+        public IEnumerable<Product> GetAllGeneral()  //???
         {
             try
             {
@@ -119,6 +120,18 @@ namespace FK.BLL.Services
         public void Dispose()
         {
             db.Dispose();
+        }
+
+        public Product GetProductByUserIdProductName(string user_id, string name)
+        {
+            try
+            {
+                return db.Products.Find(m => m.Name == name && (m.UserId == user_id || m.UserId == admin_id)).FirstOrDefault();
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
         }
     }
 }

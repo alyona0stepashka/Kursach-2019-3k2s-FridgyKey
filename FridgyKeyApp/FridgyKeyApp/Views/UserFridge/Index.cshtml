@@ -27,8 +27,8 @@
                     <td>@Model.fridges[i].Name</td>
                     <td>@Model.fridges[i].Description</td>
                     <td>@Model.fridges[i].DateCreate</td>
-                    <td><a href="Fridge/Open/@Model.fridges[i].Id"><img resource="/wwwroot/images/Go.png" class="btn"/> [Open]</a></td>
-                    <td><a href="Fridge/Edit/@Model.fridges[i].Id"><img resource="/wwwroot/images/Edit.png" class="btn" /> [Edit]</a></td>
+                    <td><a href="/Fridge/Open/@Model.fridges[i].Id" class="btn btn-default" > [Open]</a></td>
+                    <td><a href="/UserFridge/Edit/@Model.fridges[i].Id" class="btn btn-default"  > [Edit]</a></td>
                 </tr>
 
 }

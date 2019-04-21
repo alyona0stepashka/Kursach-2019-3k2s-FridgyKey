@@ -85,9 +85,8 @@ namespace FK.BLL.Services
         public ApplicationUser GetUser(string user_id)
         {
             try
-            { 
-                var users = db.Users.Find(m => m.Id == user_id).ToList();
-                return users[0];
+            {
+                return db.Users.Find(m => m.Id == user_id).FirstOrDefault(); 
             }
             catch (Exception e)
             {

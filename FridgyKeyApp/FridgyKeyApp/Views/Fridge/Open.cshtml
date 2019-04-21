@@ -7,9 +7,13 @@
 <h2>My fridge</h2>
 
 <h4>Fridge</h4>
+<a href="/FridgeProduct/Create/@ViewBag.FridgeId" class="btn">[CreateFridgeProduct]</a><p/>
 <hr />
 <div class="row">
     <div>
+        @using (Html.BeginForm("EditProducts", "Fridge"))
+    {
+        @Html.HiddenFor(m => m.products)
         <table class="table-striped" style="width:100%">
             <thead>
                 <tr class="text-center">
@@ -21,8 +25,7 @@
                     <th class="text-center">DateBuy</th>
                     <th class="text-center">DateValid</th>
                 </tr>
-            </thead> 
-
+            </thead>
 
             <tbody>
                 @for (int i = 0; i < Model.products.Count; i++)
@@ -39,10 +42,14 @@
         }
             </tbody>
         </table>
+}
 
 
 
-
+        <p/>
+        @using (Html.BeginForm("AddSticker", "Sticker"))
+        {
+        @Html.HiddenFor(m => m.stickers)
         <table class="table-striped" style="width:100%">
             <thead>
                 <tr>
@@ -53,13 +60,13 @@
             </thead>
             <tbody>
                 @for (int i = 0; i < Model.stickers.Count; i++)
-        {
-            <tr>
-                <td><a href="/Product/Show/@Model.stickers[i].UserId">@Model.stickers[i].User.UserName</a></td> 
-                <td>@Model.stickers[i].Text</td> 
-                <td>@Model.stickers[i].DateAdd</td>
-            </tr>
-}
+            {
+                <tr>
+                    <td><a href="/Product/Show/@Model.stickers[i].UserId">@Model.stickers[i].User.UserName</a></td>
+                    <td>@Model.stickers[i].Text</td>
+                    <td>@Model.stickers[i].DateAdd</td>
+                </tr>
+                }
                 @*<tr>
                 <td>@Html.EditorFor(m => m.stickers[].Text)</td>
                 <td><a asp-action="Send" asp-controller="Sticker">[Send]</a></td>  //???
@@ -67,7 +74,7 @@
             </tbody>
 
         </table>
-
+        }
     </div> 
     <a asp-action="EditAsync" asp-controller="Fridge">Save Changes</a>
     <a asp-action="Index" asp-controller="UserFridge">Back to List</a>

@@ -71,8 +71,7 @@ namespace FK.BLL.Services
         {
             try
             {
-                var products = db.ProductInfos.Find(m => m.ProductId == product_id).ToList();
-                return products[0];
+                return db.ProductInfos.Find(m => m.ProductId == product_id).FirstOrDefault(); 
             }
             catch (Exception e)
             {

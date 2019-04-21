@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FK.BLL.Interfaces;
 using FK.Models;
-using FridgyKeyApp.Models;
-using FridgyKeyApp.Models.FridgeViewModel;
+using FridgyKeyApp.Models; 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -135,7 +134,7 @@ namespace FridgyKeyApp.Controllers
             var fridge = fridgeService.GetFridge(id);
             var products = fridge.FridgeProducts.ToList();
             var stickers = stickerservice.GetAllByFridgeId(id).ToList();
-
+            ViewBag.FridgeId = id;
             return View(new FridgeProductViewModel(products, stickers));
         }
         [HttpGet]

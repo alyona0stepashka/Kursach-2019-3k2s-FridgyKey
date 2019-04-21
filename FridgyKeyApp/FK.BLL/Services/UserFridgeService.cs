@@ -132,12 +132,7 @@ namespace FK.BLL.Services
         {
             try
             {
-                var userFridge = db.UserFridges.Find(m => m.FridgeId == fridge_id && m.User.Id == user_id).ToList();
-                if (userFridge.Count()!=1)
-                {
-                    throw new Exception("Невалидные параметры");
-                }
-                return userFridge[0];
+                return db.UserFridges.Find(m => m.FridgeId == fridge_id && m.User.Id == user_id).FirstOrDefault();
             }
             catch (Exception e)
             {
