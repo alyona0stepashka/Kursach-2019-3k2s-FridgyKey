@@ -7,7 +7,7 @@
 <h4>Products</h4>
 <hr />
 <div class="row"> 
-        <a href="/Product/Create">[CreateProduct]</a><p/>
+        <a href="/Product/Create" class="btn btn-default">[CreateProduct]</a><p/>
         <table class="table table-striped" style="width:100%">
             <thead>
                 <tr>
@@ -25,7 +25,7 @@
                     <tr class="text-center">
                         <td><img src="@Model[i].ImgURL" height="100"/></td>
                         <td><a href="/Product/Show/@Model[i].ProductId">@Model[i].Name</a></td> 
-                        <td><a href="/User/Show/@Model[i].UserId">@ViewBag.UserName[i]</a></td>
+                        <td><a href="/Account/Show/@Model[i].UserId">@ViewBag.UserName[i]</a></td>
                         <td>@Model[i].Fat / @Model[i].Carb / @Model[i].Protein</td>
                         <td>@Model[i].Kkal</td> 
                         <td><a href="/Product/Edit/@Model[i].ProductId" class="btn btn-default" >[Edit]</a><p/><a class="btn btn-default"  href="/Product/Delete/@Model[i].ProductId">[Delete]</a></td>

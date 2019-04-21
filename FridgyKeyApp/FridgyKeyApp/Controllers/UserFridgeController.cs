@@ -49,14 +49,40 @@ namespace FridgyKeyApp.Controllers
 
 
         [Authorize]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         { 
             var user_id = _userManager.GetUserId(User);
             var user_fridges = userFridgeService.GetFridgeByUserId(user_id).ToList();
-            var user = await _userManager.FindByIdAsync(user_id);
+            var user = userService.GetUser(user_id);
             return View(new UserFridgeViewModel(user_fridges, user));
         }
 
+        [HttpGet]
+        [Authorize]
+        public ActionResult Add()
+        {
+            var user_id = _userManager.GetUserId(User); 
+            var user = userService.GetUser(user_id); 
+            return View(new AddFridgeViewModel());
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult Add(AddFridgeViewModel model)
+        {
+            if (!userFridgeService.IsAccess(model.Id, Convert.ToString(userService.Hash(model.PasswordHash))))
+            {
+                ViewBag.IsAccess = "Password or Id not found.";
+                return View(model);
+            }
+            var user_id = _userManager.GetUserId(User);
+            var fridge = new UserFridge()
+            {
+                FridgeId = model.Id,
+                UserId = user_id
+            };
+            userFridgeService.Create(fridge);
+            return View(fridge);
+        }
 
 
         [HttpGet]
@@ -98,7 +124,7 @@ namespace FridgyKeyApp.Controllers
         [Authorize]
         public ActionResult Edit(UserFridge fridge)
         {
-            fridge.Fridge.PasswordHash = fridge.Fridge.PasswordHash.GetHashCode().ToString();
+            fridge.Fridge.PasswordHash = userService.Hash(fridge.Fridge.PasswordHash);
             userFridgeService.Update(fridge);
             //    var user_id = _userManager.GetUserId(User);
             //    var user = await _userManager.FindByIdAsync(user_id);

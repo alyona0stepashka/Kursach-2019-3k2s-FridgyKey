@@ -47,7 +47,7 @@ namespace FridgyKeyApp.Controllers
         public IActionResult Index()
         {
             List<ProductInfoViewModel> list = new List<ProductInfoViewModel>();
-            var products = productInfoService.GetAll().ToList();
+            var products = productInfoService.GetAllAccess(_userManager.GetUserId(User)).ToList();
             ViewBag.Username = new List<string>();
             foreach (var prod in products)
             {

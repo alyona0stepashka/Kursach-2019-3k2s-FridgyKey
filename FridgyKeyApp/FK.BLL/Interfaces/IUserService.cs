@@ -13,6 +13,7 @@ namespace FK.BLL.Interfaces
         IEnumerable<ApplicationUser> GetAll();  //все юзеры
         IEnumerable<ApplicationUser> GetAllUser();  //все юзеры (роль=юзер) 
         ApplicationUser GetUser(string user_id);
+        string Hash(string input);
         void Dispose();
     }
 }

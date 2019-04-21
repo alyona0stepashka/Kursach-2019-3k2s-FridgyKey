@@ -45,7 +45,7 @@ namespace FridgyKeyApp.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles ="admin")]
         public IActionResult Index()
         {
             List<UsersFridgeViewModel> model = new List<UsersFridgeViewModel>();
@@ -119,7 +119,7 @@ namespace FridgyKeyApp.Controllers
                     Name = model.Name,
                     DateCreate = DateTime.Now,
                     Description = model.Description,
-                    PasswordHash = Convert.ToString(model.GetHashCode())
+                    PasswordHash = userService.Hash(model.PasswordHash)
                 }
             };
             userFridgeService.Create(fridge);

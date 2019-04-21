@@ -4,6 +4,7 @@ using FK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace FK.BLL.Services
@@ -98,5 +99,18 @@ namespace FK.BLL.Services
         {
             db.Dispose();
         }
+        public string Hash(string input) //готово
+        {
+            byte[] hash = Encoding.ASCII.GetBytes(input);
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] hashenc = md5.ComputeHash(hash);
+            string output = "";
+            foreach (var b in hashenc)
+            {
+                output += b.ToString("x2");
+            }
+            return output;
+        }
+
     }
 }

@@ -95,10 +95,10 @@ namespace FridgyKeyApp.Controllers
             return Redirect("/Fridge/Open/"+model.FridgeId);
         }
         [HttpGet]
-        [Authorize]
-        public IActionResult Edit(int product_id)
+        [Authorize] 
+        public IActionResult Edit(int id)  //fridgeproduct_id
         {
-            var product = productInfoService.GetProductInfoByProductId(product_id);
+            var product = productInfoService.GetProductInfoByProductId(id);
             var prod = new ProductInfoViewModel(product.Product, product);
             return View(prod);
         }

@@ -11,6 +11,8 @@ namespace FK.Models
     {
         public int Id { get; set; }
 
+        public int FridgeId { get; set; }
+
         [StringLength(450)]
         public virtual string UserId { get; set; }
 

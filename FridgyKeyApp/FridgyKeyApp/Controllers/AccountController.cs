@@ -14,6 +14,7 @@ using FridgyKeyApp.Models;
 using FridgyKeyApp.Models.AccountViewModels;
 using FridgyKeyApp.Services;
 using FK.Models;
+using FK.BLL.Interfaces;
 
 namespace FridgyKeyApp.Controllers
 {
@@ -25,17 +26,32 @@ namespace FridgyKeyApp.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        IFridgeService fridgeService;
+        IFridgeProductService fridgeProductService;
+        IUserFridgeService userFridgeService;
+        IUserService userService;
+        IStickerService stickerservice;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IUserFridgeService serv,
+            IUserService serv2,
+            IFridgeService serv3,
+            IFridgeProductService serv4,
+            IStickerService serv5)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            userFridgeService = serv;
+            userService = serv2;
+            fridgeService = serv3;
+            fridgeProductService = serv4;
+            stickerservice = serv5;
         }
 
         [TempData]
@@ -431,6 +447,13 @@ namespace FridgyKeyApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Show(string id) //user_id
+        {
+            var user = userService.GetUser(id);
+            return View(new UserViewModel(user));
+        }
 
         [HttpGet]
         public IActionResult AccessDenied()

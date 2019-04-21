@@ -149,10 +149,10 @@ namespace FK.BLL.Services
             try
             {
                 var userFridge = db.UserFridges.Find(m => m.User.Id == user_id).ToList();
-                //if (userFridge.Count() != 1)
-                //{
-                //    throw new Exception("Невалидные параметры");
-                //}
+                if (userFridge.Count() == 0)
+                {
+                    return new List<Fridge>();
+                }
                 var fridge = db.Fridges.Find(m => m.Id == userFridge[0].FridgeId).ToList();
                 return fridge;
             }
@@ -172,6 +172,23 @@ namespace FK.BLL.Services
             catch (Exception e)
             {
 
+            }
+        }
+
+        public bool IsAccess(int fridge_id, string password_hash)
+        {
+            try
+            {
+                var fridge = db.Fridges.Find(m => m.Id == fridge_id && m.PasswordHash == password_hash);
+                if (fridge.Count()!=0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

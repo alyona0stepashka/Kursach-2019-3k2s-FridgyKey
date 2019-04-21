@@ -1,0 +1,22 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Show";
+}
+
+<h2>Show</h2>
+
+<div class="col-md-4"> 
+
+    <div class="form-group"> 
+        @Html.LabelFor(m => m.Id)
+        @Html.DisplayFor(m => m.Id)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username)
+        @Html.DisplayFor(m => m.Username)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.DisplayFor(m => m.Email)
+    </div> 
+</div>

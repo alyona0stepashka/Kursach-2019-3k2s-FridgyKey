@@ -11,7 +11,7 @@ namespace FK.BLL.Services
 {
     public class ProductService : IProductService
     {
-        string admin_id = "f1c6f1a3-6d1b-4ea3-8695-c031c8f7cc21";
+        public static string admin_id = "f1c6f1a3-6d1b-4ea3-8695-c031c8f7cc21";
         IUnitOfWork db { get; set; }
 
         public ProductService(IUnitOfWork uow)

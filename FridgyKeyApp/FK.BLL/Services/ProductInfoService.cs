@@ -94,5 +94,23 @@ namespace FK.BLL.Services
         {
             db.Dispose();
         }
+
+        public IEnumerable<ProductInfo> GetAllAccess(string user_id)
+        {
+            try
+            {
+                var list = new List<ProductInfo>();
+                var list_pr = db.Products.Find(m => m.UserId == user_id || m.UserId == ProductService.admin_id).ToList();//.Find();
+                foreach (var prod in list_pr)
+                {
+                    list.Add(GetProductInfoByProductId(prod.Id));
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

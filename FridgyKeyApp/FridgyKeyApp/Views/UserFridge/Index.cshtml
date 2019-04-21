@@ -4,7 +4,8 @@
 }
 
 <h2>My Fridges</h2>
-
+<a href="/UserFridge/Add" class="btn btn-default">[AddFridge]</a><p/>
+<a href="/Fridge/Create" class="btn btn-default">[CreateFridge]</a><p/>
 @*<form asp-controller="Fridge" asp-action="OpenFridge">*@
     <div>
         <table class="table-striped" style="width:100%">
@@ -24,11 +25,11 @@
                     @Html.HiddenFor(m => m.fridges[i].Description)
                     @Html.HiddenFor(m => m.fridges[i].DateCreate)                  
                 <tr class="text-center">
-                    <td>@Model.fridges[i].Name</td>
+                    <td><a href="/Fridge/Open/@Model.fridges[i].Id">@Model.fridges[i].Name</a></td>
                     <td>@Model.fridges[i].Description</td>
                     <td>@Model.fridges[i].DateCreate</td>
-                    <td><a href="/Fridge/Open/@Model.fridges[i].Id" class="btn btn-default" > [Open]</a></td>
-                    <td><a href="/UserFridge/Edit/@Model.fridges[i].Id" class="btn btn-default"  > [Edit]</a></td>
+                    <td><a href="/Fridge/Open/@Model.fridges[i].Id" class="btn btn-default" > [Open]</a> 
+                     <a href="/UserFridge/Edit/@Model.fridges[i].Id" class="btn btn-default"  > [Edit]</a></td>
                 </tr>
 
 }
