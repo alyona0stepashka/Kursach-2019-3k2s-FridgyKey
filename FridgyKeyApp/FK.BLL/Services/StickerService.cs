@@ -25,37 +25,37 @@ namespace FK.BLL.Services
 
         async Task<Sticker> IService<Sticker, int>.Add(Sticker entity)
         {
-            Sticker Sticker = await db.Stickers.Add(entity);
+            var Sticker = await db.Stickers.Add(entity);
             return Sticker;
         }
 
         async Task<Sticker> IService<Sticker, int>.Delete(Sticker entity)
         {
-            Sticker Sticker = await db.Stickers.Delete(entity);
+            var Sticker = await db.Stickers.Delete(entity);
             return Sticker;
         }
 
         async Task<IEnumerable<Sticker>> IService<Sticker, int>.Get()
         {
-            IEnumerable<Sticker> Stickers = await db.Stickers.Get();
+            var Stickers = await db.Stickers.Get();
             return Stickers;
         }
 
         async Task<IEnumerable<Sticker>> IService<Sticker, int>.Get(Func<Sticker, bool> predicate)
         {
-            IEnumerable<Sticker> Stickers = await db.Stickers.Get(predicate);
+            var Stickers = await db.Stickers.Get(predicate);
             return Stickers;
         }
 
         async Task<Sticker> IService<Sticker, int>.Get(int id)
         {
-            Sticker Sticker = await db.Stickers.Get(id);
+            var Sticker = await db.Stickers.Get(id);
             return Sticker;
         }
 
         async Task<Sticker> IService<Sticker, int>.Update(Sticker entity)
         {
-            Sticker Sticker = await db.Stickers.Update(entity);
+            var Sticker = await db.Stickers.Update(entity);
             return Sticker;
         }
     }

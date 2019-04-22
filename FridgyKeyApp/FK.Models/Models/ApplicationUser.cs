@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace FK.Models
 {
@@ -18,8 +19,10 @@ namespace FK.Models
             Recipes = new HashSet<Recipe>();
         }
 
-        public virtual ICollection<Sticker> Stickers { get; set; }
-         
+        [StringLength(450)]
+        public string FIO { get; set; }
+
+        public virtual ICollection<Sticker> Stickers { get; set; }         
 
         public virtual ICollection<FridgeProduct> FridgeProducts { get; set; }
          

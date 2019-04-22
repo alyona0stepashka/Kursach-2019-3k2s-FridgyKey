@@ -11,6 +11,7 @@ namespace FK.BLL.Models
         public bool IsAuntificated { get; set; } 
         public string Email { get; set; }
         public string Username { get; set; }
+        public string FIO { get; set; }
 
         public CurrentUser()
         {
@@ -18,6 +19,7 @@ namespace FK.BLL.Models
             IsAuntificated = false; 
             Email = string.Empty;
             Username = string.Empty;
+            FIO = string.Empty;
         }
 
     }

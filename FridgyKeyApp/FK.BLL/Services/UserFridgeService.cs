@@ -25,37 +25,37 @@ namespace FK.BLL.Services
 
         async Task<UserFridge> IService<UserFridge, int>.Add(UserFridge entity)
         {
-            UserFridge UserFridge = await db.UserFridges.Add(entity);
+            var UserFridge = await db.UserFridges.Add(entity);
             return UserFridge;
         }
 
         async Task<UserFridge> IService<UserFridge, int>.Delete(UserFridge entity)
         {
-            UserFridge UserFridge = await db.UserFridges.Delete(entity);
+            var UserFridge = await db.UserFridges.Delete(entity);
             return UserFridge;
         }
 
         async Task<IEnumerable<UserFridge>> IService<UserFridge, int>.Get()
         {
-            IEnumerable<UserFridge> UserFridges = await db.UserFridges.Get();
+            var UserFridges = await db.UserFridges.Get();
             return UserFridges;
         }
 
         async Task<IEnumerable<UserFridge>> IService<UserFridge, int>.Get(Func<UserFridge, bool> predicate)
         {
-            IEnumerable<UserFridge> UserFridges = await db.UserFridges.Get(predicate);
+            var UserFridges = await db.UserFridges.Get(predicate);
             return UserFridges;
         }
 
         async Task<UserFridge> IService<UserFridge, int>.Get(int id)
         {
-            UserFridge UserFridge = await db.UserFridges.Get(id);
+            var UserFridge = await db.UserFridges.Get(id);
             return UserFridge;
         }
 
         async Task<UserFridge> IService<UserFridge, int>.Update(UserFridge entity)
         {
-            UserFridge UserFridge = await db.UserFridges.Update(entity);
+            var UserFridge = await db.UserFridges.Update(entity);
             return UserFridge;
         }
     }

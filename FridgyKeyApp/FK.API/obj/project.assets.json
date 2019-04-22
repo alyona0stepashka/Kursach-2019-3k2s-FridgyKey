@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "AutoMapper/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        }
+      },
       "Castle.Core/4.2.1": {
         "type": "package",
         "dependencies": {
@@ -5190,6 +5203,22 @@
     }
   },
   "libraries": {
+    "AutoMapper/8.0.0": {
+      "sha512": "kcbje0Y71XkvzPn8k6OROZGOn2SKaWimon3Bu1WUTVoV5GTJVym+k+zQuKApyyFVRfk7bisumj/qUX4xIIXS+Q==",
+      "type": "package",
+      "path": "automapper/8.0.0",
+      "files": [
+        ".signature.p7s",
+        "automapper.8.0.0.nupkg.sha512",
+        "automapper.nuspec",
+        "lib/net461/AutoMapper.dll",
+        "lib/net461/AutoMapper.pdb",
+        "lib/net461/AutoMapper.xml",
+        "lib/netstandard2.0/AutoMapper.dll",
+        "lib/netstandard2.0/AutoMapper.pdb",
+        "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
     "Castle.Core/4.2.1": {
       "sha512": "tLlM4XU+aj0n8TdkiHHmV/48GpTuFEPQimFjHTZGD9XTWRCSLQcnB6rOftqaUSCXeBSbmWWEGeLPTLG3siTrcw==",
       "type": "package",
@@ -13561,10 +13590,12 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "AutoMapper >= 8.0.0",
       "FK.BLL >= 1.0.0",
       "FK.DAL >= 1.0.0",
       "FK.Models >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.6",
+      "Microsoft.AspNetCore.Identity >= 2.2.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.3"
     ]
@@ -13623,9 +13654,17 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "[2.0.6, )"
+          },
+          "Microsoft.AspNetCore.Identity": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

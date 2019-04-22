@@ -42,8 +42,8 @@ namespace FK.BLL.Services
 
         async Task<OperationResult> IUserService.SignUp(ApplicationUser ApplicationUser)
         {
-            IdentityResult result = await AddUser(ApplicationUser);
-            OperationResult operationResult = new OperationResult
+            var result = await AddUser(ApplicationUser);
+            var operationResult = new OperationResult
             {
                 Result = result.Succeeded,
                 Errors = result.Errors.Select(p => p.Description)
@@ -53,14 +53,14 @@ namespace FK.BLL.Services
 
         async Task<IEnumerable<ApplicationUser>> IUserService.GetUsers()
         {
-            IEnumerable<ApplicationUser> users = await Task.Factory.StartNew(() => _userManager.Users.ToList());
+            var users = await Task.Factory.StartNew(() => _userManager.Users.ToList());
             return users;
         }
 
         async Task<OperationResult> IUserService.DeleteUser(ApplicationUser user)
         {
-            IdentityResult result = await _userManager.DeleteAsync(user);
-            OperationResult operationResult = new OperationResult
+            var result = await _userManager.DeleteAsync(user);
+            var operationResult = new OperationResult
             {
                 Result = result.Succeeded,
                 Errors = result.Errors.Select(p => p.Description)
@@ -72,21 +72,22 @@ namespace FK.BLL.Services
 
         async Task<IEnumerable<string>> IUserService.GetUserRoles(string userName)
         {
-            ApplicationUser userDb = await _userManager.FindByNameAsync(userName);
+            var userDb = await _userManager.FindByNameAsync(userName);
             return await _userManager.GetRolesAsync(userDb);
         }
 
         async Task<CurrentUser> IUserService.GetUser(string userName)
         {
-            ApplicationUser userDb = await _signInManager.UserManager.FindByNameAsync(userName);
+            var userDb = await _signInManager.UserManager.FindByNameAsync(userName);
             if (userDb != null)
             {
-                CurrentUser user = new CurrentUser
+                var user = new CurrentUser
                 {
                     Id = userDb.Id,
                     Roles = await _signInManager.UserManager.GetRolesAsync(userDb), 
                     Email = userDb.Email,
-                    Username = userDb.UserName
+                    Username = userDb.UserName,
+                    FIO = userDb.FIO
                 };
                 return user;
             }
@@ -95,7 +96,7 @@ namespace FK.BLL.Services
 
         private async Task<IdentityResult> AddUser(ApplicationUser ApplicationUser)
         { 
-            IdentityResult result = await _userManager.CreateAsync(ApplicationUser, ApplicationUser.PasswordHash);
+            var result = await _userManager.CreateAsync(ApplicationUser, ApplicationUser.PasswordHash);
             return result;
         }
 
@@ -106,8 +107,8 @@ namespace FK.BLL.Services
 
         async Task<OperationResult> IUserService.AddToRole(ApplicationUser user, string role)
         {
-            IdentityResult result = await _userManager.AddToRoleAsync(user, role);
-            OperationResult operationResult = new OperationResult
+            var result = await _userManager.AddToRoleAsync(user, role);
+            var operationResult = new OperationResult
             {
                 Result = result.Succeeded,
                 Errors = result.Errors.Select(p => p.Description)
@@ -118,7 +119,7 @@ namespace FK.BLL.Services
         async Task IUserService.SeedDatabase()
         {
             await _roleManager.CreateAsync(new IdentityRole("Admin"));
-            ApplicationUser user = new ApplicationUser
+            var user = new ApplicationUser
             {
                 UserName = "pas@mail.ru",
                 EmailConfirmed = true,
@@ -130,9 +131,9 @@ namespace FK.BLL.Services
 
         async Task<OperationResult> IUserService.UpdateUser(CurrentUser currentUser)
         {
-            ApplicationUser user = await _userManager.FindByNameAsync(currentUser.Username); 
-            IdentityResult result = await _userManager.UpdateAsync(user);
-            OperationResult operationResult = new OperationResult
+            var user = await _userManager.FindByNameAsync(currentUser.Username); 
+            var result = await _userManager.UpdateAsync(user);
+            var operationResult = new OperationResult
             {
                 Result = result.Succeeded,
                 Errors = result.Errors.Select(p => p.Description)

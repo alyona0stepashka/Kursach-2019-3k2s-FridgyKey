@@ -25,37 +25,37 @@ namespace FK.BLL.Services
 
         async Task<Fridge> IService<Fridge, int>.Add(Fridge entity)
         {
-            Fridge Fridge = await db.Fridges.Add(entity);
+            var Fridge = await db.Fridges.Add(entity);
             return Fridge;
         }
 
         async Task<Fridge> IService<Fridge, int>.Delete(Fridge entity)
         {
-            Fridge Fridge = await db.Fridges.Delete(entity);
+            var Fridge = await db.Fridges.Delete(entity);
             return Fridge;
         }
 
         async Task<IEnumerable<Fridge>> IService<Fridge, int>.Get()
         {
-            IEnumerable<Fridge> Fridges = await db.Fridges.Get();
+            var Fridges = await db.Fridges.Get();
             return Fridges;
         }
 
         async Task<IEnumerable<Fridge>> IService<Fridge, int>.Get(Func<Fridge, bool> predicate)
         {
-            IEnumerable<Fridge> Fridges = await db.Fridges.Get(predicate);
+            var Fridges = await db.Fridges.Get(predicate);
             return Fridges;
         }
 
         async Task<Fridge> IService<Fridge, int>.Get(int id)
         {
-            Fridge Fridge = await db.Fridges.Get(id);
+            var Fridge = await db.Fridges.Get(id);
             return Fridge;
         }
 
         async Task<Fridge> IService<Fridge, int>.Update(Fridge entity)
         {
-            Fridge Fridge = await db.Fridges.Update(entity);
+            var Fridge = await db.Fridges.Update(entity);
             return Fridge;
         }
     }

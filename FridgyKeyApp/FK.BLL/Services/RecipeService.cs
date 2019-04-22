@@ -25,37 +25,37 @@ namespace FK.BLL.Services
 
         async Task<Recipe> IService<Recipe, int>.Add(Recipe entity)
         {
-            Recipe Recipe = await db.Recipes.Add(entity);
+            var Recipe = await db.Recipes.Add(entity);
             return Recipe;
         }
 
         async Task<Recipe> IService<Recipe, int>.Delete(Recipe entity)
         {
-            Recipe Recipe = await db.Recipes.Delete(entity);
+            var Recipe = await db.Recipes.Delete(entity);
             return Recipe;
         }
 
         async Task<IEnumerable<Recipe>> IService<Recipe, int>.Get()
         {
-            IEnumerable<Recipe> Recipes = await db.Recipes.Get();
+            var Recipes = await db.Recipes.Get();
             return Recipes;
         }
 
         async Task<IEnumerable<Recipe>> IService<Recipe, int>.Get(Func<Recipe, bool> predicate)
         {
-            IEnumerable<Recipe> Recipes = await db.Recipes.Get(predicate);
+            var Recipes = await db.Recipes.Get(predicate);
             return Recipes;
         }
 
         async Task<Recipe> IService<Recipe, int>.Get(int id)
         {
-            Recipe Recipe = await db.Recipes.Get(id);
+            var Recipe = await db.Recipes.Get(id);
             return Recipe;
         }
 
         async Task<Recipe> IService<Recipe, int>.Update(Recipe entity)
         {
-            Recipe Recipe = await db.Recipes.Update(entity);
+            var Recipe = await db.Recipes.Update(entity);
             return Recipe;
         }
     }

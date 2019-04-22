@@ -25,37 +25,37 @@ namespace FK.BLL.Services
 
         async Task<FridgeProduct> IService<FridgeProduct, int>.Add(FridgeProduct entity)
         {
-            FridgeProduct FridgeProduct = await db.FridgeProducts.Add(entity);
+            var FridgeProduct = await db.FridgeProducts.Add(entity);
             return FridgeProduct;
         }
 
         async Task<FridgeProduct> IService<FridgeProduct, int>.Delete(FridgeProduct entity)
         {
-            FridgeProduct FridgeProduct = await db.FridgeProducts.Delete(entity);
+            var FridgeProduct = await db.FridgeProducts.Delete(entity);
             return FridgeProduct; 
         }
 
         async Task<IEnumerable<FridgeProduct>> IService<FridgeProduct, int>.Get()
         {
-            IEnumerable<FridgeProduct> FridgeProducts = await db.FridgeProducts.Get();
+            var FridgeProducts = await db.FridgeProducts.Get();
             return FridgeProducts;
         }
 
         async Task<IEnumerable<FridgeProduct>> IService<FridgeProduct, int>.Get(Func<FridgeProduct, bool> predicate)
-        { 
-            IEnumerable<FridgeProduct> FridgeProducts = await db.FridgeProducts.Get(predicate);
+        {
+            var FridgeProducts = await db.FridgeProducts.Get(predicate);
             return FridgeProducts;
         }
 
         async Task<FridgeProduct> IService<FridgeProduct, int>.Get(int id)
         {
-            FridgeProduct FridgeProduct = await db.FridgeProducts.Get(id);
+            var FridgeProduct = await db.FridgeProducts.Get(id);
             return FridgeProduct;
         }
 
         async Task<FridgeProduct> IService<FridgeProduct, int>.Update(FridgeProduct entity)
         {
-            FridgeProduct FridgeProduct = await db.FridgeProducts.Update(entity);
+            var FridgeProduct = await db.FridgeProducts.Update(entity);
             return FridgeProduct;
         }
     }

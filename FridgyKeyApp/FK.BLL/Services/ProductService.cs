@@ -25,37 +25,37 @@ namespace FK.BLL.Services
 
         async Task<Product> IService<Product, int>.Add(Product entity)
         {
-            Product Product = await db.Products.Add(entity);
+            var Product = await db.Products.Add(entity);
             return Product;
         }
 
         async Task<Product> IService<Product, int>.Delete(Product entity)
         {
-            Product Product = await db.Products.Delete(entity);
+            var Product = await db.Products.Delete(entity);
             return Product;
         }
 
         async Task<IEnumerable<Product>> IService<Product, int>.Get()
         {
-            IEnumerable<Product> Products = await db.Products.Get();
+            var Products = await db.Products.Get();
             return Products;
         }
 
         async Task<IEnumerable<Product>> IService<Product, int>.Get(Func<Product, bool> predicate)
         {
-            IEnumerable<Product> Products = await db.Products.Get(predicate);
+            var Products = await db.Products.Get(predicate);
             return Products;
         }
 
         async Task<Product> IService<Product, int>.Get(int id)
         {
-            Product Product = await db.Products.Get(id);
+            var Product = await db.Products.Get(id);
             return Product;
         }
 
         async Task<Product> IService<Product, int>.Update(Product entity)
         {
-            Product Product = await db.Products.Update(entity);
+            var Product = await db.Products.Update(entity);
             return Product;
         }
     }
