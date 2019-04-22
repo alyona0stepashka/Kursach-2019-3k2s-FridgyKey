@@ -20,10 +20,10 @@ namespace FK.Models
         [StringLength(450)]
         public virtual string UserId { get; set; }
 
-        [StringLength(50)]
+        [StringLength(450)]
         public string Name { get; set; }
 
-        [StringLength(255)]
+        [StringLength(450)]
         public string Description { get; set; }
 
         [StringLength(255)]
@@ -31,6 +31,8 @@ namespace FK.Models
 
 
         public virtual ICollection<FridgeProduct> FridgeProducts { get; set; }
+
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
 
         public virtual ProductInfo ProdInfo { get; set; }
 

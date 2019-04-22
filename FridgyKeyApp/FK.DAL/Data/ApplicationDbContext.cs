@@ -23,6 +23,11 @@ namespace FK.DAL
         public virtual DbSet<Product> Products { get; set; } 
         public virtual DbSet<ProductInfo> ProductInfos { get; set; } 
         public virtual DbSet<UserFridge> UserFridges { get; set; }
+
+        public virtual DbSet<Recipe> Recipes { get; set; }
+        public virtual DbSet<RecipeIngredient> RecipeIngredients { get; set; }
+        public virtual DbSet<Ingredient> Ingredients { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
@@ -71,19 +76,23 @@ namespace FK.DAL
             modelBuilder.Entity<ProductInfo>()
                 .HasOne<Product>(m => m.Product)
                 .WithOne(m => m.ProdInfo);
-             
 
-            //modelBuilder.Entity<FridgeProduct>()
-            //    .Property(e => e.Price)
-            //    .HasPrecision(18, 0);
+            modelBuilder.Entity<RecipeIngredient>()
+                .HasOne<Ingredient>(m => m.Ingredient)
+                .WithMany(m => m.RecipeIngredients);
 
-            //modelBuilder.Entity<Product>()
-            //    .Property(e => e.Name)
-            //    .IsFixedLength();
+            modelBuilder.Entity<RecipeIngredient>()
+                .HasOne<Recipe>(m => m.Recipe)
+                .WithMany(m => m.RecipeIngredients);
 
-            //modelBuilder.Entity<Product>()
-            //    .Property(e => e.Description)
-            //    .IsFixedLength();
+            modelBuilder.Entity<Recipe>()
+                .HasOne<ApplicationUser>(m => m.User)
+                .WithMany(m => m.Recipes);
+
+            modelBuilder.Entity<Ingredient>()
+                .HasOne<Product>(m => m.Product)
+                .WithMany(m => m.Ingredients);
+
         }
      
     }

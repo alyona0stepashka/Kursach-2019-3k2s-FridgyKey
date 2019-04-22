@@ -14,6 +14,7 @@ namespace FK.Models
         {
             FridgeProducts = new HashSet<FridgeProduct>();
             UserFridges = new HashSet<UserFridge>();
+            Stickers = new HashSet<Sticker>();
         }
 
         public int Id { get; set; } 
