@@ -1,11 +1,16 @@
-﻿using FK.BLL.Interfaces;
+﻿using FK.BLL.Infrastructure;
+using FK.BLL.Interfaces;
+using FK.BLL.Models;
 using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 using FK.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.BLL.Services
 {
@@ -18,113 +23,40 @@ namespace FK.BLL.Services
             db = uow;
         }
 
-        public void Create(Fridge fridge)
+        async Task<Fridge> IService<Fridge, int>.Add(Fridge entity)
         {
-            try
-            {
-                db.Fridges.Create(fridge);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            Fridge Fridge = await db.Fridges.Add(entity);
+            return Fridge;
         }
 
-        public void Update(Fridge fridge)
+        async Task<Fridge> IService<Fridge, int>.Delete(Fridge entity)
         {
-            try
-            {
-                db.Fridges.Update(fridge);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            Fridge Fridge = await db.Fridges.Delete(entity);
+            return Fridge;
         }
 
-        public void Delete(Fridge fridge)
+        async Task<IEnumerable<Fridge>> IService<Fridge, int>.Get()
         {
-            try
-            {
-                db.Fridges.Delete(fridge.Id);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            IEnumerable<Fridge> Fridges = await db.Fridges.Get();
+            return Fridges;
         }
 
-        public IEnumerable<Fridge> GetAll()
+        async Task<IEnumerable<Fridge>> IService<Fridge, int>.Get(Func<Fridge, bool> predicate)
         {
-            try
-            {
-                return db.Fridges.GetAll();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            IEnumerable<Fridge> Fridges = await db.Fridges.Get(predicate);
+            return Fridges;
         }
 
-        public IEnumerable<Fridge> GetAllByUserId(string user_id)
+        async Task<Fridge> IService<Fridge, int>.Get(int id)
         {
-            try
-            {
-                List<Fridge> list = new List<Fridge>();
-                var fridges = db.Fridges.GetAll().ToList();
-                foreach (var fridge in fridges)
-                {
-                    var userFridges = db.UserFridges.Find(m => m.FridgeId == fridge.Id);
-                    foreach (var userFridge in userFridges)
-                    {
-                         
-                         if (userFridge.User.Id==user_id)
-                        {
-                            list.Add(fridge);
-                            break;
-                        }
-                    }
-                }
-
-
-                return list;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            Fridge Fridge = await db.Fridges.Get(id);
+            return Fridge;
         }
 
-        public Fridge GetFridge(int fridge_id)
+        async Task<Fridge> IService<Fridge, int>.Update(Fridge entity)
         {
-            try
-            {
-                return db.Fridges.Get(fridge_id);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public void Dispose()
-        {
-            db.Dispose();
-        }
-
-        public int GetCountOwner(int fridge_id)
-        {
-            try
-            {
-                return 1;
-            }
-            catch (Exception e)
-            {
-
-                return 0;
-            }
+            Fridge Fridge = await db.Fridges.Update(entity);
+            return Fridge;
         }
     }
 }

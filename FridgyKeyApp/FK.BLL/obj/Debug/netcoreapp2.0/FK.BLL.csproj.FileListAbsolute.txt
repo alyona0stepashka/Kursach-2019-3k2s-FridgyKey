@@ -16,3 +16,5 @@ D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\n
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.csproj.CopyComplete
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.pdb
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Core.dll
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Core.xml

@@ -5,17 +5,17 @@ using System.Text;
 
 namespace FK.BLL.Interfaces
 {
-    public interface IStickerService
+    public interface IStickerService:IService<Sticker,int>
     {
-        void Create(Sticker sticker); 
-        void Delete(Sticker sticker);
-        void DeleteByFridgeId(int fridge_id);  //удалить все записи на этом холодильнике
-        IEnumerable<Sticker> GetAll();  //получить все записи всех пользователей на всех холодильниках
-        IEnumerable<Sticker> GetAllByUserId(string user_id);  //получить все записи этого юзера
-        IEnumerable<Sticker> GetAllByFridgeId(int fridge_id);  //получить все записи на этом холодильнике 
-        IEnumerable<Sticker> SearchByWord(string word, string user_id, int fridge_id);  //найти записи этого юзера на этом холодильнике, в которых есть это слово
-        IEnumerable<Sticker> SearchByDate(DateTime date);  //найти все записи с этой датой
-        Sticker GetSticker(int sticker_id);
-        void Dispose();
+        //void Create(Sticker sticker); 
+        //void Delete(Sticker sticker);
+        //void DeleteByFridgeId(int fridge_id);  //удалить все записи на этом холодильнике
+        //IEnumerable<Sticker> GetAll();  //получить все записи всех пользователей на всех холодильниках
+        //IEnumerable<Sticker> GetAllByUserId(string user_id);  //получить все записи этого юзера
+        //IEnumerable<Sticker> GetAllByFridgeId(int fridge_id);  //получить все записи на этом холодильнике 
+        //IEnumerable<Sticker> SearchByWord(string word, string user_id, int fridge_id);  //найти записи этого юзера на этом холодильнике, в которых есть это слово
+        //IEnumerable<Sticker> SearchByDate(DateTime date);  //найти все записи с этой датой
+        //Sticker GetSticker(int sticker_id);
+        //void Dispose();
     }
 }

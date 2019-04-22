@@ -1,11 +1,16 @@
-﻿using FK.BLL.Interfaces;
+﻿using FK.BLL.Infrastructure;
+using FK.BLL.Interfaces;
+using FK.BLL.Models;
 using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 using FK.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.BLL.Services
 {
@@ -17,179 +22,41 @@ namespace FK.BLL.Services
         {
             db = uow;
         }
-        public void Create(UserFridge userFridge)
-        {
-            try
-            {
-                db.UserFridges.Create(userFridge);
-                db.Save();
-            }
-            catch(Exception e)
-            {
 
-            }
+        async Task<UserFridge> IService<UserFridge, int>.Add(UserFridge entity)
+        {
+            UserFridge UserFridge = await db.UserFridges.Add(entity);
+            return UserFridge;
         }
 
-        public void Delete(UserFridge userFridge)
+        async Task<UserFridge> IService<UserFridge, int>.Delete(UserFridge entity)
         {
-            try
-            {
-                db.UserFridges.Delete(userFridge.Id);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            UserFridge UserFridge = await db.UserFridges.Delete(entity);
+            return UserFridge;
         }
 
-        public IEnumerable<UserFridge> GetAliveFridges()
+        async Task<IEnumerable<UserFridge>> IService<UserFridge, int>.Get()
         {
-            try
-            {
-                List<UserFridge> list_alive_fridges = new List<UserFridge>();
-                var all_fridges = db.UserFridges.GetAll().ToList();
-                foreach (var fridge in all_fridges)
-                {
-                    if (!list_alive_fridges.Contains(fridge))
-                    {
-                        list_alive_fridges.Add(fridge);
-                    }
-                }
-                return list_alive_fridges;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            IEnumerable<UserFridge> UserFridges = await db.UserFridges.Get();
+            return UserFridges;
         }
 
-        public IEnumerable<UserFridge> GetAll()
+        async Task<IEnumerable<UserFridge>> IService<UserFridge, int>.Get(Func<UserFridge, bool> predicate)
         {
-            try
-            {
-                return db.UserFridges.GetAll().ToList();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            IEnumerable<UserFridge> UserFridges = await db.UserFridges.Get(predicate);
+            return UserFridges;
         }
 
-        public IEnumerable<ApplicationUser> GetAllUsersByFridgeId(int fridge_id)
+        async Task<UserFridge> IService<UserFridge, int>.Get(int id)
         {
-            try
-            {
-                List<ApplicationUser> list_user = new List<ApplicationUser>();
-                var fridges = db.UserFridges.Find(m=>m.FridgeId==fridge_id).ToList();
-                foreach (var fridge in fridges)
-                {
-                    list_user.Add(fridge.User);
-                }
-                return list_user;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            UserFridge UserFridge = await db.UserFridges.Get(id);
+            return UserFridge;
         }
 
-        public IEnumerable<UserFridge> GetDeadFridges()
+        async Task<UserFridge> IService<UserFridge, int>.Update(UserFridge entity)
         {
-            try
-            {
-                List<UserFridge> list_dead_fridges = new List<UserFridge>();
-                var list_all_fridges = db.UserFridges.GetAll().ToList();
-                var list_alive_fridges = GetAliveFridges().ToList();
-                foreach(var fridge in list_all_fridges)
-                {
-                    if (list_alive_fridges.Contains(fridge))
-                    {
-                        list_dead_fridges.Add(fridge);
-                    }
-                }
-                return list_dead_fridges;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public UserFridge GetUserFridge(int usfridge_id)
-        {
-            try
-            {
-                return db.UserFridges.Get(usfridge_id);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public UserFridge GetUserFridgeByFridgeIdUserId(int fridge_id, string user_id)
-        {
-            try
-            {
-                return db.UserFridges.Find(m => m.FridgeId == fridge_id && m.User.Id == user_id).FirstOrDefault();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public void Dispose()
-        {
-            db.Dispose();
-        }
-
-        public IEnumerable<Fridge> GetFridgeByUserId(string user_id)
-        {
-            try
-            {
-                var userFridge = db.UserFridges.Find(m => m.User.Id == user_id).ToList();
-                if (userFridge.Count() == 0)
-                {
-                    return new List<Fridge>();
-                }
-                var fridge = db.Fridges.Find(m => m.Id == userFridge[0].FridgeId).ToList();
-                return fridge;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public void Update(UserFridge userFridge)
-        {
-            try
-            {
-                db.UserFridges.Update(userFridge);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        public bool IsAccess(int fridge_id, string password_hash)
-        {
-            try
-            {
-                var fridge = db.Fridges.Find(m => m.Id == fridge_id && m.PasswordHash == password_hash);
-                if (fridge.Count()!=0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            UserFridge UserFridge = await db.UserFridges.Update(entity);
+            return UserFridge;
         }
     }
 }

@@ -1,115 +1,143 @@
-﻿using FK.BLL.Interfaces;
+﻿using FK.BLL.Infrastructure;
+using FK.BLL.Interfaces;
+using FK.BLL.Models;
 using FK.DAL.Interfaces;
 using FK.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.BLL.Services
 {
     public class UserService : IUserService
     {
         IUnitOfWork db { get; set; }
+         
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
+        private RoleManager<IdentityRole> _roleManager; 
 
-        public UserService(IUnitOfWork uow)
+        public UserService(IUnitOfWork uow, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager)
         {
             db = uow;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager; 
         }
 
-        public void Create(ApplicationUser user)
+        async Task<SignInResult> IUserService.SignIn(ApplicationUser user)
         {
-            try
-            {
-                db.Users.Create(user);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            return await _signInManager.PasswordSignInAsync(user.UserName, user.PasswordHash, true, false);
         }
 
-        public void Update(ApplicationUser user)
+        async Task IUserService.Logout()
         {
-            try
-            {
-                db.Users.Update(user);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            await _signInManager.SignOutAsync();
         }
 
-        public void Delete(string user_id)
+        async Task<OperationResult> IUserService.SignUp(ApplicationUser ApplicationUser)
         {
-            try
+            IdentityResult result = await AddUser(ApplicationUser);
+            OperationResult operationResult = new OperationResult
             {
-                //db.Users.Delete(user_id);  //???string/int
-            }
-            catch(Exception e)
-            {
-
-            }
+                Result = result.Succeeded,
+                Errors = result.Errors.Select(p => p.Description)
+            };
+            return operationResult;
         }
 
-        public IEnumerable<ApplicationUser> GetAll()
+        async Task<IEnumerable<ApplicationUser>> IUserService.GetUsers()
         {
-            try
-            {
-                return db.Users.GetAll().ToList();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            IEnumerable<ApplicationUser> users = await Task.Factory.StartNew(() => _userManager.Users.ToList());
+            return users;
         }
 
-        public IEnumerable<ApplicationUser> GetAllUser()
+        async Task<OperationResult> IUserService.DeleteUser(ApplicationUser user)
         {
-            try
+            IdentityResult result = await _userManager.DeleteAsync(user);
+            OperationResult operationResult = new OperationResult
             {
-               // var users = db.Users.Find(m=>m.)  ???
-
-
-                return db.Users.GetAll().ToList();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+                Result = result.Succeeded,
+                Errors = result.Errors.Select(p => p.Description)
+            };
+            return operationResult;
         }
 
-        public ApplicationUser GetUser(string user_id)
+
+
+        async Task<IEnumerable<string>> IUserService.GetUserRoles(string userName)
         {
-            try
-            {
-                return db.Users.Find(m => m.Id == user_id).FirstOrDefault(); 
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            ApplicationUser userDb = await _userManager.FindByNameAsync(userName);
+            return await _userManager.GetRolesAsync(userDb);
         }
 
-        public void Dispose()
+        async Task<CurrentUser> IUserService.GetUser(string userName)
         {
-            db.Dispose();
-        }
-        public string Hash(string input) //готово
-        {
-            byte[] hash = Encoding.ASCII.GetBytes(input);
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] hashenc = md5.ComputeHash(hash);
-            string output = "";
-            foreach (var b in hashenc)
+            ApplicationUser userDb = await _signInManager.UserManager.FindByNameAsync(userName);
+            if (userDb != null)
             {
-                output += b.ToString("x2");
+                CurrentUser user = new CurrentUser
+                {
+                    Id = userDb.Id,
+                    Roles = await _signInManager.UserManager.GetRolesAsync(userDb), 
+                    Email = userDb.Email,
+                    Username = userDb.UserName
+                };
+                return user;
             }
-            return output;
+            return null;
+        }
+
+        private async Task<IdentityResult> AddUser(ApplicationUser ApplicationUser)
+        { 
+            IdentityResult result = await _userManager.CreateAsync(ApplicationUser, ApplicationUser.PasswordHash);
+            return result;
+        }
+
+        async Task<ApplicationUser> IUserService.GetUserById(string id)
+        {
+            return await _userManager.FindByIdAsync(id);
+        }
+
+        async Task<OperationResult> IUserService.AddToRole(ApplicationUser user, string role)
+        {
+            IdentityResult result = await _userManager.AddToRoleAsync(user, role);
+            OperationResult operationResult = new OperationResult
+            {
+                Result = result.Succeeded,
+                Errors = result.Errors.Select(p => p.Description)
+            };
+            return operationResult;
+        }
+
+        async Task IUserService.SeedDatabase()
+        {
+            await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            ApplicationUser user = new ApplicationUser
+            {
+                UserName = "pas@mail.ru",
+                EmailConfirmed = true,
+                Email = "pas@mail.ru"
+            };
+            await _userManager.CreateAsync(user, "a80291227107_A");
+            await _userManager.AddToRoleAsync(user, "Admin");
+        }
+
+        async Task<OperationResult> IUserService.UpdateUser(CurrentUser currentUser)
+        {
+            ApplicationUser user = await _userManager.FindByNameAsync(currentUser.Username); 
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            OperationResult operationResult = new OperationResult
+            {
+                Result = result.Succeeded,
+                Errors = result.Errors.Select(p => p.Description)
+            };
+            return operationResult;
         }
 
     }

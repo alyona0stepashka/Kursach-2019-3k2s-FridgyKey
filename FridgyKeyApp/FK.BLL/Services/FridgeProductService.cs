@@ -1,11 +1,16 @@
-﻿using FK.BLL.Interfaces;
+﻿using FK.BLL.Infrastructure;
+using FK.BLL.Interfaces;
+using FK.BLL.Models;
 using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 using FK.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.BLL.Services
 {
@@ -16,167 +21,42 @@ namespace FK.BLL.Services
         public FridgeProductService(IUnitOfWork uow)
         {
             db = uow;
-        }
-
-        public void Create(FridgeProduct fridgeProduct)
-        {
-            try
-            {
-                db.FridgeProducts.Create(fridgeProduct);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        public void Update(FridgeProduct fridgeProduct)
-        {
-            try
-            {
-                db.FridgeProducts.Update(fridgeProduct);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        public void Delete(FridgeProduct fridgeProduct)
-        {
-            try
-            {
-                db.FridgeProducts.Delete(fridgeProduct.Id);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        public IEnumerable<FridgeProduct> GetAll()
-        {
-            try
-            {
-                return db.FridgeProducts.GetAll();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<FridgeProduct> GetBad(int fridge_id)
-        {
-            try
-            {
-                return db.FridgeProducts.Find(m=>m.DateValid<=DateTime.Now);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<FridgeProduct> GetAll(int fridge_id, string user_id)
-        {
-            try
-            {
-                return db.FridgeProducts.GetAll();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<FridgeProduct> SearchByDateValid(DateTime date)
-        {
-            try
-            {
-                return db.FridgeProducts.Find(m=>m.DateValid==date.Date); //???? date need day or date
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public IEnumerable<FridgeProduct> SearchByDateValid(DateTime date, int fridge_id)
-        {
-            try
-            {
-                return db.FridgeProducts.Find(m => m.DateValid == date.Date && m.FridgeId==fridge_id); //???? date need day or date
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<FridgeProduct> SearchByDateValid(DateTime date, int fridge_id, string user_id)
-        {
-            try
-            {
-                return db.FridgeProducts.Find(m => m.DateValid == date.Date && m.FridgeId == fridge_id && m.User.Id==user_id); //???? date need day or date
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        
-        public FridgeProduct GetFridgeProduct(int frproduct_id)
-        {
-            try
-            {
-                return db.FridgeProducts.Get(frproduct_id); //???? date need day or date
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public IEnumerable<FridgeProduct> SearchByDateBuy(DateTime date)
-        {
-            try
-            {
-                return db.FridgeProducts.Find(m => m.DateBuy == date.Date); //???? date need day or date
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
         } 
 
-        public IEnumerable<FridgeProduct> SearchByDateBuy(DateTime date, int fridge_id)
+        async Task<FridgeProduct> IService<FridgeProduct, int>.Add(FridgeProduct entity)
         {
-            try
-            {
-                return db.FridgeProducts.Find(m => m.DateBuy == date.Date && m.FridgeId==fridge_id); //???? date need day or date
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            FridgeProduct FridgeProduct = await db.FridgeProducts.Add(entity);
+            return FridgeProduct;
         }
 
-        public IEnumerable<FridgeProduct> SearchByDateBuy(DateTime date, int fridge_id, string user_id)
+        async Task<FridgeProduct> IService<FridgeProduct, int>.Delete(FridgeProduct entity)
         {
-            try
-            {
-                return db.FridgeProducts.Find(m => m.DateBuy == date.Date && m.FridgeId==fridge_id && m.User.Id==user_id); //???? date need day or date
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            FridgeProduct FridgeProduct = await db.FridgeProducts.Delete(entity);
+            return FridgeProduct; 
         }
-        public void Dispose()
+
+        async Task<IEnumerable<FridgeProduct>> IService<FridgeProduct, int>.Get()
         {
-            db.Dispose();
+            IEnumerable<FridgeProduct> FridgeProducts = await db.FridgeProducts.Get();
+            return FridgeProducts;
+        }
+
+        async Task<IEnumerable<FridgeProduct>> IService<FridgeProduct, int>.Get(Func<FridgeProduct, bool> predicate)
+        { 
+            IEnumerable<FridgeProduct> FridgeProducts = await db.FridgeProducts.Get(predicate);
+            return FridgeProducts;
+        }
+
+        async Task<FridgeProduct> IService<FridgeProduct, int>.Get(int id)
+        {
+            FridgeProduct FridgeProduct = await db.FridgeProducts.Get(id);
+            return FridgeProduct;
+        }
+
+        async Task<FridgeProduct> IService<FridgeProduct, int>.Update(FridgeProduct entity)
+        {
+            FridgeProduct FridgeProduct = await db.FridgeProducts.Update(entity);
+            return FridgeProduct;
         }
     }
 }

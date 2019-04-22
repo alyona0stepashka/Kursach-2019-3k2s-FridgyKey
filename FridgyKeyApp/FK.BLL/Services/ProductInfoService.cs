@@ -1,10 +1,16 @@
-﻿using FK.BLL.Interfaces;
+﻿using FK.BLL.Infrastructure;
+using FK.BLL.Interfaces;
+using FK.BLL.Models;
 using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 using FK.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.BLL.Services
 {
@@ -17,100 +23,40 @@ namespace FK.BLL.Services
             db = uow;
         }
 
-        public void Create(ProductInfo product)
+        async Task<ProductInfo> IService<ProductInfo, int>.Add(ProductInfo entity)
         {
-            try
-            { 
-                db.ProductInfos.Create(product);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            ProductInfo ProductInfo = await db.ProductInfos.Add(entity);
+            return ProductInfo;
         }
 
-        public void Update(ProductInfo product)
+        async Task<ProductInfo> IService<ProductInfo, int>.Delete(ProductInfo entity)
         {
-            try
-            {
-                db.ProductInfos.Update(product);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            ProductInfo ProductInfo = await db.ProductInfos.Delete(entity);
+            return ProductInfo;
         }
 
-        public void Delete(ProductInfo product)
+        async Task<IEnumerable<ProductInfo>> IService<ProductInfo, int>.Get()
         {
-            try
-            {
-                db.ProductInfos.Delete(product.Id); 
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            IEnumerable<ProductInfo> ProductInfos = await db.ProductInfos.Get();
+            return ProductInfos;
         }
 
-        public IEnumerable<ProductInfo> GetAll()
+        async Task<IEnumerable<ProductInfo>> IService<ProductInfo, int>.Get(Func<ProductInfo, bool> predicate)
         {
-            try
-            {
-                return db.ProductInfos.GetAll().ToList();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        } 
-        public ProductInfo GetProductInfoByProductId(int product_id)
-        {
-            try
-            {
-                return db.ProductInfos.Find(m => m.ProductId == product_id).FirstOrDefault(); 
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            IEnumerable<ProductInfo> ProductInfos = await db.ProductInfos.Get(predicate);
+            return ProductInfos;
         }
 
-        public ProductInfo GetProductInfo(int productinfo_id)
+        async Task<ProductInfo> IService<ProductInfo, int>.Get(int id)
         {
-            try
-            {
-                return db.ProductInfos.Get(productinfo_id);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public void Dispose()
-        {
-            db.Dispose();
+            ProductInfo ProductInfo = await db.ProductInfos.Get(id);
+            return ProductInfo;
         }
 
-        public IEnumerable<ProductInfo> GetAllAccess(string user_id)
+        async Task<ProductInfo> IService<ProductInfo, int>.Update(ProductInfo entity)
         {
-            try
-            {
-                var list = new List<ProductInfo>();
-                var list_pr = db.Products.Find(m => m.UserId == user_id || m.UserId == ProductService.admin_id).ToList();//.Find();
-                foreach (var prod in list_pr)
-                {
-                    list.Add(GetProductInfoByProductId(prod.Id));
-                }
-                return list;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            ProductInfo ProductInfo = await db.ProductInfos.Update(entity);
+            return ProductInfo;
         }
     }
 }

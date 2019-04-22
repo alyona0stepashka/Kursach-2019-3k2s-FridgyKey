@@ -54,8 +54,8 @@ namespace FK.DAL.Repositories
 
         async Task<IEnumerable<ProductInfo>> IRepository<ProductInfo, int>.Get()
         {
-            IEnumerable<ProductInfo> cities = await _dbSet.ToListAsync();
-            return cities;
+            IEnumerable<ProductInfo> prod_infos = await _dbSet.ToListAsync();
+            return prod_infos;
         }
 
         async Task<ProductInfo> IRepository<ProductInfo, int>.Get(int id)

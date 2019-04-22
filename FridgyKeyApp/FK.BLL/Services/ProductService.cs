@@ -1,17 +1,21 @@
-﻿using FK.BLL.Interfaces;
+﻿using FK.BLL.Infrastructure;
+using FK.BLL.Interfaces;
+using FK.BLL.Models;
 using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 using FK.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.BLL.Services
 {
     public class ProductService : IProductService
     {
-        public static string admin_id = "f1c6f1a3-6d1b-4ea3-8695-c031c8f7cc21";
         IUnitOfWork db { get; set; }
 
         public ProductService(IUnitOfWork uow)
@@ -19,119 +23,40 @@ namespace FK.BLL.Services
             db = uow;
         }
 
-        public void Create(Product product)
+        async Task<Product> IService<Product, int>.Add(Product entity)
         {
-            try
-            {
-                db.Products.Create(product);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            Product Product = await db.Products.Add(entity);
+            return Product;
         }
 
-        public void Update(Product product)
+        async Task<Product> IService<Product, int>.Delete(Product entity)
         {
-            try
-            {
-                db.Products.Update(product);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            Product Product = await db.Products.Delete(entity);
+            return Product;
         }
 
-        public void Delete(Product product)
+        async Task<IEnumerable<Product>> IService<Product, int>.Get()
         {
-            try
-            {
-                db.UserFridges.Delete(product.Id);
-                db.Save();
-            }
-            catch (Exception e)
-            {
-
-            }
+            IEnumerable<Product> Products = await db.Products.Get();
+            return Products;
         }
 
-        public IEnumerable<Product> GetAll()
+        async Task<IEnumerable<Product>> IService<Product, int>.Get(Func<Product, bool> predicate)
         {
-            try
-            {
-                return db.Products.GetAll().ToList();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            IEnumerable<Product> Products = await db.Products.Get(predicate);
+            return Products;
         }
 
-        public IEnumerable<Product> GetAllAccess(string user_id) //???
+        async Task<Product> IService<Product, int>.Get(int id)
         {
-            try
-            {
-                return db.Products.Find(m=>m.UserId==user_id || m.UserId==admin_id).ToList();//.Find();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            Product Product = await db.Products.Get(id);
+            return Product;
         }
 
-        public IEnumerable<Product> GetAllGeneral()  //???
+        async Task<Product> IService<Product, int>.Update(Product entity)
         {
-            try
-            {
-                return db.Products.GetAll();//.Find();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<Product> GetAllByUserId(string user_id)
-        {
-            try
-            {
-                return db.Products.Find(m => m.User.Id==user_id).ToList();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public Product GetProduct(int product_id)
-        {
-            try
-            {
-                return db.Products.Get(product_id);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        public void Dispose()
-        {
-            db.Dispose();
-        }
-
-        public Product GetProductByUserIdProductName(string user_id, string name)
-        {
-            try
-            {
-                return db.Products.Find(m => m.Name == name && (m.UserId == user_id || m.UserId == admin_id)).FirstOrDefault();
-            }
-            catch(Exception e)
-            {
-                return null;
-            }
+            Product Product = await db.Products.Update(entity);
+            return Product;
         }
     }
 }
