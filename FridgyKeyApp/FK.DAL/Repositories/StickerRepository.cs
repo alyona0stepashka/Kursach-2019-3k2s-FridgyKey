@@ -6,48 +6,96 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.DAL.Repositories
 {
-    public class StickerRepository : IRepository<Sticker>
+    public class StickerRepository : IRepository<Sticker, int>
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Sticker> _dbSet;
 
         public StickerRepository(ApplicationDbContext context)
         {
-            this.db = context;
+            _context = context;
+            _dbSet = _context.Set<Sticker>();
+            _context.Stickers.Load();
         }
 
-        public IEnumerable<Sticker> GetAll()
+        async Task<Sticker> IRepository<Sticker, int>.Add(Sticker entity)
         {
-            return db.Stickers.Include(m => m.Fridge).Include(m => m.User);
+            Sticker resSticker;
+            try
+            {
+                resSticker = (await _dbSet.AddAsync(entity)).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resSticker = null;
+            }
+            return resSticker;
         }
 
-        public Sticker Get(int id)
+        async Task<Sticker> IRepository<Sticker, int>.Delete(Sticker entity)
         {
-            return db.Stickers.Find(id);
+            Sticker resSticker;
+            try
+            {
+                resSticker = _dbSet.Remove(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resSticker = null;
+            }
+            return resSticker;
         }
 
-        public void Create(Sticker sticker)
+        async Task<IEnumerable<Sticker>> IRepository<Sticker, int>.Get()
         {
-            db.Stickers.Add(sticker);
+            IEnumerable<Sticker> cities = await _dbSet.ToListAsync();
+            return cities;
         }
 
-        public void Update(Sticker sticker)
+        async Task<Sticker> IRepository<Sticker, int>.Get(int id)
         {
-            db.Entry(sticker).State = EntityState.Modified;
+            Sticker Sticker;
+            try
+            {
+                Sticker = await _dbSet.FindAsync(id);
+            }
+            catch
+            {
+                Sticker = null;
+            }
+            return Sticker;
         }
 
-        public IEnumerable<Sticker> Find(Func<Sticker, Boolean> predicate)
+        async Task<IEnumerable<Sticker>> IRepository<Sticker, int>.Get(Func<Sticker, bool> predicate)
         {
-            return db.Stickers.Where(predicate).ToList();
+            IEnumerable<Sticker> cities = await Task.Factory.StartNew(() => _dbSet.Where(predicate).ToList() as IEnumerable<Sticker>);
+            return cities;
         }
 
-        public void Delete(int id)
+        IQueryable<Sticker> IRepository<Sticker, int>.Query()
         {
-            Sticker sticker = db.Stickers.Find(id);
-            if (sticker != null)
-                db.Stickers.Remove(sticker);
+            return _dbSet;
+        }
+
+        async Task<Sticker> IRepository<Sticker, int>.Update(Sticker entity)
+        {
+            Sticker resSticker;
+            try
+            {
+                resSticker = _dbSet.Update(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resSticker = null;
+            }
+            return resSticker;
         }
     }
 }

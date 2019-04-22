@@ -6,48 +6,96 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.DAL.Repositories
 {
-    public class FridgeProductRepository : IRepository<FridgeProduct>
+    public class FridgeProductRepository : IRepository<FridgeProduct, int>
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<FridgeProduct> _dbSet;
 
         public FridgeProductRepository(ApplicationDbContext context)
         {
-            this.db = context;
+            _context = context;
+            _dbSet = _context.Set<FridgeProduct>();
+            _context.FridgeProducts.Load();
         }
 
-        public IEnumerable<FridgeProduct> GetAll()
+        async Task<FridgeProduct> IRepository<FridgeProduct, int>.Add(FridgeProduct entity)
         {
-            return db.FridgeProducts.Include(m=>m.User).Include(m=>m.Product).Include(m=>m.Fridge);
+            FridgeProduct resFridgeProduct;
+            try
+            {
+                resFridgeProduct = (await _dbSet.AddAsync(entity)).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resFridgeProduct = null;
+            }
+            return resFridgeProduct;
         }
 
-        public FridgeProduct Get(int id)
+        async Task<FridgeProduct> IRepository<FridgeProduct, int>.Delete(FridgeProduct entity)
         {
-            return db.FridgeProducts.Find(id);
+            FridgeProduct resFridgeProduct;
+            try
+            {
+                resFridgeProduct = _dbSet.Remove(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resFridgeProduct = null;
+            }
+            return resFridgeProduct;
         }
 
-        public void Create(FridgeProduct fridgeProduct)
+        async Task<IEnumerable<FridgeProduct>> IRepository<FridgeProduct, int>.Get()
         {
-            db.FridgeProducts.Add(fridgeProduct);
+            IEnumerable<FridgeProduct> cities = await _dbSet.ToListAsync();
+            return cities;
         }
 
-        public void Update(FridgeProduct fridgeProduct)
+        async Task<FridgeProduct> IRepository<FridgeProduct, int>.Get(int id)
         {
-            db.Entry(fridgeProduct).State = EntityState.Modified;
+            FridgeProduct FridgeProduct;
+            try
+            {
+                FridgeProduct = await _dbSet.FindAsync(id);
+            }
+            catch
+            {
+                FridgeProduct = null;
+            }
+            return FridgeProduct;
         }
 
-        public IEnumerable<FridgeProduct> Find(Func<FridgeProduct, Boolean> predicate)
+        async Task<IEnumerable<FridgeProduct>> IRepository<FridgeProduct, int>.Get(Func<FridgeProduct, bool> predicate)
         {
-            return db.FridgeProducts.Where(predicate).ToList();
+            IEnumerable<FridgeProduct> cities = await Task.Factory.StartNew(() => _dbSet.Where(predicate).ToList() as IEnumerable<FridgeProduct>);
+            return cities;
         }
 
-        public void Delete(int id)
+        IQueryable<FridgeProduct> IRepository<FridgeProduct, int>.Query()
         {
-            FridgeProduct fridgeProduct = db.FridgeProducts.Find(id);
-            if (fridgeProduct != null)
-                db.FridgeProducts.Remove(fridgeProduct);
+            return _dbSet;
+        }
+
+        async Task<FridgeProduct> IRepository<FridgeProduct, int>.Update(FridgeProduct entity)
+        {
+            FridgeProduct resFridgeProduct;
+            try
+            {
+                resFridgeProduct = _dbSet.Update(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resFridgeProduct = null;
+            }
+            return resFridgeProduct;
         }
     }
 }

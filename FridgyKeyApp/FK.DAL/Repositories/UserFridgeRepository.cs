@@ -6,48 +6,96 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.DAL.Repositories
 {
-    public class UserFridgeRepository : IRepository<UserFridge>
+    public class UserFridgeRepository : IRepository<UserFridge, int>
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<UserFridge> _dbSet;
 
         public UserFridgeRepository(ApplicationDbContext context)
         {
-            this.db = context;
+            _context = context;
+            _dbSet = _context.Set<UserFridge>();
+            _context.UserFridges.Load();
         }
 
-        public IEnumerable<UserFridge> GetAll()
+        async Task<UserFridge> IRepository<UserFridge, int>.Add(UserFridge entity)
         {
-            return db.UserFridges.Include(m => m.Fridge).Include(m => m.User);
+            UserFridge resUserFridge;
+            try
+            {
+                resUserFridge = (await _dbSet.AddAsync(entity)).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resUserFridge = null;
+            }
+            return resUserFridge;
         }
 
-        public UserFridge Get(int id)
+        async Task<UserFridge> IRepository<UserFridge, int>.Delete(UserFridge entity)
         {
-            return db.UserFridges.Find(id);
+            UserFridge resUserFridge;
+            try
+            {
+                resUserFridge = _dbSet.Remove(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resUserFridge = null;
+            }
+            return resUserFridge;
         }
 
-        public void Create(UserFridge userFridge)
+        async Task<IEnumerable<UserFridge>> IRepository<UserFridge, int>.Get()
         {
-            db.UserFridges.Add(userFridge);
+            IEnumerable<UserFridge> cities = await _dbSet.ToListAsync();
+            return cities;
         }
 
-        public void Update(UserFridge userFridge)
+        async Task<UserFridge> IRepository<UserFridge, int>.Get(int id)
         {
-            db.Entry(userFridge).State = EntityState.Modified;
+            UserFridge UserFridge;
+            try
+            {
+                UserFridge = await _dbSet.FindAsync(id);
+            }
+            catch
+            {
+                UserFridge = null;
+            }
+            return UserFridge;
         }
 
-        public IEnumerable<UserFridge> Find(Func<UserFridge, Boolean> predicate)
+        async Task<IEnumerable<UserFridge>> IRepository<UserFridge, int>.Get(Func<UserFridge, bool> predicate)
         {
-            return db.UserFridges.Where(predicate).ToList();
+            IEnumerable<UserFridge> cities = await Task.Factory.StartNew(() => _dbSet.Where(predicate).ToList() as IEnumerable<UserFridge>);
+            return cities;
         }
 
-        public void Delete(int id)
+        IQueryable<UserFridge> IRepository<UserFridge, int>.Query()
         {
-            UserFridge UserFridge = db.UserFridges.Find(id);
-            if (UserFridge != null)
-                db.UserFridges.Remove(UserFridge);
+            return _dbSet;
+        }
+
+        async Task<UserFridge> IRepository<UserFridge, int>.Update(UserFridge entity)
+        {
+            UserFridge resUserFridge;
+            try
+            {
+                resUserFridge = _dbSet.Update(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resUserFridge = null;
+            }
+            return resUserFridge;
         }
     }
 }

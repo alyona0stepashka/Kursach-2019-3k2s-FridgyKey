@@ -10,29 +10,22 @@ namespace FK.DAL.Repositories
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private ApplicationDbContext db;
-        private UserRepository userRepository;
+        private ApplicationDbContext db; 
         private FridgeRepository fridgeRepository;
         private UserFridgeRepository userFridgeRepository;
         private ProductRepository productRepository;
         private FridgeProductRepository fridgeProductRepository;
         private StickerRepository stickerRepository;
         private ProductInfoRepository productInfoRepository;
+        private RecipeRepository recipeRepository;
+        private IngredientRepository ingredientRepository;
+        private RecipeIngredientRepository recipeIngredientRepository;
 
         public EFUnitOfWork(DbContextOptions<ApplicationDbContext> ortions)
         {
             db = new ApplicationDbContext(ortions);   
-        }
-        public IRepository<ApplicationUser> Users
-        {
-            get
-            {
-                if (userRepository == null)
-                    userRepository = new UserRepository(db);
-                return userRepository;
-            }
-        }
-        public IRepository<ProductInfo> ProductInfos
+        } 
+        public IRepository<ProductInfo, int> ProductInfos
         {
             get
             {
@@ -42,7 +35,7 @@ namespace FK.DAL.Repositories
             }
         }
 
-        public IRepository<Fridge> Fridges
+        public IRepository<Fridge, int> Fridges
         {
             get
             {
@@ -51,7 +44,7 @@ namespace FK.DAL.Repositories
                 return fridgeRepository;
             }
         }
-        public IRepository<Product> Products
+        public IRepository<Product, int> Products
         {
             get
             {
@@ -61,7 +54,7 @@ namespace FK.DAL.Repositories
             }
         }
 
-        public IRepository<UserFridge> UserFridges
+        public IRepository<UserFridge, int> UserFridges
         {
             get
             {
@@ -70,7 +63,7 @@ namespace FK.DAL.Repositories
                 return userFridgeRepository;
             }
         }
-        public IRepository<Sticker> Stickers
+        public IRepository<Sticker, int> Stickers
         {
             get
             {
@@ -80,7 +73,37 @@ namespace FK.DAL.Repositories
             }
         }
 
-        public IRepository<FridgeProduct> FridgeProducts
+        public IRepository<Recipe, int> Recipes
+        {
+            get
+            {
+                if (recipeRepository == null)
+                    recipeRepository = new RecipeRepository(db);
+                return recipeRepository;
+            }
+        }
+
+        public IRepository<Ingredient, int> Ingredients
+        {
+            get
+            {
+                if (ingredientRepository == null)
+                    ingredientRepository = new IngredientRepository(db);
+                return ingredientRepository;
+            }
+        }
+
+        public IRepository<RecipeIngredient, int> RecipeIngredients
+        {
+            get
+            {
+                if (recipeIngredientRepository == null)
+                    recipeIngredientRepository = new RecipeIngredientRepository(db);
+                return recipeIngredientRepository;
+            }
+        }
+
+        public IRepository<FridgeProduct, int> FridgeProducts
         {
             get
             {

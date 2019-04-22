@@ -6,14 +6,16 @@ using System.Text;
 namespace FK.DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
-    {
-        IRepository<ApplicationUser> Users { get; }
-        IRepository<UserFridge> UserFridges { get; }
-        IRepository<Fridge> Fridges { get; }
-        IRepository<FridgeProduct> FridgeProducts { get; }
-        IRepository<Product> Products { get; }
-        IRepository<Sticker> Stickers { get; }
-        IRepository<ProductInfo> ProductInfos { get; }
+    { 
+        IRepository<UserFridge,int> UserFridges { get; }
+        IRepository<Fridge, int> Fridges { get; }
+        IRepository<FridgeProduct, int> FridgeProducts { get; }
+        IRepository<Product, int> Products { get; }
+        IRepository<Sticker, int> Stickers { get; }
+        IRepository<ProductInfo, int> ProductInfos { get; }
+        IRepository<Recipe, int> Recipes { get; }
+        IRepository<RecipeIngredient, int> RecipeIngredients { get; }
+        IRepository<Ingredient, int> Ingredients { get; }
         void Save();
     }
 }

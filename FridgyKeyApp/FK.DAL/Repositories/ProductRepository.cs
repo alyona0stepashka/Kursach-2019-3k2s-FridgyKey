@@ -6,48 +6,96 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.DAL.Repositories
 {
-    public class ProductRepository : IRepository<Product>
+    public class ProductRepository : IRepository<Product, int>
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Product> _dbSet;
 
         public ProductRepository(ApplicationDbContext context)
         {
-            this.db = context;
+            _context = context;
+            _dbSet = _context.Set<Product>();
+            _context.Products.Load();
         }
 
-        public IEnumerable<Product> GetAll()
+        async Task<Product> IRepository<Product, int>.Add(Product entity)
         {
-            return db.Products.Include(m => m.FridgeProducts).Include(m => m.ProdInfo).Include(m => m.User);
+            Product resProduct;
+            try
+            {
+                resProduct = (await _dbSet.AddAsync(entity)).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resProduct = null;
+            }
+            return resProduct;
         }
 
-        public Product Get(int id)
+        async Task<Product> IRepository<Product, int>.Delete(Product entity)
         {
-            return db.Products.Find(id);
+            Product resProduct;
+            try
+            {
+                resProduct = _dbSet.Remove(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resProduct = null;
+            }
+            return resProduct;
         }
 
-        public void Create(Product product)
+        async Task<IEnumerable<Product>> IRepository<Product, int>.Get()
         {
-            db.Products.Add(product);
+            IEnumerable<Product> cities = await _dbSet.ToListAsync();
+            return cities;
         }
 
-        public void Update(Product product)
+        async Task<Product> IRepository<Product, int>.Get(int id)
         {
-            db.Entry(product).State = EntityState.Modified;
+            Product Product;
+            try
+            {
+                Product = await _dbSet.FindAsync(id);
+            }
+            catch
+            {
+                Product = null;
+            }
+            return Product;
         }
 
-        public IEnumerable<Product> Find(Func<Product, Boolean> predicate)
+        async Task<IEnumerable<Product>> IRepository<Product, int>.Get(Func<Product, bool> predicate)
         {
-            return db.Products.Where(predicate).ToList();
+            IEnumerable<Product> cities = await Task.Factory.StartNew(() => _dbSet.Where(predicate).ToList() as IEnumerable<Product>);
+            return cities;
         }
 
-        public void Delete(int id)
+        IQueryable<Product> IRepository<Product, int>.Query()
         {
-            Product product = db.Products.Find(id);
-            if (product != null)
-                db.Products.Remove(product);
+            return _dbSet;
+        }
+
+        async Task<Product> IRepository<Product, int>.Update(Product entity)
+        {
+            Product resProduct;
+            try
+            {
+                resProduct = _dbSet.Update(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resProduct = null;
+            }
+            return resProduct;
         }
     }
 }

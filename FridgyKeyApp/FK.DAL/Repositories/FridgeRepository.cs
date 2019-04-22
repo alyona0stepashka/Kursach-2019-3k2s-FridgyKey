@@ -6,48 +6,96 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.DAL.Repositories
 {
-    public class FridgeRepository : IRepository<Fridge>
+    public class FridgeRepository : IRepository<Fridge, int>
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Fridge> _dbSet;
 
         public FridgeRepository(ApplicationDbContext context)
         {
-            this.db = context;
+            _context = context;
+            _dbSet = _context.Set<Fridge>();
+            _context.Fridges.Load();
         }
 
-        public IEnumerable<Fridge> GetAll()
+        async Task<Fridge> IRepository<Fridge, int>.Add(Fridge entity)
         {
-            return db.Fridges.Include(m=>m.FridgeProducts).Include(m=>m.Stickers).Include(m=>m.UserFridges);
+            Fridge resFridge;
+            try
+            {
+                resFridge = (await _dbSet.AddAsync(entity)).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resFridge = null;
+            }
+            return resFridge;
         }
 
-        public Fridge Get(int id)
+        async Task<Fridge> IRepository<Fridge, int>.Delete(Fridge entity)
         {
-            return db.Fridges.Find(id);
+            Fridge resFridge;
+            try
+            {
+                resFridge = _dbSet.Remove(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resFridge = null;
+            }
+            return resFridge;
         }
 
-        public void Create(Fridge fridge)
+        async Task<IEnumerable<Fridge>> IRepository<Fridge, int>.Get()
         {
-            db.Fridges.Add(fridge);
+            IEnumerable<Fridge> cities = await _dbSet.ToListAsync();
+            return cities;
         }
 
-        public void Update(Fridge fridge)
+        async Task<Fridge> IRepository<Fridge, int>.Get(int id)
         {
-            db.Entry(fridge).State = EntityState.Modified;
+            Fridge Fridge;
+            try
+            {
+                Fridge = await _dbSet.FindAsync(id);
+            }
+            catch
+            {
+                Fridge = null;
+            }
+            return Fridge;
         }
 
-        public IEnumerable<Fridge> Find(Func<Fridge, Boolean> predicate)
+        async Task<IEnumerable<Fridge>> IRepository<Fridge, int>.Get(Func<Fridge, bool> predicate)
         {
-            return db.Fridges.Where(predicate).ToList();
+            IEnumerable<Fridge> cities = await Task.Factory.StartNew(() => _dbSet.Where(predicate).ToList() as IEnumerable<Fridge>);
+            return cities;
         }
 
-        public void Delete(int id)
+        IQueryable<Fridge> IRepository<Fridge, int>.Query()
         {
-            Fridge fridge = db.Fridges.Find(id);
-            if (fridge != null)
-                db.Fridges.Remove(fridge);
+            return _dbSet;
+        }
+
+        async Task<Fridge> IRepository<Fridge, int>.Update(Fridge entity)
+        {
+            Fridge resFridge;
+            try
+            {
+                resFridge = _dbSet.Update(entity).Entity;
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                resFridge = null;
+            }
+            return resFridge;
         }
     }
 }
