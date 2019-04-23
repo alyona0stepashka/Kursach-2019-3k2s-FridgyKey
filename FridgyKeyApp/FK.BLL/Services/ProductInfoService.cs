@@ -58,5 +58,11 @@ namespace FK.BLL.Services
             var ProductInfo = await db.ProductInfos.Update(entity);
             return ProductInfo;
         }
+
+        async Task<ProductInfo> IProductInfoService.GetByProductId(int product_id)
+        { 
+            var ProductInfo = (await db.ProductInfos.Get(m => m.ProductId == product_id)).ToList()[0];
+            return ProductInfo;
+        }
     }
 }

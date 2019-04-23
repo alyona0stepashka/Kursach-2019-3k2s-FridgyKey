@@ -32,7 +32,7 @@ namespace FK.DAL.Repositories
             }
             catch
             {
-                resFridge = null;
+                resFridge = null;   
             }
             return resFridge;
         }

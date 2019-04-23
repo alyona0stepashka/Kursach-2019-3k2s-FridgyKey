@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FK.BLL.Interfaces
 {
     public interface IProductInfoService:IService<ProductInfo,int>
     {
+        Task<ProductInfo> GetByProductId(int product_id);
         //void Create(ProductInfo product);
         //void Update(ProductInfo product);
         //void Delete(ProductInfo product);
