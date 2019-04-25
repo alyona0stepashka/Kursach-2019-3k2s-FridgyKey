@@ -30,6 +30,20 @@ namespace FK.BLL.Services
             _roleManager = roleManager; 
         }
 
+        string IUserService.Hash(string input)
+        {
+            byte[] hash = Encoding.ASCII.GetBytes(input);
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] hashenc = md5.ComputeHash(hash);
+            string output = "";
+            foreach (var b in hashenc)
+            {
+                output += b.ToString("x2");
+            }
+            return output;
+        }
+
+
         async Task<SignInResult> IUserService.SignIn(ApplicationUser user)
         {
             return await _signInManager.PasswordSignInAsync(user.UserName, user.PasswordHash, true, false);

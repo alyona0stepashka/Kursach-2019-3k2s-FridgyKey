@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FK.API.ViewModels.Auth
+namespace FK.API.ViewModels
 {
-    public class SignUpViewModel
+    public class SignUpViewModel  //регистрация
     {
         [Required]
         public string Username { get; set; }

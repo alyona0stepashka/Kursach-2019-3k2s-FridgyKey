@@ -17,10 +17,37 @@ namespace FK.BLL.Services
     public class UserFridgeService : IUserFridgeService
     {
         IUnitOfWork db { get; set; }
+        private readonly UserService userService;
 
-        public UserFridgeService(IUnitOfWork uow)
+        public UserFridgeService(IUnitOfWork uow, UserService userService1)
         {
             db = uow;
+            userService = userService1;
+        }
+
+        async Task<bool> IUserFridgeService.IsAccess(int id, string password)
+        {
+           // password = userService.Hash(password);  //???
+            var access = (await db.Fridges.Get(m => m.Id == id && m.PasswordHash == password)).ToList();
+            return (access.Count == 1); 
+        }
+
+
+        async Task<FridgeOwners> IUserFridgeService.GetListOwner(int fridge_id)
+        {
+            var userFridges = await db.UserFridges.Get(m=>m.FridgeId==fridge_id);
+            var owners = new FridgeOwners { FridgeId=fridge_id };
+            owners.Username = new List<string>();
+            owners.UserId = new List<string>();
+            foreach (var fridge in userFridges)
+            { 
+                if (!owners.UserId.Contains(fridge.UserId))
+                {
+                    owners.UserId.Add(fridge.UserId);
+                    owners.Username.Add(fridge.User.UserName);
+                }
+            }
+            return owners;
         }
 
         async Task<UserFridge> IService<UserFridge, int>.Add(UserFridge entity)

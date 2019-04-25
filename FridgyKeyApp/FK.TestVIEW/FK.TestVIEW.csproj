@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="app.component.ts" />
+    <None Remove="app.module.ts" />
+    <None Remove="ClientApp\app\auth\auth0.service.ts" />
+    <None Remove="ClientApp\app\auth\environment.ts" />
+    <None Remove="ClientApp\app\models\CurrentUser.ts" />
+    <None Remove="ClientApp\app\models\ServerResponse.ts" />
+    <None Remove="ClientApp\app\models\SignIn.ts" />
+    <None Remove="ClientApp\app\models\SignUp.ts" />
+    <None Remove="ClientApp\app\services\auth.service.ts" />
+    <None Remove="ClientApp\app\services\fridge.service.ts" />
+    <None Remove="ClientApp\app\services\fridgeproduct.service.ts" />
+    <None Remove="ClientApp\app\services\product.service.ts" />
+    <None Remove="ClientApp\app\services\sticker.service.ts" />
+    <None Remove="ClientApp\app\services\user.service.ts" />
+    <None Remove="ClientApp\app\services\userfridge.service.ts" />
+    <None Remove="ClientApp\environments\enviroment.prod.ts" />
+    <None Remove="ClientApp\environments\enviroment.ts" />
+    <None Remove="ClientApp\main.ts" />
+    <None Remove="ClientApp\polyfills.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include=".vscode\launch.json" />
+    <Content Include=".vscode\settings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\guards\" />
+    <Folder Include="ClientApp\app\components\" />
+    <Folder Include="ClientApp\assets\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\auth\auth0.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\auth\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\CurrentUser.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\ServerResponse.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\SignIn.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\SignUp.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\auth.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\fridge.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\fridgeproduct.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\product.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\sticker.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\user.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\userfridge.service.ts" />
+    <TypeScriptCompile Include="ClientApp\environments\enviroment.prod.ts" />
+    <TypeScriptCompile Include="ClientApp\environments\enviroment.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\polyfills.ts" />
+  </ItemGroup>
+
+</Project>

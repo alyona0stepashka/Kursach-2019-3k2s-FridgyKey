@@ -1,6 +1,6 @@
-﻿namespace FK.API.Controllers
+﻿namespace FK.API.ViewModels
 {
-    public class UserViewModel
+    public class UserViewModel  //изменяемая часть юзера
     {
         public string FIO { get; set; }
     }

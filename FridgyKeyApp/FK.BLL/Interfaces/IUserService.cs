@@ -25,15 +25,7 @@ namespace FK.BLL.Interfaces
         Task<OperationResult> AddToRole(ApplicationUser ApplicationUser, string role);
         Task SeedDatabase();
 
-
-
-
-
-
-
-
-
-
+        string Hash(string str);
 
         //void Create(ApplicationApplicationUser ApplicationApplicationUser);
         //void Update(ApplicationApplicationUser ApplicationApplicationUser);

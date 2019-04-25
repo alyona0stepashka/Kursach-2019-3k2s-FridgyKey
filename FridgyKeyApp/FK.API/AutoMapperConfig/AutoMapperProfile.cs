@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FK.API.ViewModels.Auth;
+using FK.API.ViewModels;
 using FK.Models;
 using System;
 using System.Collections.Generic;

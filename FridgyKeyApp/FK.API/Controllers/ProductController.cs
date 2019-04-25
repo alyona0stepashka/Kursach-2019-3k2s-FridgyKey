@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace FK.API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Product")]
     public class ProductController : Controller
     {
         private readonly IFridgeService fridgeService;
@@ -43,24 +42,39 @@ namespace FK.API.Controllers
             productInfoService = serv6;
         }
 
-        // GET api/values
+        [Route("api/product/getall")]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             List<ProductInfoViewModel> list = new List<ProductInfoViewModel>();
-            var products = await productInfoService.Get();
-            //-----method---
-            ViewBag.Username = new List<string>();
+            var products = await productInfoService.Get(); 
             foreach (var prod in products)
             {
                 list.Add(new ProductInfoViewModel(prod.Product, prod));
                 ViewBag.Username.Add(prod.Product.User.UserName);
-            }
-            //--------------
+            } 
+            return Ok(list);
+        }
+
+
+
+        // GET api/values
+        [Route("api/product")]
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            List<ProductInfoViewModel> list = new List<ProductInfoViewModel>();
+            var user_id = _userManager.GetUserId(User);
+            var products = await productInfoService.Get(m=>m.Product.UserId==user_id); 
+            foreach (var prod in products)
+            {
+                list.Add(new ProductInfoViewModel(prod.Product, prod)); 
+            } 
             return Ok(list);
         }
 
         // GET api/values/5
+        [Route("api/product")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)  //product_id
         {
@@ -70,6 +84,7 @@ namespace FK.API.Controllers
         }
 
         // POST api/values
+        [Route("api/product")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProductInfoViewModel model)
         {
@@ -99,6 +114,7 @@ namespace FK.API.Controllers
         }
 
         // PUT api/values/5
+        [Route("api/product")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody]ProductInfoViewModel model)  //product_id
         {
@@ -117,8 +133,7 @@ namespace FK.API.Controllers
                         ProductId = model.ProductId,
                         Product = await productService.Get(model.ProductId)
                     };
-                    await productInfoService.Update(prod);
-                    //return Redirect("/Product/Index");
+                    await productInfoService.Update(prod); 
                     return Ok(prod);
                 }
                 return NotFound();
@@ -128,6 +143,7 @@ namespace FK.API.Controllers
 
 
         // DELETE api/values/5
+        [Route("api/product")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)  //product_id
         {
@@ -141,11 +157,7 @@ namespace FK.API.Controllers
                 }
                 return NotFound();
             }
-            return BadRequest(ModelState);
-
-
-            //return View("Index");
-
+            return BadRequest(ModelState); 
         }
     }
 }
