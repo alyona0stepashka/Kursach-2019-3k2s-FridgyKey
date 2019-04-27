@@ -10,6 +10,8 @@
     <None Remove="app.module.ts" />
     <None Remove="ClientApp\app\auth\auth0.service.ts" />
     <None Remove="ClientApp\app\auth\environment.ts" />
+    <None Remove="ClientApp\app\guards\admin.guard.ts" />
+    <None Remove="ClientApp\app\guards\currentuser.guard.ts" />
     <None Remove="ClientApp\app\models\CurrentUser.ts" />
     <None Remove="ClientApp\app\models\ServerResponse.ts" />
     <None Remove="ClientApp\app\models\SignIn.ts" />
@@ -33,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\guards\" />
     <Folder Include="ClientApp\app\components\" />
     <Folder Include="ClientApp\assets\" />
     <Folder Include="wwwroot\" />
@@ -48,6 +49,8 @@
     <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\auth\auth0.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\auth\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\admin.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\currentuser.guard.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\CurrentUser.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\ServerResponse.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\SignIn.ts" />

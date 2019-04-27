@@ -5,5 +5,5 @@ export class CurrentUser {
   public isAuntificated: boolean;
   public fIO: string; 
   public email: string;
-  public login: string;
+  public username: string;
 }
