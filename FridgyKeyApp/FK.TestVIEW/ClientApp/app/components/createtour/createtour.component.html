@@ -1,0 +1,84 @@
+  <h4>Добавить данные</h4>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="tour-tab" data-toggle="tab" href="#tour" role="tab" aria-controls="tour"
+         aria-selected="true">Тур</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="country-tab" data-toggle="tab" href="#country" role="tab" aria-controls="country"
+         aria-selected="false">Страна</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="city-tab" data-toggle="tab" href="#city" role="tab" aria-controls="city"
+         aria-selected="false">Город</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel"
+         aria-selected="false">Отель</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tour" role="tabpanel" aria-labelledby="tour-tab">
+      <h6>Создание тура</h6>
+      <label>Тип тура</label>
+      <ng-select [(ngModel)]="tour.tourType" [items]="tourInformation.tourTypes" bindLabel="type"
+                 placeholder="Тип тура..."></ng-select>
+      <label>Отель</label>
+      <ng-select [(ngModel)]="tour.hotel" [items]="tourInformation.hotels" bindLabel="name"
+                 placeholder="Отель..."></ng-select>
+      <label>Тип питания</label>
+      <ng-select [(ngModel)]="tour.foodType" [items]="tourInformation.foodTypes" bindLabel="type"
+                 placeholder="Тип питания..."></ng-select>
+      <label>Тип транспорта</label>
+    <ng-select [(ngModel)]="tour.transportType" [items]="tourInformation.transportTypes" bindLabel="type"
+               placeholder="Тип транспорта..."></ng-select>
+      <label>Город отправления</label>
+      <ng-select [(ngModel)]="tour.cityFrom" [items]="tourInformation.citiesFrom" bindLabel="city"
+                 placeholder="Город отправления..."></ng-select>
+      <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                            [(ngModel)]="dateModel" required></my-date-range-picker>
+      <input type="text" [(ngModel)]="tour.countOfTours" class="form-control col-md-3 mb-3"
+             placeholder="Количетво туров...">
+      <input type="text" [(ngModel)]="tour.price" class="form-control col-md-3 mb-3" placeholder="Цена$...">
+      <button class="col-md-2 offset-md-5 btn btn-lg btn-primary btn-block" (click)="create()" type="submit">Создать
+      </button>
+      <div *ngFor="let error of errors">{{error}}</div>
+    </div>
+    <div class="tab-pane" id="country" role="tabpanel" aria-labelledby="country-tab">
+      <h6>Добавление страны</h6>
+      <input type="text" [(ngModel)]="country.name" class="form-control col-md-3 mb-3" placeholder="Страна...">
+      <button class="col-md-2 offset-md-5 btn btn-lg btn-primary btn-block" (click)="createCountry()" type="submit">
+        Добавить
+      </button>
+      <div *ngFor="let error of errors">{{error}}</div>
+    </div>
+    <div class="tab-pane" id="city" role="tabpanel" aria-labelledby="city-tab">
+      <h6>Добавление города</h6>
+      <label>Страна</label>
+      <ng-select [(ngModel)]="city.country" [items]="tourInformation.countries" bindLabel="name"
+                 placeholder="Страна..."></ng-select>
+      <input type="text" [(ngModel)]="city.name" class="form-control col-md-3 mb-3" placeholder="Город...">
+      <button class="col-md-2 offset-md-5 btn btn-lg btn-primary btn-block" (click)="createCity()" type="submit">
+        Добавить
+      </button>
+      <div *ngFor="let error of errors">{{error}}</div>
+    </div>
+    <div class="tab-pane" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+      <h6>Добавление отеля</h6>
+      <label>Город</label>
+      <ng-select [(ngModel)]="hotel.city" [items]="tourInformation.cities" bindLabel="name"
+                 placeholder="Город..."></ng-select>
+      <label>Тип размещения</label>
+      <ng-select [(ngModel)]="hotel.placementType" [items]="tourInformation.placementTypes" bindLabel="type"
+                 placeholder="Тип размещения..."></ng-select>
+      <input type="text" [(ngModel)]="hotel.name" class="form-control col-md-3 mb-3" placeholder="Отель...">
+      <input type="text" [(ngModel)]="hotel.stars" class="form-control col-md-3 mb-3" placeholder="Количетво звезд...">
+      <button class="col-md-2 offset-md-5 btn btn-lg btn-primary btn-block" (click)="createHotel()" type="submit">
+        Добавить
+      </button>
+      <div *ngFor="let error of errors">{{error}}</div>
+    </div>
+</div>
+
+
+

@@ -63,7 +63,7 @@ namespace FK.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            List<ProductInfoViewModel> list = new List<ProductInfoViewModel>();
+            var list = new List<ProductInfoViewModel>();
             var user_id = _userManager.GetUserId(User);
             var products = await productInfoService.Get(m=>m.Product.UserId==user_id); 
             foreach (var prod in products)

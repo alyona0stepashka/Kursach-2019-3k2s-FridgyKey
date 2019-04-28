@@ -1,0 +1,24 @@
+
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Информация о туре</h5>
+        <div class="card-text">Тип тура: {{tour.tourType.type}}</div>
+        <div class="card-text">Страна: {{tour.hotel.city.country.name}}</div>
+        <div class="card-text">Город: {{tour.hotel.city.name}}</div>
+        <div class="card-text">Отель: {{tour.hotel.name}}</div>
+        <div class="card-text">Количетсво звезд: {{tour.hotel.stars}} </div>
+        <div class="card-text">Тип размещения: {{tour.hotel.placementType.type}}</div>
+        <div class="card-text">Тип питания: {{tour.foodType.type}}</div>
+        <div class="card-text">Тип транспорта: {{tour.transportType.type}}</div>
+        <div class="card-text">Дата начала тура: {{tour.dateFrom| amLocal | amDateFormat: 'DD-MM-YYYY'}}</div>
+        <div class="card-text">Дата окончания тура: {{tour.dateTo| amLocal | amDateFormat: 'DD-MM-YYYY'}}</div>
+        <div class="card-text">Город отправления: {{tour.cityFrom.city}}</div>
+        <div class="card-text">Цена $: {{tour.price}}</div>
+       <div  class="card-text"><a href="{{photoLink}}" target="_blank">Фото</a></div>
+        <button *ngIf="auth" class="btn btn-lg btn-primary btn-block col-sm-4 offset-sm-4" (click)="makeOrder(tour.id)">Заказать</button>
+      </div>
+    </div>
+  </div>
+
+

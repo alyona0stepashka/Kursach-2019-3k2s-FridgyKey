@@ -1,0 +1,21 @@
+<div *ngIf="!load" style="margin-top: 30px">
+  <h6>Изменение тура</h6>
+  <ng-select [(ngModel)]="tour.tourType" [items]="tourInformation.tourTypes" bindLabel="type"
+             placeholder="Тип тура..."></ng-select>
+  <ng-select [(ngModel)]="tour.hotel" [items]="tourInformation.hotels" bindLabel="name"
+             placeholder="Отель..."></ng-select>
+  <ng-select [(ngModel)]="tour.foodType" [items]="tourInformation.foodTypes" bindLabel="type"
+             placeholder="Тип питания..."></ng-select>
+  <ng-select [(ngModel)]="tour.transportType" [items]="tourInformation.transportTypes" bindLabel="type"
+             placeholder="Тип транспорта..."></ng-select>
+  <ng-select [(ngModel)]="tour.cityFrom" [items]="tourInformation.citiesFrom" bindLabel="city"
+             placeholder="Город отправления..."></ng-select>
+  <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                        [(ngModel)]="dateModel" required></my-date-range-picker>
+  <input type="text" [(ngModel)]="tour.countOfTours" class="form-control col-md-3 mb-3"
+         placeholder="Количетво туров...">
+  <input type="text" [(ngModel)]="tour.price" class="form-control col-md-3 mb-3" placeholder="Цена$...">
+  <button class="col-md-2 offset-md-5 btn btn-lg btn-primary btn-block" (click)="update()" type="submit">Изменить
+  </button>
+  <div *ngFor="let error of errors">{{error}}</div>
+</div>

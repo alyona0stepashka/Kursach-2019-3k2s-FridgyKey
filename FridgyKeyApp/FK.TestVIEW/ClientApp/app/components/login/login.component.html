@@ -1,0 +1,26 @@
+<div *ngIf="!load" class="body-form text-center">
+  <form class="form-signin">
+    <img class="mb-4" src="https://ntviser.com/CategoryImage/Travel.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Пожалуйста, войдите!</h1>
+    <label for="inputLogin" class="sr-only">Логин</label>
+    <input type="text" [(ngModel)]="signIn.login" [ngModelOptions]="{standalone: true}" id="inputLogin"
+           class="form-control" placeholder="Логин">
+    <div *ngIf="loginError" class="col-sm-offset-7">Invalid login</div>
+    <label for="inputPassword" class="sr-only">Пароль</label>
+    <input type="password" [(ngModel)]="signIn.password" [ngModelOptions]="{standalone: true}" id="inputPassword"
+           class="form-control" placeholder="Пароль">
+    <div *ngIf="passwordError" class="col-sm-offset-7">Invalid password</div>
+    <button class="btn btn-lg btn-primary btn-block" (click)="login()">Войти</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="externelLogin()">Внешний вход</button>
+    <div *ngIf="blocked" class="col-sm-offset-7">User is blocked</div>
+    <div *ngFor="let error of errors">{{error}}</div>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+  </form>
+</div>
+<div *ngIf="load" class="text-center">
+  <h3>Загрузка...</h3>
+</div>
+
+
+
+

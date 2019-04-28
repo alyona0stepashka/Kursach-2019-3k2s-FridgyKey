@@ -1,0 +1,39 @@
+<div *ngIf="!load">
+  <div style="margin-top: 10px">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Fridge number</th>
+          <th>Name</th>
+          <th>Date Create</th>
+          <th>Owners</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fridge of fridges">
+          <td>{{ fridge.FridgeId }}</td>
+          <td>{{ fridge.Name}}</td>
+          <td>{{ order.DateCreate | amLocal | amDateFormat: 'DD-MM-YYYY'}}</td>
+          <td *ngFor="let item of Username; let i = index">{{ order.user.fio }}</td>
+          <td>{{ order.user.email}}</td>
+          <td>{{ order.price }}</td>
+          <td *ngIf="order.orderStatus.status==1">Оплачен</td>
+          <td *ngIf="order.orderStatus.status==0">Не оплачен</td>
+          <td>
+            <button type="button" class="btn btn-default" (click)="updateOrder(order.id)">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-default" (click)="deleteOrder(order.id)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="load" class="text-center">
+  <h3>Загрузка...</h3>
+</div>
+
