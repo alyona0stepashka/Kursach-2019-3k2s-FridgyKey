@@ -12,50 +12,58 @@ import { MomentModule } from 'angular2-moment';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 
+//---------services-----------------
 import { HttpAuthService } from "./services/auth.service";
-import { TourService } from "./services/tour.service";
-import { Auth0Service } from "./auth/auth0.service";
-import { UserService } from "./services/user.service";
-import { OrderService } from "./services/order.service";
+import { FridgeService } from "./services/fridge.service";
+import { FridgeProductService } from "./services/fridgeproduct.service";
+import { ProductService } from "./services/product.service";
+import { StickerService } from "./services/sticker.service";
+import { UserService } from "./services/user.service"; 
+import { Auth0Service } from "./auth/auth0.service"; 
 
-import { CurrentUserOrAdminGuard } from "./guards/currentuserguard";
-import { AdminGuard } from "./guards/adminguard";
+//---------guards-------------------
+import { CurrentUserOrAdminGuard } from "../app/guards/currentuser.guard";
+import { AdminGuard } from "../app/guards/admin.guard";
+
+//--------components----------------
+import { AdminPageComponent } from './mycomponents/adminpage/adminpage.component';
+import { LoginComponent } from './mycomponents/login/login.component';
+import { SignUpComponent } from './mycomponents/signUp/signUp.component';
+import { FridgeOpenHomeComponent } from './mycomponents/fridge_open_home/fridge_open_home.component';
+import { UserFridgeHomeComponent } from './mycomponents/user_fridge_home/user_fridge_home.component';
+import { ProductHomeComponent } from './mycomponents/product_home/product_home.component';
+import { ProductDetailComponent } from './mycomponents/product_detail/product_detail.component';
 
 
-import { AppComponent } from './components/app/app.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignUpComponent } from './components/signUp/signUp.component';
-import { HomeComponent } from "./components/home/home.component";
-import { UserPageComponent } from "./components/userpage/userpage.component";
-import { AdminPageComponent } from './components/adminpage/adminpage.component';
-import { TourViewComponent } from './components/tourview/tourview.component';
-import { CreateTourComponent } from './components/createtour/createtour.component';
-import { EditTourComponent } from './components/edittour/edittour.component';
 
-
+//--------routes-------------------
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'adminLogs', component: LogHomeComponent, canActivate: [AdminGuard]  }, 
   { path: 'login', component: LoginComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'user', component: UserPageComponent, canActivate: [CurrentUserOrAdminGuard] },
-  { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
-  { path: 'tourView/:tourId', component: TourViewComponent },
-  { path: 'createTour', component: CreateTourComponent, canActivate: [AdminGuard] },
-  { path: 'updateTour/:tourId', component: EditTourComponent, canActivate: [AdminGuard] },
-  { path: '**', component: HomeComponent }
+  { path: 'adminUsers', component: UserHomeComponent, canActivate: [AdminGuard]  },
+  { path: 'users/:id', component: UserDetailComponent, canActivate: [CurrentUserOrAdminGuard] },
+  { path: 'adminFridges', component: AdminPageComponent, canActivate: [AdminGuard] },
+  { path: 'products', component: ProductHomeComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'fridges', component: UserFridgeHomeComponent, canActivate: [CurrentUserOrAdminGuard]  },
+  { path: 'fridges/:id', component: FridgeOpenHomeComponent, canActivate: [CurrentUserOrAdminGuard] },
+  { path: '**', component: UserFridgeHomeComponent, canActivate: [CurrentUserOrAdminGuard] },
 ];
 
+//----------modules------------------
 @NgModule({
   declarations: [
-    AppComponent,
+    AdminPageComponent,
+    ProductHomeComponent,
+    ProductDetailComponent,
+    UserFridgeHomeComponent,
+    FridgeOpenHomeComponent,
+    LogHomeComponent,
     LoginComponent,
     SignUpComponent,
-    HomeComponent,
-    UserPageComponent,
-    AdminPageComponent,
-    TourViewComponent,
-    CreateTourComponent,
-    EditTourComponent
+    UserHomeComponent,
+    UserDetailComponent  
   ],
   imports: [
     BrowserModule,
@@ -69,15 +77,18 @@ const appRoutes: Routes = [
     MyDateRangePickerModule,
     RouterModule.forRoot(appRoutes),
   ],
+  //----------services--and--guards-------------
   providers: [
     HttpAuthService,
     Auth0Service,
-    TourService,
+    FridgeService,
+    FridgeProductService,
+    ProductService,
+    StickerService,
     UserService,
-    OrderService,
     CurrentUserOrAdminGuard,
     AdminGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent]  //???
 })
 export class AppModule { }

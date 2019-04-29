@@ -16,7 +16,8 @@ export class FridgeProductView {
   public description: string;
   public amount: number;
   public ei: string;
-  public price: number; 
+  public price: number;
+  public username: string;  //!!! update viewmodel
   //public datebuy: date; 
   //public datevalid: date; 
 }

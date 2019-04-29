@@ -7,6 +7,7 @@
     <tr>
       <td>Name</td>
       <td>Description</td>
+      <td>Owner</td>
       <td>Amount</td>
       <td>EI</td>
       <td>Price</td>
@@ -16,8 +17,9 @@
   <tbody>
     <tr *ngFor="let p of products">
       <ng-template [ngIf]="product?.id != p.id" [ngIfElse]="editproduct">
-        <td>{{p?.name}}</td>
+        <td><a [routerLink]="['api/products',{{p?.productid}}" class="nav-link">{{p?.name}}</a> </td>
         <td>{{p?.description}}</td>
+        <td><a [routerLink]="['api/users',{{p?.userid}}" class="nav-link">{{p?.username}}</a> </td>
         <td>{{p?.amount}}</td>
         <td>{{p?.ei}}</td>
         <td>{{p?.price}}</td>
@@ -59,6 +61,7 @@
   <td>
     <input hidden [(ngModel)]="product.id" />
     <input hidden [(ngModel)]="product.userid" />
+    <input hidden [(ngModel)]="product.username" />
     <input hidden [(ngModel)]="product.fridgeid" />
     <input hidden [(ngModel)]="product.productid" /> 
     <input type="text" [(ngModel)]="product.name" readonly class="form-control" />
@@ -134,6 +137,7 @@
   <input hidden [(ngModel)]="product.id" />
   <input hidden [(ngModel)]="product.userid" />
   <input hidden [(ngModel)]="product.fridgeid" />
+  <input hidden [(ngModel)]="product.username" />
   <div class="form-group">
     <label>Product</label>
     <ng-select [(ngModel)]="product.name" [items]="dbproducts" bindLabel="name"

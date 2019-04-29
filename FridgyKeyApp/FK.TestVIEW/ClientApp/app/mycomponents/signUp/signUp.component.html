@@ -1,0 +1,35 @@
+<div *ngIf="!load" class="body-form text-center">
+  <form class="form-signin">
+    <img class="mb-4" src="https://ntviser.com/CategoryImage/Travel.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Пожалуйста, зарегистрируйтесь!</h1>
+
+    <label for="inputName" class="sr-only">ФИО</label>
+    <input type="text" [(ngModel)]="signUp.fIO" [ngModelOptions]="{standalone: true}" id="inputName"
+           class="form-control" placeholder="ФИО" required autofocus>
+    <label for="inputSurname" class="sr-only">День рождения</label>
+    <input type="text" [(ngModel)]="signUp.birthday" [ngModelOptions]="{standalone: true}" id="inputSurname"
+           class="form-control" placeholder="День рождения" required autofocus>
+    <label for="inputLogin" class="sr-only">Логин</label>
+    <input type="text" [(ngModel)]="signUp.login" [ngModelOptions]="{standalone: true}" id="inputLogin"
+           class="form-control" placeholder="Логин" required autofocus>
+    <label for="inputPassword" class="sr-only">Пароль</label>
+    <input type="password" [(ngModel)]="signUp.password" [ngModelOptions]="{standalone: true}" id="inputPassword"
+           class="form-control" placeholder="Пароль" required>
+    <label for="inputPassword" class="sr-only">Подтверждение пароля</label>
+    <input type="password" [(ngModel)]="signUp.confirmPassword" [ngModelOptions]="{standalone: true}"
+           id="confirmPassword" class="form-control" placeholder="Подтверждение пароля" required>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" [(ngModel)]="signUp.email" [ngModelOptions]="{standalone: true}" id="inputEmail"
+           class="form-control" placeholder="Email" required autofocus>
+    <button class="btn btn-lg btn-primary btn-block" (click)="registration()" type="submit">Зарегистрироваться
+    </button>
+    <div *ngFor="let error of errors">{{error}}</div>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+  </form>
+</div>
+<div *ngIf="load" class="text-center">
+  <h3>Загрузка...</h3>
+</div>
+
+
+
