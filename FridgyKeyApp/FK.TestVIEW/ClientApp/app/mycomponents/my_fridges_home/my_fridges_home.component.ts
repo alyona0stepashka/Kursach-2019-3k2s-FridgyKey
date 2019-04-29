@@ -4,12 +4,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs/Subject';
 import { FridgeService } from '../../services/fridge.service';
 import { ServerResponse } from "../../models/ServerResponse";
 import { UserFridgeAdd } from "../../models/Fridge";
 import { HttpAuthService } from '../../services/auth.service';
 import { CurrentUser } from "../../models/CurrentUser"; 
-import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/map';
 

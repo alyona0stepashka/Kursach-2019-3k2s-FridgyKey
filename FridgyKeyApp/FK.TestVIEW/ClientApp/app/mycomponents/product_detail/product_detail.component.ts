@@ -1,13 +1,16 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router'; 
 import { ProductService } from '../../services/product.service';
 import { ProductView } from '../../models/Product';
 import { HttpAuthService } from '../../services/auth.service';
 import { CurrentUser } from "../../models/CurrentUser"; 
+import 'rxjs/add/operator/map';
 
 @Component({
-  templateUrl: './product-detail.component.html',
-  providers: [ProductService, HttpAuthService]
+  selector:'product_detail',
+  templateUrl: './product_detail.component.html',
+  styleUrls: ['./product_detail.component.css'],
+  providers: [ProductService, HttpAuthService]  //???
 })
 export class ProductDetailComponent implements OnInit {
 
@@ -21,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
 
   async ngOnInit() {
     if (this.id) {
-      this.product = await this.productService.getProductById(this.id);
+      this.product = await this.productService.getProductById(this.id);  //???
       this.loaded = true;
     } 
   }

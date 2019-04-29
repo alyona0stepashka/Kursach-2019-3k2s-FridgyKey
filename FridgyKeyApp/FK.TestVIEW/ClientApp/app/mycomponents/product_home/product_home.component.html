@@ -1,38 +1,46 @@
-<h1>product_home</h1>
-<input type="button" value="Добавить" class="btn btn-default" (click)="add()" /><p/>
-<button class="btn btn-sm btn-primary" (click)="loadUserProducts">[LoadUserProducts]</button><p/>
-<button class="btn btn-sm btn-primary" (click)="loadProducts">[LoadAllProducts]</button><p/>
-<table *ngIf="tableMode; else create" class="table table-striped">
-  <thead>
-    <tr>
-      <td>Image</td>
-      <td>Name</td>
-      <td>Description</td>
-      <td>Fat</td>
-      <td>Carb</td>
-      <td>Protein</td>
-      <td>Kkal</td>
-      <td>Action</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of products">
-      <ng-template [ngIf]="product?.id != p.id" [ngIfElse]="edit">
-        <td><img resource="{{p?.imgurl}}" height="60" /></td>
-        <td><a [routedLink]="['api/products',{{p?.id}}" class="nav-link">{{p?.name}}</a></td>
-        <td>{{p?.description}}</td>
-        <td>{{p?.fat}}</td>
-        <td>{{p?.carb}}</td>
-        <td>{{p?.protein}}</td>
-        <td>{{p?.kkal}}</td>
-        <td *ngIf="{{p?.userid}}==currentuser.Id">
-          <button class="btn btn-sm btn-primary" (click)="editProduct(p)">[Edit]</button>
-          <button class="btn btn-sm btn-danger" (click)="delete(p)">[Delete]</button>
-        </td>
-      </ng-template>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="!load">
+  <div style="margin-top: 10px">
+    <!--<div *ngIf="currentUser.roles.indexOf('Admin')!=-1" style="text-align: left">-->
+    <h1>product_home</h1>
+    <input type="button" value="Добавить" class="btn btn-default" (click)="add()" /><p />
+    <button class="btn btn-sm btn-primary" (click)="loadUserProducts">[LoadUserProducts]</button><p />
+    <button class="btn btn-sm btn-primary" (click)="loadProducts">[LoadAllProducts]</button><p />
+    <table *ngIf="tableMode; else create" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+      <thead>
+        <tr *ngIf="!load">
+          <td>Image</td>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Fat</td>
+          <td>Carb</td>
+          <td>Protein</td>
+          <td>Kkal</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products">
+          <ng-template [ngIf]="product?.id != p.id" [ngIfElse]="edit">
+            <td><img resource="{{p?.imgurl}}" height="60" /></td>
+            <td><a [routedLink]="['products',{{p?.id}}" class="nav-link">{{p?.name}}</a></td>
+            <td>{{p?.description}}</td>
+            <td>{{p?.fat}}</td>
+            <td>{{p?.carb}}</td>
+            <td>{{p?.protein}}</td>
+            <td>{{p?.kkal}}</td>
+            <td *ngIf="{{p?.userid}}==currentuser.Id">
+              <button class="btn btn-sm btn-primary" (click)="editProduct(p)">[Edit]</button>
+              <button class="btn btn-sm btn-danger" (click)="delete(p)">[Delete]</button>
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="load" class="text-center">
+  <h3>Загрузка...</h3>
+</div>
 
 <!--шаблон для редактирования-->
 <ng-template #edit>
