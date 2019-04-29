@@ -10,8 +10,7 @@ import { ProductView } from '../../models/Product';
 export class ProductHomeComponent implements OnInit {
 
   product: ProductView = new ProductView();   // изменяемый товар
-  public products = [];
-  //products: ProductView[];                // массив товаров
+  products: ProductView[];                // массив товаров
   tableMode: boolean = true;          // табличный режим
 
   constructor(private productService: ProductService) { }

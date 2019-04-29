@@ -15,7 +15,7 @@ export class StickerService {
     this._http = http;
   }
 
-  public async getAllStickers(): Promise<any> {
+  public async getAllStickers(): Promise<ServerResponse<any>> {
     return (await this._http.get('/api/sticker/admingetall').toPromise()).json();
   }
 

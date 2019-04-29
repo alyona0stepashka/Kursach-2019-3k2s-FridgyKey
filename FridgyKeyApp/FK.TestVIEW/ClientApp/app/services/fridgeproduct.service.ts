@@ -23,7 +23,7 @@ export class FridgeProductService {
     return (await this._http.get('/api/fridgeproduct').toPromise()).json();
   }
 
-  public async getFridgeProductByFridgeId(id: number): Promise<ServerResponse<any>> {
+  public async getFridgeProductByFridgeId(id: number): Promise<any> {
     let result: ServerResponse<any> = new ServerResponse<any>();
     try {
       let response = (await this._http.get(`/api/fridgeproduct/${id}`).toPromise());
@@ -34,7 +34,18 @@ export class FridgeProductService {
     return result;
   }
 
-  public async addFridge(fridgeproduct: any): Promise<ServerResponse<any>> {
+  public async getFridgeProductByFridgeIdByUser(id: number): Promise<any> {
+    let result: ServerResponse<any> = new ServerResponse<any>();
+    try {
+      let response = (await this._http.get(`/api/fridgeproduct/user/${id}`).toPromise());  //fridge_id
+      result = this.parseResponse(response);
+    } catch (ex) {
+      result = this.parseResponse(ex);
+    }
+    return result;
+  }
+
+  public async addFridgeProduct(fridgeproduct: any): Promise<ServerResponse<any>> {
 
     let result: ServerResponse<any> = new ServerResponse<any>();
     try {
