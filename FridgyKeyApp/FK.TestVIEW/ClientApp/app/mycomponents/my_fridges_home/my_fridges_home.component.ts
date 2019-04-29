@@ -4,10 +4,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
-import { HttpAuthService } from '../../services/auth.service'
-import { FridgeService } from '../../services/fridge.service'
+import { FridgeService } from '../../services/fridge.service';
 import { ServerResponse } from "../../models/ServerResponse";
-import { UserFridgeAdd } from "../../models/Fridge"; 
+import { UserFridgeAdd } from "../../models/Fridge";
+import { HttpAuthService } from '../../services/auth.service';
+import { CurrentUser } from "../../models/CurrentUser"; 
 import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/map';
@@ -26,20 +27,21 @@ export class MyFridgesHomeComponent implements OnInit {
   userfridge: UserFridgeAdd = new UserFridgeAdd();
   public fridges = [];
 
-
-  public currentUser: any = {
-    id: "",
-    isAuntificated: false,
-    email: "",
-    username: "",
-    fIO: "",
-    roles: []
-  };
+  public currentUser: CurrentUser = new CurrentUser();
+  //public currentUser: any = {
+  //  id: "",
+  //  isAuntificated: false,
+  //  email: "",
+  //  username: "",
+  //  fIO: "",
+  //  roles: []
+  //};
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  constructor(private httpAuthService: HttpAuthService, private fridgeService: FridgeService,
+  constructor(private httpAuthService: HttpAuthService,
+    private fridgeService: FridgeService,
     private router: Router,
     private activateRoute: ActivatedRoute) {
 

@@ -5,6 +5,8 @@ import { StickerService } from '../../services/sticker.service';
 import { FridgeProductView } from '../../models/FridgeProduct';
 import { StickerView } from '../../models/Sticker';
 import { ProductView } from '../../models/Product';
+import { HttpAuthService } from '../../services/auth.service';
+import { CurrentUser } from "../../models/CurrentUser"; 
 
 @Component({
   selector: 'fridge_open_home',
@@ -16,6 +18,8 @@ export class FridgeOpenHomeComponent implements OnInit {
   //dbproducts: ProductView[];
   public dbproducts = [];
 
+  public currentUser: CurrentUser = new CurrentUser();
+
   product: FridgeProductView = new FridgeProductView();   // изменяемый товар
   public products = [];
   //products: FridgeProductView[];                // массив товаров
@@ -26,9 +30,13 @@ export class FridgeOpenHomeComponent implements OnInit {
 
   tableMode: boolean = true;          // табличный режим
 
-  constructor(private fridgeproductService: FridgeProductService, private stickerService: StickerService, private productService: ProductService) { }
+  constructor(private fridgeproductService: FridgeProductService,
+    private httpAuthService: HttpAuthService,
+    private stickerService: StickerService,
+    private productService: ProductService) { }
 
   async ngOnInit() {
+    this.currentUser = await this.httpAuthService.GetCurrentUser();
     this.dbproducts = await this.productService.getAllProducts();
     this.loadFridgeProducts();    // загрузка данных при старте компонента  
     this.loadStickers();    // загрузка данных при старте компонента  

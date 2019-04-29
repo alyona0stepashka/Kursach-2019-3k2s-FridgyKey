@@ -1,0 +1,74 @@
+<h1>user_fridge_home</h1> 
+<input type="button" value="[AddFridge]" class="btn btn-default" (click)="addFridge()" /><p/> 
+<table *ngIf="tableMode; else create" class="table table-striped">
+  <thead>
+    <tr *ngIf="!load">
+      <th>FridgeId</th>
+      <th>Name</th>
+      <th>DateCreate</th>
+      <th>Owners</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fridge of fridges">
+      <ng-template [ngIf]="product?.id != p.id" [ngIfElse]="edit">
+        <td>{{ fridge.FridgeId }}</td>
+        <td>{{ fridge.Name}}</td>
+        <td>{{ order.DateCreate | amLocal | amDateFormat: 'DD-MM-YYYY'}}</td>
+        <td><p *ngFor="let user of fridge.Users" ><a href="/api/users/{{user.Id}}">{{ user.Email }}</a></p></td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="editFridge(fridge)">[Edit]</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteUserFridge(fridge)">[Delete]</button> 
+        </td>
+      </ng-template>
+    </tr> 
+  </tbody>
+</table>
+
+<!--шаблон для редактирования-->
+<ng-template #edit>
+  <td>
+    <input hidden [(ngModel)]="fridge.id" />
+    <input type="text" [(ngModel)]="fridge.name" class="form-control" placeholder="FridgeName..." /><p />
+    <input type="password" [(ngModel)]="fridge.passwordhash" class="form-control" placeholder="Password..." /><p />
+    <input type="text" [(ngModel)]="fridge.description" class="form-control" placeholder="Description..." /><p />
+    <input type="text" [(ngModel)]="fridge.datecreate" readonly class="form-control" /><p />
+    <input type="button" value="[Save]" (click)="saveFridge()" class="btn btn-sm btn-success" />
+  </td> 
+  <td>
+    <input type="button" value="[Undo]" (click)="cancel()" class="btn btn-sm btn-warning" />
+  </td>
+</ng-template>
+
+<!--шаблон для добавления-->
+<ng-template #create>
+  <table>
+    <thead>
+      <tr>
+        <th>NewFridge</th>
+        <th>NewUserFridge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input hidden [(ngModel)]="fridge.id" />
+          <input type="text" [(ngModel)]="fridge.name" class="form-control" placeholder="FridgeName..." /><p />
+          <input type="password" [(ngModel)]="fridge.passwordhash" class="form-control" placeholder="Password..." /><p />
+          <input type="text" [(ngModel)]="fridge.description" class="form-control" placeholder="Description..." /><p />
+          <input type="text" [(ngModel)]="fridge.datecreate" readonly class="form-control" /><p />
+          <input type="button" value="[Save]" (click)="saveFridge()" class="btn btn-sm btn-success" />
+        </td>
+        <td> 
+          <input type="text" [(ngModel)]="userfridge.id" class="form-control" placeholder="Id..." /><p />
+          <input type="password" [(ngModel)]="userfridge.passwordhash" class="form-control" placeholder="Password..." /><p /> 
+          <input type="button" value="[Save]" (click)="saveUserFridge()" class="btn btn-sm btn-success" />
+        </td>
+        <td>
+          <input type="button" value="[Undo]" (click)="cancel()" class="btn btn-sm btn-warning" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

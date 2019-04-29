@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ProductView } from '../../models/Product';
+import { HttpAuthService } from '../../services/auth.service';
+import { CurrentUser } from "../../models/CurrentUser"; 
 
 @Component({
   selector: 'product_home',
@@ -9,14 +11,17 @@ import { ProductView } from '../../models/Product';
 })
 export class ProductHomeComponent implements OnInit {
 
-  product: ProductView = new ProductView();   // изменяемый товар
+  public product: ProductView = new ProductView();   // изменяемый товар
   public products = [];
+  public currentUser: CurrentUser = new CurrentUser();
   //products: ProductView[];                // массив товаров
-  tableMode: boolean = true;          // табличный режим
+  public tableMode: boolean = true;          // табличный режим
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private httpAuthService: HttpAuthService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.currentUser = await this.httpAuthService.GetCurrentUser();
     this.loadProducts();    // загрузка данных при старте компонента  
   }
   // получаем данные через сервис
