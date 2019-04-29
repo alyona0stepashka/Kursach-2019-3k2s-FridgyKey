@@ -14,9 +14,7 @@ namespace FK.API.ViewModels
 
         public DateTime DateCreate { get; set; }
 
-        public List<string> Username { get; set; }
-
-        public List<string> UserId { get; set; } 
+        public List<ApplicationUser> Users { get; set; } 
 
         public UsersFridgeViewModel()
         { 

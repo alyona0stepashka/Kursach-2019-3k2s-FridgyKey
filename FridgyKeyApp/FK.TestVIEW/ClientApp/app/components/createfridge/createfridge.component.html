@@ -1,0 +1,37 @@
+  <h4>Добавить данные</h4>
+  
+  <div class="tab-content">
+    <div class="tab-pane active" id="tour" role="tabpanel" aria-labelledby="tour-tab">
+      <h6>Создание тура</h6>
+      <label>Тип тура</label>
+      <ng-select [(ngModel)]="tour.tourType" [items]="tourInformation.tourTypes" bindLabel="type"
+                 placeholder="Тип тура..."></ng-select>
+      <label>Отель</label>
+      <ng-select [(ngModel)]="tour.hotel" [items]="tourInformation.hotels" bindLabel="name"
+                 placeholder="Отель..."></ng-select>
+      <label>Тип питания</label>
+      <ng-select [(ngModel)]="tour.foodType" [items]="tourInformation.foodTypes" bindLabel="type"
+                 placeholder="Тип питания..."></ng-select>
+      <label>Тип транспорта</label>
+    <ng-select [(ngModel)]="tour.transportType" [items]="tourInformation.transportTypes" bindLabel="type"
+               placeholder="Тип транспорта..."></ng-select>
+      <label>Город отправления</label>
+      <ng-select [(ngModel)]="tour.cityFrom" [items]="tourInformation.citiesFrom" bindLabel="city"
+                 placeholder="Город отправления..."></ng-select>
+      <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                            [(ngModel)]="dateModel" required></my-date-range-picker>
+      <input type="text" [(ngModel)]="tour.countOfTours" class="form-control col-md-3 mb-3"
+             placeholder="Количетво туров...">
+      <input type="text" [(ngModel)]="tour.price" class="form-control col-md-3 mb-3" placeholder="Цена$...">
+      <button class="col-md-2 offset-md-5 btn btn-lg btn-primary btn-block" (click)="create()" type="submit">Создать
+      </button>
+      <div *ngFor="let error of errors">{{error}}</div>
+    </div>
+    <div class="tab-pane" id="country" role="tabpanel" aria-labelledby="country-tab">
+      
+      <div *ngFor="let error of errors">{{error}}</div>
+    </div>
+</div>
+
+
+

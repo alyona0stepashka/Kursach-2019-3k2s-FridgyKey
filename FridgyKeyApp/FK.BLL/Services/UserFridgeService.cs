@@ -37,14 +37,12 @@ namespace FK.BLL.Services
         {
             var userFridges = await db.UserFridges.Get(m=>m.FridgeId==fridge_id);
             var owners = new FridgeOwners { FridgeId=fridge_id };
-            owners.Username = new List<string>();
-            owners.UserId = new List<string>();
+            owners.Users = new List<ApplicationUser>(); 
             foreach (var fridge in userFridges)
             { 
-                if (!owners.UserId.Contains(fridge.UserId))
+                if (!owners.Users.Contains(fridge.User))
                 {
-                    owners.UserId.Add(fridge.UserId);
-                    owners.Username.Add(fridge.User.UserName);
+                    owners.Users.Add(fridge.User); 
                 }
             }
             return owners;

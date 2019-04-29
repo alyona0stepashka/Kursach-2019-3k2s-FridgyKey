@@ -1,0 +1,55 @@
+<div *ngIf="!load">
+  <div style="margin-top: 10px">
+    <div *ngIf="currentUser.roles.indexOf('Admin')!=-1" style="text-align: left">
+      <label>Добавить данные</label>
+      <button type="button" class="btn btn-default" (click)="navigateToAdd()">
+        <span class="gglyphicon glyphicon-plus"></span>
+      </button>
+    </div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+      <thead>
+        <tr *ngIf="!load">
+          <th hidden>ID</th>
+          <th>Тип тура</th>
+          <th>Город</th>
+          <th>Количество звезд</th>
+          <th>Тип транспорта</th>
+          <th>Тип питания</th>
+          <th>Дата начала</th>
+          <th>Дата окончания</th>
+          <th>Количетво туров</th>
+          <th>Цена$</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tour of tours">
+          <td hidden>{{ tour.id }}</td>
+          <td>{{ tour.tourType.type }}</td>
+          <td>{{ tour.hotel.city.name }}</td>
+          <td>{{ tour.hotel.stars }}</td>
+          <td>{{ tour.transportType.type }}</td>
+          <td>{{ tour.foodType.type }}</td>
+          <td>{{ tour.dateFrom | amLocal | amDateFormat: 'DD-MM-YYYY'}}</td>
+          <td>{{ tour.dateTo | amLocal | amDateFormat: 'DD-MM-YYYY'}}</td>
+          <td>{{ tour.countOfTours}}</td>
+          <td>{{ tour.price }}</td>
+          <td>
+            <button type="button" class="btn btn-default" (click)="tourView(tour.id)">
+              <span class="glyphicon glyphicon-eye-open"></span>
+            </button>
+            <button *ngIf="currentUser.roles.indexOf('Admin')!=-1" type="button" class="btn btn-default" (click)="updateTour(tour.id)">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button *ngIf="currentUser.roles.indexOf('Admin')!=-1" type="button" class="btn btn-default" (click)="deleteTour(tour.id)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="load" class="text-center">
+  <h3>Загрузка...</h3>
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FK.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,8 +13,6 @@ namespace FK.BLL.Models
 
         public DateTime DateCreate { get; set; }
 
-        public List<string> UserId { get; set; }
-
-        public List<string> Username { get; set; }
+        public List<ApplicationUser> Users { get; set; } 
     }
 }

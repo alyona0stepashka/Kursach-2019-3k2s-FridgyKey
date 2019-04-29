@@ -52,7 +52,7 @@ namespace FK.API.Controllers
             foreach (var fridge in fridges)
             {
                 var list_owner = await userFridgeService.GetListOwner((int)fridge.FridgeId);
-                list.Add(new UsersFridgeViewModel { DateCreate = (DateTime)list_owner.DateCreate, FridgeId = (int)list_owner.FridgeId, Name = list_owner.Name, UserId = list_owner.UserId, Username = list_owner.Username });
+                list.Add(new UsersFridgeViewModel { DateCreate = (DateTime)list_owner.DateCreate, FridgeId = (int)list_owner.FridgeId, Name = list_owner.Name, Users=list_owner.Users });
             }
             return Ok(list);
         }
