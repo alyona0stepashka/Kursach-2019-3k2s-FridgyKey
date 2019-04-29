@@ -13,9 +13,13 @@
     <None Remove="ClientApp\app\guards\admin.guard.ts" />
     <None Remove="ClientApp\app\guards\currentuser.guard.ts" />
     <None Remove="ClientApp\app\models\CurrentUser.ts" />
+    <None Remove="ClientApp\app\models\Fridge.ts" />
+    <None Remove="ClientApp\app\models\FridgeProduct.ts" />
+    <None Remove="ClientApp\app\models\Product.ts" />
     <None Remove="ClientApp\app\models\ServerResponse.ts" />
     <None Remove="ClientApp\app\models\SignIn.ts" />
     <None Remove="ClientApp\app\models\SignUp.ts" />
+    <None Remove="ClientApp\app\models\Sticker.ts" />
     <None Remove="ClientApp\app\services\auth.service.ts" />
     <None Remove="ClientApp\app\services\fridge.service.ts" />
     <None Remove="ClientApp\app\services\fridgeproduct.service.ts" />
@@ -51,9 +55,13 @@
     <TypeScriptCompile Include="ClientApp\app\guards\admin.guard.ts" />
     <TypeScriptCompile Include="ClientApp\app\guards\currentuser.guard.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\CurrentUser.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Fridge.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\FridgeProduct.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Product.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\ServerResponse.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\SignIn.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\SignUp.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Sticker.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\auth.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\fridge.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\fridgeproduct.service.ts" />

@@ -22,7 +22,7 @@ export class ProductService {
     return (await this._http.get('/api/product').toPromise()).json();
   }
 
-  public async getFridgeById(id: number): Promise<ServerResponse<any>> {
+  public async getProductById(id: number): Promise<ServerResponse<any>> {
     let result: ServerResponse<any> = new ServerResponse<any>();
     try {
       let response = (await this._http.get(`/api/product/${id}`).toPromise());
@@ -45,7 +45,7 @@ export class ProductService {
     return result;
   }
 
-  public async updateProduct(product: number): Promise<ServerResponse<any>> {
+  public async updateProduct(product: any): Promise<ServerResponse<any>> {
 
     let result: ServerResponse<any> = new ServerResponse<any>();
     try {

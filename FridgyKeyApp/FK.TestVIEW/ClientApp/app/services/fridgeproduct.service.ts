@@ -7,7 +7,7 @@ import { ServerResponse } from "../models/ServerResponse";
 
 
 @Injectable()
-export class FridgeService {
+export class FridgeProductService {
 
   private _http;
 
