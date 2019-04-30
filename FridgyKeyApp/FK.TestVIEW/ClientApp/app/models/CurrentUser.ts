@@ -4,6 +4,5 @@ export class CurrentUser {
   public roles: Array<string> = new Array<string>();
   public isAuntificated: boolean;
   public fIO: string; 
-  public email: string;
-  public username: string;
+  public email: string; 
 }

@@ -16,6 +16,23 @@ export class UserService {
   }
 
 
+
+  public async getAllUsers(): Promise<any> { //!!! add api
+    return (await this._http.get('/api/user/getall').toPromise()).json();
+  } 
+
+  public async getUserById(id: string): Promise<ServerResponse<any>> {  //!!! add api
+    let result: ServerResponse<any> = new ServerResponse<any>();
+    try {
+      let response = (await this._http.get(`/api/user/${id}`).toPromise());
+      result = this.parseResponse(response);
+    } catch (ex) {
+      result = this.parseResponse(ex);
+    }
+    return result;
+  }
+
+
   public async updateUser(user): Promise<ServerResponse<any>> {
     let result: ServerResponse<any> = new ServerResponse<any>();
     try {

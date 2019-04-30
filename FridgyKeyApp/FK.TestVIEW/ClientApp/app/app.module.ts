@@ -28,6 +28,7 @@ import { AdminGuard } from "../app/guards/admin.guard";
 //--------components----------------
 import { AdminPageComponent } from './mycomponents/adminpage/adminpage.component';
 import { LoginComponent } from './mycomponents/login/login.component';
+import { AppComponent } from './mycomponents/app/app.component';
 import { SignUpComponent } from './mycomponents/signUp/signUp.component';
 import { FridgeOpenHomeComponent } from './mycomponents/fridge_open_home/fridge_open_home.component';
 import { UserFridgeHomeComponent } from './mycomponents/user_fridge_home/user_fridge_home.component';
@@ -47,13 +48,16 @@ const appRoutes: Routes = [
   { path: 'products', component: ProductHomeComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'fridges', component: UserFridgeHomeComponent, canActivate: [CurrentUserOrAdminGuard]  },
-  { path: 'fridges/:id', component: FridgeOpenHomeComponent, canActivate: [CurrentUserOrAdminGuard] },
+  { path: 'fridges/:id', component: FridgeDetailComponent, canActivate: [CurrentUserOrAdminGuard] },
+  { path: 'myFridges/:id', component: FridgeOpenHomeComponent, canActivate: [CurrentUserOrAdminGuard] },
   { path: '**', component: UserFridgeHomeComponent, canActivate: [CurrentUserOrAdminGuard] },
 ];
 
 //----------modules------------------
 @NgModule({
   declarations: [
+    AppComponent,
+
     AdminPageComponent,
     ProductHomeComponent,
     ProductDetailComponent,

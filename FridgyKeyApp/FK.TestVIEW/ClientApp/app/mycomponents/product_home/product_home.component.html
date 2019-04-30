@@ -22,7 +22,7 @@
         <tr *ngFor="let p of products">
           <ng-template [ngIf]="product?.id != p.id" [ngIfElse]="edit">
             <td><img resource="{{p?.imgurl}}" height="60" /></td>
-            <td><a [routedLink]="['products',{{p?.id}}" class="nav-link">{{p?.name}}</a></td>
+            <td><a [routedLink]="['products',{{p?.id}}]" class="nav-link">{{p?.name}}</a></td>
             <td>{{p?.description}}</td>
             <td>{{p?.fat}}</td>
             <td>{{p?.carb}}</td>

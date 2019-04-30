@@ -49,8 +49,7 @@ export class Auth0Service {
         signUp.confirmPassword = authResult.idTokenPayload.sub + 'A';
         signUp.login = authResult.idTokenPayload.sub.replace('|', '');
         signUp.email = authResult.idTokenPayload.sub + '@external.ru';
-        signUp.fIO = profile.nickname;
-        signUp.birthday = new Date();
+        signUp.fIO = profile.nickname; 
 
         this.httpAuthService.externelLogin(signUp).then((data) => {
           this.router.navigate(['/']);

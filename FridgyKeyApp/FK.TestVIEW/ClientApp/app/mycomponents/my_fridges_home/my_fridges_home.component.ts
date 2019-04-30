@@ -1,15 +1,13 @@
-/**
- * Created by annae on 20.04.2018.
- */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs/Subject';
-import { FridgeService } from '../../services/fridge.service';
-import { ServerResponse } from "../../models/ServerResponse";
-import { UserFridgeAdd } from "../../models/Fridge";
 import { HttpAuthService } from '../../services/auth.service';
-import { CurrentUser } from "../../models/CurrentUser"; 
+import { CurrentUser } from "../../models/CurrentUser";
+import 'rxjs/add/operator/map';
+import { ServerResponse } from '../../models/ServerResponse'; 
+import { FridgeService } from '../../services/fridge.service'; 
+import { UserFridgeAdd } from "../../models/Fridge";
 
 import 'rxjs/add/operator/map';
 
@@ -75,7 +73,7 @@ export class MyFridgesHomeComponent implements OnInit {
     }
   }
 
-  async fridgeView(id) {
+  async fridgeDetail(id) {
     this.router.navigate([`fridgeView/${id}`]);
   }
 

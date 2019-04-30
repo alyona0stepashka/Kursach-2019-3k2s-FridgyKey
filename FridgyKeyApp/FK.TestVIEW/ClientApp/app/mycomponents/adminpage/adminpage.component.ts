@@ -33,6 +33,7 @@ export class AdminPageComponent implements OnInit {
   public fridges = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  public errors: Array<string> = new Array<string>();
 
   constructor(private httpAuthService: HttpAuthService,
     private fridgeService: FridgeService,

@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs/Subject';
+import { HttpAuthService } from '../../services/auth.service';
+import { CurrentUser } from "../../models/CurrentUser";
+import 'rxjs/add/operator/map';
+import { ServerResponse } from '../../models/ServerResponse'; 
 import { FridgeProductService } from '../../services/fridgeproduct.service';
 import { ProductService } from '../../services/product.service';
 import { StickerService } from '../../services/sticker.service';
 import { FridgeProductView } from '../../models/FridgeProduct';
 import { StickerView } from '../../models/Sticker';
 import { ProductView } from '../../models/Product';
-import { HttpAuthService } from '../../services/auth.service';
-import { CurrentUser } from "../../models/CurrentUser"; 
 
 @Component({
   selector: 'fridge_open_home',
@@ -17,8 +22,9 @@ export class FridgeOpenHomeComponent implements OnInit {
 
   //dbproducts: ProductView[];
   public dbproducts = [];
-
+  public id: number;
   public currentUser: CurrentUser = new CurrentUser();
+  public errors: Array<string> = new Array<string>();
 
   product: FridgeProductView = new FridgeProductView();   // изменяемый товар
   public products = [];
@@ -33,7 +39,12 @@ export class FridgeOpenHomeComponent implements OnInit {
   constructor(private fridgeproductService: FridgeProductService,
     private httpAuthService: HttpAuthService,
     private stickerService: StickerService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private router: Router,
+    private activateRoute: ActivatedRoute)
+  {
+    this.id = Number.parseInt(activateRoute.snapshot.params["id"]);
+  }
 
   async ngOnInit() {
     this.currentUser = await this.httpAuthService.GetCurrentUser();
@@ -43,14 +54,14 @@ export class FridgeOpenHomeComponent implements OnInit {
   }
   // получаем данные через сервис
   async loadFridgeProducts() {
-    this.products = await this.fridgeproductService.getFridgeProductByFridgeId(fridgeid); //???
+    this.products = await this.fridgeproductService.getFridgeProductByFridgeId(this.id); //???
   }
   async loadUserFridgeProducts() {
-    this.products = await this.fridgeproductService.getFridgeProductByFridgeIdByUser(fridgeid); //???
+    this.products = await this.fridgeproductService.getFridgeProductByFridgeIdByUser(this.id); //???
   }
   // получаем данные через сервис
   async loadStickers() {
-    this.stickers = await this.stickerService.getStickerByFridgeId(fridgeid); //???
+    this.stickers = await this.stickerService.getStickerByFridgeId(this.id); //???
   }
 
   //async loadUserProducts() {
