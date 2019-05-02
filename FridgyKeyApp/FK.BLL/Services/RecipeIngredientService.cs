@@ -14,49 +14,49 @@ using System.Threading.Tasks;
 
 namespace FK.BLL.Services
 {
-    public class RecipeIngredientService : IRecipeIngredientService
-    {
-        IUnitOfWork db { get; set; }
+    //public class RecipeIngredientService : IRecipeIngredientService
+    //{
+    //    IUnitOfWork db { get; set; }
 
-        public RecipeIngredientService(IUnitOfWork uow)
-        {
-            db = uow;
-        }
+    //    public RecipeIngredientService(IUnitOfWork uow)
+    //    {
+    //        db = uow;
+    //    }
 
-        async Task<RecipeIngredient> IService<RecipeIngredient, int>.Add(RecipeIngredient entity)
-        {
-            var RecipeIngredient = await db.RecipeIngredients.Add(entity);
-            return RecipeIngredient;
-        }
+    //    async Task<RecipeIngredient> IService<RecipeIngredient, int>.Add(RecipeIngredient entity)
+    //    {
+    //        var RecipeIngredient = await db.RecipeIngredients.Add(entity);
+    //        return RecipeIngredient;
+    //    }
 
-        async Task<RecipeIngredient> IService<RecipeIngredient, int>.Delete(RecipeIngredient entity)
-        {
-            var RecipeIngredient = await db.RecipeIngredients.Delete(entity);
-            return RecipeIngredient;
-        }
+    //    async Task<RecipeIngredient> IService<RecipeIngredient, int>.Delete(RecipeIngredient entity)
+    //    {
+    //        var RecipeIngredient = await db.RecipeIngredients.Delete(entity);
+    //        return RecipeIngredient;
+    //    }
 
-        async Task<IEnumerable<RecipeIngredient>> IService<RecipeIngredient, int>.Get()
-        {
-            var RecipeIngredients = await db.RecipeIngredients.Get();
-            return RecipeIngredients;
-        }
+    //    async Task<IEnumerable<RecipeIngredient>> IService<RecipeIngredient, int>.Get()
+    //    {
+    //        var RecipeIngredients = await db.RecipeIngredients.Get();
+    //        return RecipeIngredients;
+    //    }
 
-        async Task<IEnumerable<RecipeIngredient>> IService<RecipeIngredient, int>.Get(Func<RecipeIngredient, bool> predicate)
-        {
-            var RecipeIngredients = await db.RecipeIngredients.Get(predicate);
-            return RecipeIngredients;
-        }
+    //    async Task<IEnumerable<RecipeIngredient>> IService<RecipeIngredient, int>.Get(Func<RecipeIngredient, bool> predicate)
+    //    {
+    //        var RecipeIngredients = await db.RecipeIngredients.Get(predicate);
+    //        return RecipeIngredients;
+    //    }
 
-        async Task<RecipeIngredient> IService<RecipeIngredient, int>.Get(int id)
-        {
-            var RecipeIngredient = await db.RecipeIngredients.Get(id);
-            return RecipeIngredient;
-        }
+    //    async Task<RecipeIngredient> IService<RecipeIngredient, int>.Get(int id)
+    //    {
+    //        var RecipeIngredient = await db.RecipeIngredients.Get(id);
+    //        return RecipeIngredient;
+    //    }
 
-        async Task<RecipeIngredient> IService<RecipeIngredient, int>.Update(RecipeIngredient entity)
-        {
-            var RecipeIngredient = await db.RecipeIngredients.Update(entity);
-            return RecipeIngredient;
-        }
-    }
+    //    async Task<RecipeIngredient> IService<RecipeIngredient, int>.Update(RecipeIngredient entity)
+    //    {
+    //        var RecipeIngredient = await db.RecipeIngredients.Update(entity);
+    //        return RecipeIngredient;
+    //    }
+    //}
 }

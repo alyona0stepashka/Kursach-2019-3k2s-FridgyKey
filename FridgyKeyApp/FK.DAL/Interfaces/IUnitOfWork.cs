@@ -13,9 +13,9 @@ namespace FK.DAL.Interfaces
         IRepository<Product, int> Products { get; }
         IRepository<Sticker, int> Stickers { get; }
         IRepository<ProductInfo, int> ProductInfos { get; }
-        IRepository<Recipe, int> Recipes { get; }
-        IRepository<RecipeIngredient, int> RecipeIngredients { get; }
-        IRepository<Ingredient, int> Ingredients { get; }
+        //IRepository<Recipe, int> Recipes { get; }
+        //IRepository<RecipeIngredient, int> RecipeIngredients { get; }
+        //IRepository<Ingredient, int> Ingredients { get; }
         void Save();
     }
 }

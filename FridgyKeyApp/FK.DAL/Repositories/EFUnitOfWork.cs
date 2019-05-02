@@ -17,9 +17,9 @@ namespace FK.DAL.Repositories
         private FridgeProductRepository fridgeProductRepository;
         private StickerRepository stickerRepository;
         private ProductInfoRepository productInfoRepository;
-        private RecipeRepository recipeRepository;
-        private IngredientRepository ingredientRepository;
-        private RecipeIngredientRepository recipeIngredientRepository;
+        //private RecipeRepository recipeRepository;
+        //private IngredientRepository ingredientRepository;
+        //private RecipeIngredientRepository recipeIngredientRepository;
 
         public EFUnitOfWork(DbContextOptions<ApplicationDbContext> ortions)
         {
@@ -73,35 +73,35 @@ namespace FK.DAL.Repositories
             }
         }
 
-        public IRepository<Recipe, int> Recipes
-        {
-            get
-            {
-                if (recipeRepository == null)
-                    recipeRepository = new RecipeRepository(db);
-                return recipeRepository;
-            }
-        }
+        //public IRepository<Recipe, int> Recipes
+        //{
+        //    get
+        //    {
+        //        if (recipeRepository == null)
+        //            recipeRepository = new RecipeRepository(db);
+        //        return recipeRepository;
+        //    }
+        //}
 
-        public IRepository<Ingredient, int> Ingredients
-        {
-            get
-            {
-                if (ingredientRepository == null)
-                    ingredientRepository = new IngredientRepository(db);
-                return ingredientRepository;
-            }
-        }
+        //public IRepository<Ingredient, int> Ingredients
+        //{
+        //    get
+        //    {
+        //        if (ingredientRepository == null)
+        //            ingredientRepository = new IngredientRepository(db);
+        //        return ingredientRepository;
+        //    }
+        //}
 
-        public IRepository<RecipeIngredient, int> RecipeIngredients
-        {
-            get
-            {
-                if (recipeIngredientRepository == null)
-                    recipeIngredientRepository = new RecipeIngredientRepository(db);
-                return recipeIngredientRepository;
-            }
-        }
+        //public IRepository<RecipeIngredient, int> RecipeIngredients
+        //{
+        //    get
+        //    {
+        //        if (recipeIngredientRepository == null)
+        //            recipeIngredientRepository = new RecipeIngredientRepository(db);
+        //        return recipeIngredientRepository;
+        //    }
+        //}
 
         public IRepository<FridgeProduct, int> FridgeProducts
         {

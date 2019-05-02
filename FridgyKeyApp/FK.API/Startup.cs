@@ -60,9 +60,9 @@ namespace FK.API
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IFridgeProductService, FridgeProductService>();
             services.AddSingleton<IFridgeService, FridgeService>();
-            services.AddSingleton<IIngredientService, IngredientService>();
-            services.AddSingleton<IRecipeIngredientService, RecipeIngredientService>();
-            services.AddSingleton<IRecipeService, RecipeService>();
+            //services.AddSingleton<IIngredientService, IngredientService>();
+            //services.AddSingleton<IRecipeIngredientService, RecipeIngredientService>();
+            //services.AddSingleton<IRecipeService, RecipeService>();
             services.AddSingleton<IProductInfoService, ProductInfoService>();
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IStickerService, StickerService>();

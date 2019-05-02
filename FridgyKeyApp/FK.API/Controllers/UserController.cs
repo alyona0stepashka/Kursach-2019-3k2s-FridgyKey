@@ -33,7 +33,7 @@ namespace FK.API.Controllers
 
                 if (user != null)
                 {
-                    user.FIO = userModel.FIO;
+                    user.Login = userModel.Login;
                     OperationResult result = await _userService.UpdateUser(user);
                     return Ok(result);
                 }

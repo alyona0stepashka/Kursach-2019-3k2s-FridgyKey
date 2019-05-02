@@ -2,6 +2,6 @@
 {
     public class UserViewModel  //изменяемая часть юзера
     {
-        public string FIO { get; set; }
+        public string Login { get; set; }
     }
 }

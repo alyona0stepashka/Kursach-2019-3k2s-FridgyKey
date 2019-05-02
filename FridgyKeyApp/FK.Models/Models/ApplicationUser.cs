@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic; 
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace FK.Models
 {
@@ -16,11 +16,11 @@ namespace FK.Models
             FridgeProducts = new HashSet<FridgeProduct>();
             Products = new HashSet<Product>();
             UserFridges = new HashSet<UserFridge>();
-            Recipes = new HashSet<Recipe>();
+            //Recipes = new HashSet<Recipe>();
         }
 
         [StringLength(450)]
-        public string FIO { get; set; }
+        public string Login { get; set; }
 
         public virtual ICollection<Sticker> Stickers { get; set; }         
 
@@ -30,6 +30,6 @@ namespace FK.Models
 
         public virtual ICollection<UserFridge> UserFridges { get; set; }
 
-        public virtual ICollection<Recipe> Recipes { get; set; }
+       // public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

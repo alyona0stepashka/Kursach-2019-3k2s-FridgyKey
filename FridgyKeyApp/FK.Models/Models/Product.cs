@@ -32,7 +32,7 @@ namespace FK.Models
 
         public virtual ICollection<FridgeProduct> FridgeProducts { get; set; }
 
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        //public virtual ICollection<Ingredient> Ingredients { get; set; }
 
         public virtual ProductInfo ProdInfo { get; set; }
 

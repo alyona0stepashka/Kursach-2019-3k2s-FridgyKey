@@ -100,8 +100,7 @@ namespace FK.BLL.Services
                     Id = userDb.Id,
                     Roles = await _signInManager.UserManager.GetRolesAsync(userDb), 
                     Email = userDb.Email,
-                    Username = userDb.UserName,
-                    FIO = userDb.FIO
+                    Login = userDb.Login
                 };
                 return user;
             }
@@ -144,7 +143,7 @@ namespace FK.BLL.Services
 
         async Task<OperationResult> IUserService.UpdateUser(CurrentUser currentUser)
         {
-            var user = await _userManager.FindByNameAsync(currentUser.Username); 
+            var user = await _userManager.FindByNameAsync(currentUser.Login); 
             var result = await _userManager.UpdateAsync(user);
             var operationResult = new OperationResult
             {
