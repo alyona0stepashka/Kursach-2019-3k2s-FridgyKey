@@ -9,7 +9,7 @@ namespace FK.BLL.Interfaces
 {
     public interface IUserFridgeService:IService<UserFridge,int>
     {
-        Task<FridgeOwners> GetListOwner(int fridge_id);
+        Task<List<ApplicationUser>> GetListOwner(int fridge_id);
 
         Task<bool> IsAccess(int id, string password);
         //    void Create(UserFridge userFridge);  //запись о конретном холодильнике конкретного юзера (добавить холодос юзеру) 

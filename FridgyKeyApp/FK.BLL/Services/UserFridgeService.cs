@@ -33,19 +33,18 @@ namespace FK.BLL.Services
         }
 
 
-        async Task<FridgeOwners> IUserFridgeService.GetListOwner(int fridge_id)
+        async Task<List<ApplicationUser>> IUserFridgeService.GetListOwner(int fridge_id)
         {
-            var userFridges = await db.UserFridges.Get(m=>m.FridgeId==fridge_id);
-            var owners = new FridgeOwners { FridgeId=fridge_id };
-            owners.Users = new List<ApplicationUser>(); 
+            var userFridges = await db.UserFridges.Get(m=>m.FridgeId==fridge_id); 
+            var users = new List<ApplicationUser>(); 
             foreach (var fridge in userFridges)
             { 
-                if (!owners.Users.Contains(fridge.User))
+                if (!users.Contains(fridge.User))
                 {
-                    owners.Users.Add(fridge.User); 
+                    users.Add(fridge.User); 
                 }
             }
-            return owners;
+            return users;
         }
 
         async Task<UserFridge> IService<UserFridge, int>.Add(UserFridge entity)

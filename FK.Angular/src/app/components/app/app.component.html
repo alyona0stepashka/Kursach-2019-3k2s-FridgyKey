@@ -1,0 +1,37 @@
+<div class="circle">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" routerLink="/">AnyaTravel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-2 justify-content-end">
+        <li *ngIf="currentUser.isAuntificated" class="nav-item active">
+          <a class="nav-link" routerLink="/user">Моя страница</a>
+        </li>
+        <li *ngIf="currentUser.roles.indexOf('Admin') != -1" class="nav-item active">
+          <a class="nav-link" routerLink="/admin">Админка</a>
+        </li>
+        <li *ngIf="!currentUser.isAuntificated" class="nav-item active">
+          <a class="nav-link" routerLink="/signUp">Регистрация</a>
+        </li>
+        <li *ngIf="!currentUser.isAuntificated" class="nav-item active">
+          <a class="nav-link" routerLink="/login">Вход</a>
+        </li>
+        <li *ngIf="currentUser.isAuntificated" class="nav-item active" (click)="logout()">
+          <a class="nav-link">Выход</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main role="main" class="container" style="margin-top: 40px">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+
+
+

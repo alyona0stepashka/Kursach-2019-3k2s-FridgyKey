@@ -106,8 +106,7 @@ namespace FK.BLL.Services
                 return user;
             }
             return null;
-        }
-
+        } 
         private async Task<IdentityResult> AddUser(ApplicationUser ApplicationUser)
         { 
             var result = await _userManager.CreateAsync(ApplicationUser, ApplicationUser.PasswordHash);
