@@ -6,9 +6,13 @@ using AutoMapper;
 using FK.API.AutoMapperConfig;
 using FK.BLL.Interfaces;
 using FK.BLL.Services;
+using FK.DAL;
+using FK.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -38,6 +42,13 @@ namespace FK.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AutoMapperProfile());
@@ -74,12 +85,12 @@ namespace FK.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-#if DEBUG
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                });
-#endif
+//#if DEBUG
+//                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+//                {
+//                    HotModuleReplacement = true
+//                });
+//#endif
             }
 
             app.UseDefaultFiles();

@@ -3,11 +3,9 @@ D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\n
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\FK.BLL.pdb
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\FK.DAL.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\FK.Models.dll
-D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\FK.DAL.pdb
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\FK.Models.pdb
-D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.csprojResolveAssemblyReference.cache
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.csproj.CoreCompileInputs.cache
@@ -16,3 +14,5 @@ D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\n
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.csproj.CopyComplete
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\obj\Debug\netcoreapp2.0\FK.BLL.pdb
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.BLL\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml
