@@ -26,14 +26,14 @@ import { CurrentUserOrAdminGuard } from "../app/guards/currentuser.guard";
 import { AdminGuard } from "../app/guards/admin.guard";
 
 //--------components----------------
-import { AdminPageComponent } from './mycomponents/adminpage/adminpage.component';
-import { LoginComponent } from './mycomponents/login/login.component';
-import { AppComponent } from './mycomponents/app/app.component';
-import { SignUpComponent } from './mycomponents/signUp/signUp.component';
-import { FridgeOpenHomeComponent } from './mycomponents/fridge_open_home/fridge_open_home.component';
-import { UserFridgeHomeComponent } from './mycomponents/user_fridge_home/user_fridge_home.component';
-import { ProductHomeComponent } from './mycomponents/product_home/product_home.component';
-import { ProductDetailComponent } from './mycomponents/product_detail/product_detail.component';
+import { AdminPageComponent } from './components/adminpage/adminpage.component';
+import { LoginComponent } from './components/login/login.component';
+import { AppComponent } from './components/app/app.component';
+import { SignUpComponent } from './components/signUp/signUp.component';
+import { FridgeOpenHomeComponent } from './components/fridge_open_home/fridge_open_home.component';
+import { UserFridgeHomeComponent } from './components/user_fridge_home/user_fridge_home.component';
+import { ProductHomeComponent } from './components/product_home/product_home.component';
+import { ProductDetailComponent } from './components/product_detail/product_detail.component';
 
 
 
@@ -93,6 +93,6 @@ const appRoutes: Routes = [
     CurrentUserOrAdminGuard,
     AdminGuard
   ],
-  bootstrap: [AppComponent]  //???
+  bootstrap: [AppComponent]  
 })
 export class AppModule { }
