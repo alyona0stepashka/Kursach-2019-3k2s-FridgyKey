@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using FridgyKeyApp.Models;
-using FridgyKeyApp.Models.ManageViewModels;
-using FridgyKeyApp.Services;
+using FridgyKeyApp.Models.ManageViewModels; 
 using FK.Models;
 
 namespace FridgyKeyApp.Controllers

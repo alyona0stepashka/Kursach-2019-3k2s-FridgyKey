@@ -18,5 +18,7 @@ namespace FridgyKeyApp.Models.AccountViewModels
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public virtual string ReturnUrl { get; set; }
     }
 }

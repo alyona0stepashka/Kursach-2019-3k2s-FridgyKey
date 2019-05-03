@@ -1,3 +1,5 @@
 .vs
 *.mdf
 *.ldf
+node_modules
+*.lock

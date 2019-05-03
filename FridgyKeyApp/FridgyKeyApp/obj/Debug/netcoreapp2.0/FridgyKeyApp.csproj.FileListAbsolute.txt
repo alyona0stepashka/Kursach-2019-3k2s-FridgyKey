@@ -11,7 +11,6 @@ D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\bin\D
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\bin\Debug\netcoreapp2.0\FK.DAL.pdb
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.csprojResolveAssemblyReference.cache
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.csproj.CoreCompileInputs.cache
-D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.AssemblyInfoInputs.cache
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.AssemblyInfo.cs
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.csproj.CopyComplete

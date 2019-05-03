@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "UserList";
+}
+@model IEnumerable<FK.Models.ApplicationUser>
+<h2>List of users</h2>
+<table class="table">
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Access rights</a>
+            </td>
+        </tr>
+    }
+</table>

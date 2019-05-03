@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<input type="button" value="User list" class="btn btn-danger"
+       onclick="window.location.href='@Url.Action("UserList", "Admin")';" />
+<input type="button" value="Create product" class="btn btn-danger"
+       onclick="window.location.href='@Url.Action("Index", "Product")';" />
+<input type="button" value="Purchase report by date" class="btn btn-success"
+       onclick="window.location.href='@Url.Action("Index", "Fridge")';" />
+<hr /> 

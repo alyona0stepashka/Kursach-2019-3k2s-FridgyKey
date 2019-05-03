@@ -8,14 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection; 
-using FridgyKeyApp.Models;
-using FridgyKeyApp.Services;
+using FridgyKeyApp.Models; 
 using FK.DAL;
 using FK.Models;
 using FK.BLL.Interfaces;
 using FK.BLL.Services;
 using FK.DAL.Interfaces;
 using FK.DAL.Repositories;
+using Microsoft.AspNetCore.Http; 
+using Microsoft.AspNetCore.Mvc; 
+using Microsoft.Extensions.Logging;
 
 namespace FridgyKeyApp
 {
@@ -38,9 +40,28 @@ namespace FridgyKeyApp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
+            })
+                .AddFacebook("Facebook", options =>
+                {
+                    options.AppSecret = "bb60ddb9db71cca56972fa6f6b3d8fb5";
+                    options.AppId = "241399096724373";
+                })
+                .AddGoogle("Google", options =>
+                {
+                    options.CallbackPath = new PathString("/signin-google");
+                    options.ClientId = "26078174044-hq1mt6i3bncktc2159phj4cjutlgb7h7.apps.googleusercontent.com";
+                    options.ClientSecret = "h8-MWu3BtWbbljQ4PiCz83T5";
+                });
+
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IUnitOfWork, EFUnitOfWork>();
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<ISessionHelper, SessionHelper>();
+            services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IFridgeService, FridgeService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IProductInfoService, ProductInfoService>();
@@ -51,6 +72,12 @@ namespace FridgyKeyApp
 
             //services.AddAuthentication().AddGoogle(googleOptions => { ... });
 
+            services.AddSession();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                //options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             services.AddMvc();
         }
@@ -69,9 +96,12 @@ namespace FridgyKeyApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
 
+            //app.UseHttpsRedirection();
+            app.UseSession();
+            app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseCookiePolicy(); 
 
             app.UseMvc(routes =>
             {
