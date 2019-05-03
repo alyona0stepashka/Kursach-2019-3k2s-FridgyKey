@@ -40,6 +40,7 @@ namespace FK.API.Controllers
             fridgeProductService = serv4;
             productService = serv5;
             productInfoService = serv6;
+            productInfoService.SeedDatabase();
         }
 
         [Route("api/product/getall")]

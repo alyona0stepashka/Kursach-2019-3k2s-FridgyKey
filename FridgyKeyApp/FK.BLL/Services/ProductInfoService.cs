@@ -64,5 +64,27 @@ namespace FK.BLL.Services
             var ProductInfo = (await db.ProductInfos.Get(m => m.ProductId == product_id)).ToList()[0];
             return ProductInfo;
         }
+        async Task IProductInfoService.SeedDatabase()
+        {
+            var products = (await db.Products.Get()).ToList();
+            if (products.Count == 0)
+            {
+                var product = new ProductInfo
+                {
+                    Product = new Product
+                    {
+                        Name = "Milk 3.2%",
+                        Description = "Drink",
+                        ImgURL = "",
+                        UserId = ""
+                    },
+                    Fat=3.2f,
+                    Carb=4.7f,
+                    Protein=2.8f,
+                    Kkal=58
+                };
+                await db.ProductInfos.Add(product); 
+            } 
+        }
     }
 }

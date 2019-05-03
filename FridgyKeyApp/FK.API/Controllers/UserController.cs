@@ -21,6 +21,7 @@ namespace FK.API.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
+            userService.SeedDatabase();
         }
 
         [HttpPut]

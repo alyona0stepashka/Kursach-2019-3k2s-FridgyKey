@@ -9,6 +9,9 @@ namespace FK.BLL.Interfaces
     public interface IProductInfoService:IService<ProductInfo,int>
     {
         Task<ProductInfo> GetByProductId(int product_id);
+
+        Task SeedDatabase();
+
         //void Create(ProductInfo product);
         //void Update(ProductInfo product);
         //void Delete(ProductInfo product);

@@ -130,15 +130,25 @@ namespace FK.BLL.Services
 
         async Task IUserService.SeedDatabase()
         {
-            await _roleManager.CreateAsync(new IdentityRole("Admin"));
-            var user = new ApplicationUser
+            var users = _userManager.Users.ToList();
+            var roles = _roleManager.Roles.ToList(); 
+            if (roles.Count == 0)
             {
-                UserName = "pas@mail.ru",
-                EmailConfirmed = true,
-                Email = "pas@mail.ru"
-            };
-            await _userManager.CreateAsync(user, "a80291227107_A");
-            await _userManager.AddToRoleAsync(user, "Admin");
+                await _roleManager.CreateAsync(new IdentityRole("admin"));
+                await _roleManager.CreateAsync(new IdentityRole("user"));
+            }
+            if (users.Count == 0)
+            {
+                var user = new ApplicationUser
+                {
+                    Login = "stepashka9905",
+                    UserName = "pas@mail.ru",
+                    EmailConfirmed = true,
+                    Email = "pas@mail.ru"
+                };
+                await _userManager.CreateAsync(user, "AQAAAAEAACcQAAAAEJNtee2C9JMxUnT/4RHSBHkW8QuBHqsIKu8+p/ZisvpvGDF3A5W1PKyPcDsGXrIUlA==");
+                await _userManager.AddToRoleAsync(user, "admin");
+            }
         }
 
         async Task<OperationResult> IUserService.UpdateUser(CurrentUser currentUser)

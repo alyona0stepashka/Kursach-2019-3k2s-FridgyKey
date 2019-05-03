@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -10,6 +11,7 @@ using FK.DAL;
 using FK.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
@@ -85,17 +87,21 @@ namespace FK.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-//#if DEBUG
-//                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-//                {
-//                    HotModuleReplacement = true
-//                });
-//#endif
-            }
 
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
+            }
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
+            // обработка маршрутов, которые не сопоставлены с ресурсам ранее
+            app.Run(async (context) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+            });
         }
     }
 }
