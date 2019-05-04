@@ -16,3 +16,4 @@ D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\D
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.csproj.CopyComplete
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\FridgyKeyApp.pdb
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FridgyKeyApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

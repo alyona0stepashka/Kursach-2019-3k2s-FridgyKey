@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using FridgyKeyApp.Models;
-using FridgyKeyApp.Models.AccountViewModels; 
+using FridgyKeyApp.Models; 
 using FK.Models;
 using FK.BLL.Interfaces;
+using FridgeKeyApp.Models.New;
 
 namespace FridgyKeyApp.Controllers
 {

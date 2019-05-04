@@ -17,7 +17,7 @@ namespace FridgyKeyApp
 {
     public class Program
     {
-        public static async void Main(string[] args)
+        public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
             var host = BuildWebHost(args);
@@ -29,7 +29,7 @@ namespace FridgyKeyApp
                 {
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await RoleInitializer.InitializeAsync(userManager, rolesManager);
+                    RoleInitializer.InitializeAsync(userManager, rolesManager);
                 }
                 catch (Exception ex)
                 {

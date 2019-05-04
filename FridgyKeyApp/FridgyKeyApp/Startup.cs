@@ -72,6 +72,7 @@ namespace FridgyKeyApp
 
             //services.AddAuthentication().AddGoogle(googleOptions => { ... });
 
+            services.AddMvc();
             services.AddSession();
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -79,12 +80,17 @@ namespace FridgyKeyApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc();
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            //loggerFactory.CreateLogger<Log>
+            //loggerFactory.AddContext(LogLevel.Information, connection);
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -94,6 +100,7 @@ namespace FridgyKeyApp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                //app.UseHsts();
             }
 
 

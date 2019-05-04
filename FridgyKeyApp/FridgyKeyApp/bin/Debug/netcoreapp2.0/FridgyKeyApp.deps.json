@@ -26,6 +26,7 @@
           "FK.BLL": "1.0.0",
           "FK.Models": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.6",
+          "Microsoft.Extensions.Logging": "2.2.0",
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.3"
         },
