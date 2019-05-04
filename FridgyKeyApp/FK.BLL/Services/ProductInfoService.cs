@@ -69,7 +69,8 @@ namespace FK.BLL.Services
             var products = (await db.Products.Get()).ToList();
             if (products.Count == 0)
             {
-                var product = new ProductInfo
+                //var admin_id = userService
+                var product1 = new ProductInfo
                 {
                     Product = new Product
                     {
@@ -83,7 +84,22 @@ namespace FK.BLL.Services
                     Protein=2.8f,
                     Kkal=58
                 };
-                await db.ProductInfos.Add(product); 
+                var product2 = new ProductInfo
+                {
+                    Product = new Product
+                    {
+                        Name = "Banana",
+                        Description = "Fruit",
+                        ImgURL = "",
+                        UserId = ""
+                    },
+                    Fat = 0f,
+                    Carb = 22.4f,
+                    Protein = 1.5f,
+                    Kkal = 91
+                };
+                await db.ProductInfos.Add(product1); 
+                await db.ProductInfos.Add(product2); 
             } 
         }
     }

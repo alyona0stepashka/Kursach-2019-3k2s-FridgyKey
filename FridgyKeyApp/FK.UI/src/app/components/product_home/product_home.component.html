@@ -1,0 +1,112 @@
+<div *ngIf="!load">
+  <div style="margin-top: 10px">
+    <!--<div *ngIf="currentUser.roles.indexOf('Admin')!=-1" style="text-align: left">-->
+    <h1>product_home</h1>
+    <input type="button" value="Добавить" class="btn btn-default" (click)="add()" /><p />
+    <button class="btn btn-sm btn-primary" (click)="loadUserProducts">[LoadUserProducts]</button><p />
+    <button class="btn btn-sm btn-primary" (click)="loadProducts">[LoadAllProducts]</button><p />
+    <table *ngIf="tableMode; else create" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+      <thead>
+        <tr *ngIf="!load">
+          <td>Image</td>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Fat</td>
+          <td>Carb</td>
+          <td>Protein</td>
+          <td>Kkal</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products">
+          <ng-template [ngIf]="product?.id != p.id" [ngIfElse]="edit">
+            <td><img resource="{{p?.imgurl}}" height="60" /></td>
+            <td><a [routedLink]="['products',{{p?.id}}]" class="nav-link">{{p?.name}}</a></td>
+            <td>{{p?.description}}</td>
+            <td>{{p?.fat}}</td>
+            <td>{{p?.carb}}</td>
+            <td>{{p?.protein}}</td>
+            <td>{{p?.kkal}}</td>
+            <td *ngIf="{{p?.userid}}==currentuser.Id">
+              <button class="btn btn-sm btn-primary" (click)="editProduct(p)">[Edit]</button>
+              <button class="btn btn-sm btn-danger" (click)="delete(p)">[Delete]</button>
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="load" class="text-center">
+  <h3>Загрузка...</h3>
+</div>
+
+<!--шаблон для редактирования-->
+<ng-template #edit>
+  <td>
+    <input hidden [(ngModel)]="product.id" />
+    <input hidden [(ngModel)]="product.userid" />
+    <input type="text" [(ngModel)]="product.imgurl" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="product.name" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="product.description" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="product.fat" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="product.carb" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="product.protein" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="product.kkal" class="form-control" />
+  </td>
+  <td>
+    <input type="button" value="[Save]" (click)="save()" class="btn btn-sm btn-success" />
+    <input type="button" value="[Undo]" (click)="cancel()" class="btn btn-sm btn-warning" />
+  </td>
+</ng-template>
+
+<!--шаблон для добавления-->
+<ng-template #create>
+  <input hidden [(ngModel)]="product.id" />
+  <input hidden [(ngModel)]="product.userid" />
+  <div class="form-group">
+    <label>ImgURL</label>
+    <input type="text" [(ngModel)]="product.imgurl" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="product.name" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input type="text" [(ngModel)]="product.description" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Fat</label>
+    <input type="text" [(ngModel)]="product.fat" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Carb</label>
+    <input type="text" [(ngModel)]="product.carb" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Protein</label>
+    <input type="text" [(ngModel)]="product.protein" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Kkal</label>
+    <input type="text" [(ngModel)]="product.kkal" class="form-control" />
+  </div>
+  <div>
+    <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
+    <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+  </div>
+</ng-template>
