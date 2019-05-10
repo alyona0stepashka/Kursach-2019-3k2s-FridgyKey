@@ -66,7 +66,7 @@ namespace FK.API
             });
             //services.AddSwaggerGen(c =>
             //{
-            //    c.SwaggerDoc("v1", new Info { Title = "AnyaTravel", Version = "v1" });
+            //    c.SwaggerDoc("v1", new Info { Title = "FridgeKeyWebApp", Version = "v1" });
             //});
             services.AddSingleton<IEmailService, EmailService>();
             services.AddSingleton<IUserFridgeService, UserFridgeService>();

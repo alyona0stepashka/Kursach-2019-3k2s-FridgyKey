@@ -11,7 +11,7 @@ import Auth0Lock from 'auth0-lock';
 export class Auth0Service {
   auth0Options = {
     languageDictionary: {
-      title: "AnyaTravel"
+      title: "FridgeKeyWebApp"
     },
     theme: {
       logo: 'https://ntviser.com/CategoryImage/Travel.png'

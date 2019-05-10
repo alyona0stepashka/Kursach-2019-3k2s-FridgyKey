@@ -14,7 +14,7 @@ namespace FK.BLL.Services
         {
             MimeMessage emailMessage = new MimeMessage();
 
-            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "AnyaTravel@yandex.by"));
+            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "FridgeKeyWebApp@yandex.by"));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
