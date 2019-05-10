@@ -17,10 +17,12 @@ namespace FK.BLL.Services
     public class ProductInfoService : IProductInfoService
     {
         IUnitOfWork db { get; set; }
+        private UserManager<ApplicationUser> _userManager;
 
-        public ProductInfoService(IUnitOfWork uow)
+        public ProductInfoService(IUnitOfWork uow, UserManager<ApplicationUser> userManager)
         {
             db = uow;
+            _userManager = userManager;
         }
 
         async Task<ProductInfo> IService<ProductInfo, int>.Add(ProductInfo entity)
@@ -60,47 +62,54 @@ namespace FK.BLL.Services
         }
 
         async Task<ProductInfo> IProductInfoService.GetByProductId(int product_id)
-        { 
+        {
             var ProductInfo = (await db.ProductInfos.Get(m => m.ProductId == product_id)).ToList()[0];
             return ProductInfo;
         }
         async Task IProductInfoService.SeedDatabase()
         {
+            var users = _userManager.Users.ToList();
+            var admin = users.FirstOrDefault();
             var products = (await db.Products.Get()).ToList();
             if (products.Count == 0)
             {
-                //var admin_id = userService
-                var product1 = new ProductInfo
+                var prod_list_for_db = new List<ProductInfo>
                 {
-                    Product = new Product
+                    new ProductInfo
                     {
-                        Name = "Milk 3.2%",
-                        Description = "Drink",
-                        ImgURL = "",
-                        UserId = ""
+                        Product = new Product
+                        {
+                            Name = "Milk 3.2%",
+                            Description = "Drink",
+                            ImgURL = "",
+                            UserId = admin.Id
+                        },
+                        Fat = 3.2f,
+                        Carb = 4.7f,
+                        Protein = 2.8f,
+                        Kkal = 58f
+
                     },
-                    Fat=3.2f,
-                    Carb=4.7f,
-                    Protein=2.8f,
-                    Kkal=58
+                    new ProductInfo
+                    {
+                        Product = new Product
+                        {
+                            Name = "Banana",
+                            Description = "Fruit",
+                            ImgURL = "",
+                            UserId = admin.Id
+                        },
+                        Fat = 0f,
+                        Carb = 22.4f,
+                        Protein = 1.5f,
+                        Kkal = 91f
+                    }
                 };
-                var product2 = new ProductInfo
+                foreach (var product in prod_list_for_db)
                 {
-                    Product = new Product
-                    {
-                        Name = "Banana",
-                        Description = "Fruit",
-                        ImgURL = "",
-                        UserId = ""
-                    },
-                    Fat = 0f,
-                    Carb = 22.4f,
-                    Protein = 1.5f,
-                    Kkal = 91
-                };
-                await db.ProductInfos.Add(product1); 
-                await db.ProductInfos.Add(product2); 
-            } 
+                    await db.ProductInfos.Add(product);
+                }
+            }
         }
     }
 }

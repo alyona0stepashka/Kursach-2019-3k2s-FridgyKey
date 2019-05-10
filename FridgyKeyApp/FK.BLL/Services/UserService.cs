@@ -140,7 +140,7 @@ namespace FK.BLL.Services
             if (users.Count == 0)
             {
                 var user = new ApplicationUser
-                {
+                { 
                     Login = "stepashka9905",
                     UserName = "pas@mail.ru",
                     EmailConfirmed = true,
