@@ -1,0 +1,24 @@
+<div *ngIf="loaded">
+  <h2>{{user.email}}</h2>
+  <div>
+    <p><img resource="{{product.imgurl}}" /></p>
+    <p><b>Description:</b> {{product.description}}</p>
+    <p><b>f/c/p:</b> {{product.fat}} / {{product.carb}} / {{product.protein}}</p>
+    <p><b>Kkal:</b> {{product.kkal}}</p>
+    <p><b>DateCreate:</b> {{product.datecreate}}</p>
+    <p><a [routerLink]='products' class="nav-link">[Go to ProductList]</a></p>
+  </div>
+</div>
+
+
+
+ public id: number;
+  public name: string;
+  public description: string;
+  public imgurl: string;
+  public fat: number;
+  public carb: number;
+  public protein: number;
+  public kkal: number;
+  public userid: string;
+  //public datecreate: date; 

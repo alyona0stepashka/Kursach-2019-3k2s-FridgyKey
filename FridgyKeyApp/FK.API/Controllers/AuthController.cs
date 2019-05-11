@@ -28,6 +28,7 @@ namespace FK.API.Controllers
             _emailService = emailService;
             _userManager = userManager;
             _mapper = mapper;
+            _userService.SeedDatabase();
         }
 
         [HttpPost]

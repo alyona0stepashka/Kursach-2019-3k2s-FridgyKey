@@ -8,6 +8,8 @@ using FK.API.AutoMapperConfig;
 using FK.BLL.Interfaces;
 using FK.BLL.Services;
 using FK.DAL;
+using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 using FK.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -68,17 +70,19 @@ namespace FK.API
             //{
             //    c.SwaggerDoc("v1", new Info { Title = "FridgeKeyWebApp", Version = "v1" });
             //});
-            services.AddSingleton<IEmailService, EmailService>();
-            services.AddSingleton<IUserFridgeService, UserFridgeService>();
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IFridgeProductService, FridgeProductService>();
-            services.AddSingleton<IFridgeService, FridgeService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IUnitOfWork, EFUnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IFridgeService, FridgeService>();
+            services.AddScoped<IProductInfoService, ProductInfoService>();
+            services.AddScoped<IUserFridgeService, UserFridgeService>();
+            services.AddScoped<IFridgeProductService, FridgeProductService>();
+            services.AddScoped<IStickerService, StickerService>();
+
             //services.AddSingleton<IIngredientService, IngredientService>();
             //services.AddSingleton<IRecipeIngredientService, RecipeIngredientService>();
             //services.AddSingleton<IRecipeService, RecipeService>();
-            services.AddSingleton<IProductInfoService, ProductInfoService>();
-            services.AddSingleton<IProductService, ProductService>();
-            services.AddSingleton<IStickerService, StickerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,14 +92,17 @@ namespace FK.API
             {
                 app.UseDeveloperExceptionPage();
 
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                });
+                //app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                //{
+                //    HotModuleReplacement = true
+                //});
             }
+            app.UseStatusCodePages();
+            app.UseAuthentication();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
+
             // обработка маршрутов, которые не сопоставлены с ресурсам ранее
             app.Run(async (context) =>
             {

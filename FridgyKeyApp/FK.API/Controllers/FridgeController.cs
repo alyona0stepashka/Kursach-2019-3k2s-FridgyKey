@@ -34,12 +34,12 @@ namespace FK.API.Controllers
             )
         {
             _userManager = userManager;
-            userFridgeService = serv;
             userService = serv2;
+            userFridgeService = serv;
             fridgeService = serv3;
-            fridgeProductService = serv4;
             productService = serv5;
             productInfoService = serv6;
+            fridgeProductService = serv4;
         }
 
         // GET api/admin/fridge

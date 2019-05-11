@@ -17,9 +17,10 @@ namespace FK.BLL.Services
     public class UserFridgeService : IUserFridgeService
     {
         IUnitOfWork db { get; set; }
-        private readonly UserService userService;
 
-        public UserFridgeService(IUnitOfWork uow, UserService userService1)
+        private readonly IUserService userService;
+
+        public UserFridgeService(IUnitOfWork uow, IUserService userService1)
         {
             db = uow;
             userService = userService1;

@@ -17,7 +17,7 @@ namespace FK.API.Controllers
         private readonly IFridgeService fridgeService;
         private readonly IFridgeProductService fridgeProductService;
         private readonly IUserFridgeService userFridgeService;
-        private readonly IUserService userService;
+        //private readonly IUserService userService;
         private readonly IProductService productService;
         private readonly IProductInfoService productInfoService;
 
@@ -26,7 +26,7 @@ namespace FK.API.Controllers
         public ProductController(
             UserManager<ApplicationUser> userManager,
             IUserFridgeService serv,
-            IUserService serv2,
+            //IUserService serv2,
             IFridgeService serv3,
             IFridgeProductService serv4,
             IProductService serv5,
@@ -34,12 +34,12 @@ namespace FK.API.Controllers
             )
         {
             _userManager = userManager;
-            userFridgeService = serv;
-            userService = serv2;
+           // userService = serv2;
             fridgeService = serv3;
-            fridgeProductService = serv4;
+            userFridgeService = serv;
             productService = serv5;
             productInfoService = serv6;
+            fridgeProductService = serv4;
             productInfoService.SeedDatabase();
         }
 
