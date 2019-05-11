@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service'; 
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -24,16 +24,35 @@ export class PaymentDetailComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this._service.postPaymentDetail(form.value).subscribe(
+    if (this._service.formData.PMId==0) this.insertRecord(form);  
+    else this.updateRecord(form);
+  } 
+
+  insertRecord(form: NgForm){
+    this._service.postPaymentDetail().subscribe(
       res=>{
         this.resetForm(form);
-        this._toastrService.success('Submitted successfully', 'Payment Detail Register');
+        this._toastrService.success('Submitted (post) successfully', 'Payment Detail Register');
+        this._service.refreshList();
       },
       err=>{
         console.log(err);
       }
     )
-  } 
+  }
+
+  updateRecord(form: NgForm){
+    this._service.putPaymentDetail().subscribe(
+      res=>{
+        this.resetForm(form);
+        this._toastrService.info('Submitted (put) successfully', 'Payment Detail Register');
+        this._service.refreshList();
+      },
+      err=>{
+        console.log(err);
+      }
+    )
+  }
 
   resetForm(form?:NgForm){
     if (form!=null) form.resetForm();
@@ -43,8 +62,8 @@ export class PaymentDetailComponent implements OnInit {
       CardNumber: '',
       ExpirationDate: '',
       CVV: ''
-    };
-    
+    };    
   }
+
 
 }
