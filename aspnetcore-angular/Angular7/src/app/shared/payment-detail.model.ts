@@ -3,5 +3,5 @@ export class PaymentDetail {
     CardOwnerName :string;
     CardNumber :string;
     ExpirationDate :string;
-    CW :string;
+    CVV :string;
 }
