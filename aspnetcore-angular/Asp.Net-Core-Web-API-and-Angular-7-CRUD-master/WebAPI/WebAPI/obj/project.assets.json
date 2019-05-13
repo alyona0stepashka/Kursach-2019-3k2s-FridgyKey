@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\VironIT\\000\\Asp.Net-Core-Web-API-and-Angular-7-CRUD-master\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\aspnetcore-angular\\Asp.Net-Core-Web-API-and-Angular-7-CRUD-master\\WebAPI\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "D:\\Study\\VironIT\\000\\Asp.Net-Core-Web-API-and-Angular-7-CRUD-master\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectPath": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\aspnetcore-angular\\Asp.Net-Core-Web-API-and-Angular-7-CRUD-master\\WebAPI\\WebAPI\\WebAPI.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\Study\\VironIT\\000\\Asp.Net-Core-Web-API-and-Angular-7-CRUD-master\\WebAPI\\WebAPI\\obj\\",
+      "outputPath": "D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\aspnetcore-angular\\Asp.Net-Core-Web-API-and-Angular-7-CRUD-master\\WebAPI\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service'; 
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-detail',
@@ -13,7 +14,8 @@ export class PaymentDetailComponent implements OnInit {
   public _service: PaymentDetailService;
   private _toastrService: ToastrService;
 
-  constructor(service: PaymentDetailService,
+  constructor(private router: Router,
+    service: PaymentDetailService,
     toastr: ToastrService) {
     this._service = service;
     this._toastrService = toastr;

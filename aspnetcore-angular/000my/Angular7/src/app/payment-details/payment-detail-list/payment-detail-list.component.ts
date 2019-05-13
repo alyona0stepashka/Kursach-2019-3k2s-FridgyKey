@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentDetail } from 'src/app/shared/payment-detail.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-detail-list',
@@ -13,7 +14,8 @@ export class PaymentDetailListComponent implements OnInit {
   public _service: PaymentDetailService;
   private _toastrService: ToastrService;
 
-  constructor(service: PaymentDetailService,
+  constructor(private router: Router,
+    service: PaymentDetailService,
     toastr: ToastrService) {
     this._service = service;
     this._toastrService = toastr;

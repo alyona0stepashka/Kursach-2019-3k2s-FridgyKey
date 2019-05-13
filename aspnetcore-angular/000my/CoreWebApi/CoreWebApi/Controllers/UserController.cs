@@ -16,27 +16,27 @@ namespace CoreWebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/user")]
-    public class ApplicationUserController : Controller
+    public class UserController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
         private SignInManager<ApplicationUser> _singInManager;
         private readonly ApplicationSettings _appSettings;
 
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, 
+        public UserController(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _singInManager = signInManager;
             _appSettings = appSettings.Value;
-            SeedDatabase();
+            //SeedDatabase();
         }
 
         [HttpPost]
-        //[Route("register")]
+        [Route("register")]
         //POST : /api/ApplicationUser/Register
-        public async Task<Object> PostApplicationUser(ApplicationUserModel model)
+        public async Task<Object> PostApplicationUser([FromBody]ApplicationUserModel model)
         {
             model.Role = "user";
             var applicationUser = new ApplicationUser()
@@ -60,11 +60,12 @@ namespace CoreWebApi.Controllers
         }
 
         [HttpPost]
-        //[Route("login")]
+        [Route("login")]
         //POST : /api/ApplicationUser/Login
-        public async Task<ActionResult> Login(LoginModel model)
+        public async Task<ActionResult> Login([FromBody]LoginModel model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
+            var user = _userManager.Users.Where(m => m.Email == model.UserName).FirstOrDefault();
+            //var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 //Get role assigned to the user
@@ -90,26 +91,33 @@ namespace CoreWebApi.Controllers
                 return BadRequest(new { message = "Username or password is incorrect." });
         }
 
-        async void SeedDatabase()
-        {
-            var users = _userManager.Users.ToList();
-            var roles = _roleManager.Roles.ToList();
-            if (roles.Count == 0)
-            {
-                await _roleManager.CreateAsync(new IdentityRole("admin"));
-                await _roleManager.CreateAsync(new IdentityRole("user"));
-            }
-            if (users.Count == 0)
-            {
-                var user = new ApplicationUser
-                {  
-                    UserName = "pas@mail.ru",
-                    EmailConfirmed = true,
-                    Email = "pas@mail.ru"
-                };
-                await _userManager.CreateAsync(user, "Parol_01");
-                await _userManager.AddToRoleAsync(user, "admin");
-            }
-        }
+        //async void SeedDatabase()
+        //{
+        //    try
+        //    {
+        //        var users = _userManager.Users.ToList();
+        //        var roles = _roleManager.Roles.ToList();
+        //        if (roles.Count == 0)
+        //        {
+        //            await _roleManager.CreateAsync(new IdentityRole("admin"));
+        //            await _roleManager.CreateAsync(new IdentityRole("user"));
+        //        }
+        //        if (users.Count == 0)
+        //        {
+        //            var user = new ApplicationUser
+        //            {
+        //                UserName = "pas@mail.ru",
+        //                EmailConfirmed = true,
+        //                Email = "pas@mail.ru"
+        //            };
+        //            await _userManager.CreateAsync(user, "Parol_01");
+        //            await _userManager.AddToRoleAsync(user, "admin");
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //    }
+        //}
     }
 }

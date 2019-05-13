@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 using CoreWebApi.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +11,10 @@ namespace CoreWebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/userprofile")]
-    public class UserProfileController : ControllerBase
+    public class UserPageController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
-        public UserProfileController(UserManager<ApplicationUser> userManager)
+        public UserPageController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
@@ -37,7 +36,7 @@ namespace CoreWebApi.Controllers
 
         [HttpGet]
         [Authorize(Roles = "admin")]
-        [Route("ForAdmin")]
+        [Route("admin")]
         public string GetForAdmin()
         {
             return "Web method for Admin";
@@ -45,7 +44,7 @@ namespace CoreWebApi.Controllers
 
         [HttpGet]
         [Authorize(Roles = "user")]
-        [Route("ForCustomer")]
+        [Route("customer")]
         public string GetCustomer()
         {
             return "Web method for Customer";
@@ -53,7 +52,7 @@ namespace CoreWebApi.Controllers
 
         [HttpGet]
         [Authorize(Roles = "admin,user")]
-        [Route("ForAdminOrCustomer")]
+        [Route("foradminorcustomer")]
         public string GetForAdminOrCustomer()
         {
             return "Web method for Admin or Customer";

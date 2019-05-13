@@ -1,0 +1,20 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand text-white">PaymentApp</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item" *ngIf="userDetails.Role=='admin'">
+      <a class="nav-link" routerLink="/adminpanel">Admin Panel</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/payment">Payment</a>
+    </li>
+  </ul>
+  <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+</nav>
+
+<div class="card m-5" style="width:18rem" *ngIf="userDetails">
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Username : </strong>{{userDetails.UserName}}</li>
+    <li class="list-group-item"><strong>FullName : </strong>{{userDetails.FullName}}</li>
+    <li class="list-group-item"><strong>Email : </strong>{{userDetails.Email}}</li>
+  </ul>
+</div>

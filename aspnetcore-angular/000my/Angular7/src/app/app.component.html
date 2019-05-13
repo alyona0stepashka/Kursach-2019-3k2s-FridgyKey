@@ -1,4 +1,49 @@
-<div class="container">
+<!-- <div class="container">
   <app-payment-details> </app-payment-details> 
+<router-outlet></router-outlet>
+</div> -->
 
-</div>
+
+<!-- <div class="circle">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" routerLink="/home">FridgeKey</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-2 justify-content-end">
+        <li *ngIf="isAuthenticate" class="nav-item active">
+          <a class="nav-link" routerLink="/home">Мy Profile</a>
+        </li>
+        <li *ngIf="isAdmin" class="nav-item active">
+          <a class="nav-link" routerLink="/adminpanel">Admin Panel</a>
+        </li>
+        <li *ngIf="isAuthenticate" class="nav-item active">
+          <a class="nav-link" routerLink="/payment">Payment</a>
+        </li> 
+      </ul>
+
+      <ul class="navbar-nav navbar-right mr-2 justify-content-end"> 
+        <li *ngIf="!isAuthenticate" class="nav-item active">
+          <a class="nav-link" routerLink="user/registration">Sign Up</a>
+        </li>
+        <li *ngIf="!isAuthenticate" class="nav-item active">
+          <a class="nav-link" routerLink="user/login">Sign In</a>
+        </li>
+        <li *ngIf="isAuthenticate" class="nav-item active" (click)="onLogout()">
+          <a class="nav-link">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav> -->
+
+  <main role="main" class="container" style="margin-top: 40px">
+    <router-outlet></router-outlet>
+  </main>
+<!-- </div> -->
+
+
+
+

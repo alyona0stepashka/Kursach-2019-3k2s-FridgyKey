@@ -41,9 +41,9 @@ namespace CoreWebApi
             services.AddDbContext<PaymentDetailsContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
-            services.AddIdentity<ApplicationUser,IdentityRole>()
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<PaymentDetailsContext>();
+            services.AddIdentity<ApplicationUser,IdentityRole>() 
+                .AddEntityFrameworkStores<PaymentDetailsContext>()
+                .AddDefaultTokenProviders();
 
             services.AddCors();
 
@@ -69,7 +69,7 @@ namespace CoreWebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
 
             app.Use(async (ctx, next) =>
@@ -100,7 +100,9 @@ namespace CoreWebApi
 
             app.UseAuthentication();
 
-            app.UseMvc(); 
+            app.UseMvc();
+
+            //CreateUserRoles(services).Wait();
         }
     }
 }
