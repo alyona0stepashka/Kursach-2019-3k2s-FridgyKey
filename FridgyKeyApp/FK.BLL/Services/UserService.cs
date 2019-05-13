@@ -146,7 +146,7 @@ namespace FK.BLL.Services
                     EmailConfirmed = true,
                     Email = "pas@mail.ru"
                 };
-                await _userManager.CreateAsync(user, "AQAAAAEAACcQAAAAEJNtee2C9JMxUnT/4RHSBHkW8QuBHqsIKu8+p/ZisvpvGDF3A5W1PKyPcDsGXrIUlA==");
+                await _userManager.CreateAsync(user, "Parol_01");
                 await _userManager.AddToRoleAsync(user, "admin");
             }
         }
