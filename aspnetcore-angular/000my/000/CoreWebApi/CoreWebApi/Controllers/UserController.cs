@@ -66,7 +66,7 @@ namespace CoreWebApi.Controllers
         //POST : /api/ApplicationUser/Login
         public async Task<ActionResult> Login([FromBody]LoginModel model)
         {
-            var user = _userManager.Users.Where(m => m.Email == model.UserName).FirstOrDefault();
+            var user = _userManager.Users.Where(m => m.Email == model.UserName).SingleOrDefault();
             //var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {

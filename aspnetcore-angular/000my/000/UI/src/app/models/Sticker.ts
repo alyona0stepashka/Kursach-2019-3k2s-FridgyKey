@@ -1,4 +1,6 @@
-﻿export class Sticker {
+﻿import { UserDetail } from './UserDetail';
+
+export class Sticker {
     Id: number;
     Text: string; 
     DateAdd: Date;

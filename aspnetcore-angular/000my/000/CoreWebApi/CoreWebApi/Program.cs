@@ -28,7 +28,8 @@ namespace CoreWebApi
                 {
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    DBInitializer.InitializeAsync(userManager, rolesManager).Wait();
+                    var context = services.GetRequiredService<AppDbContext>();
+                    DBInitializer.InitializeAsync(userManager, rolesManager, context).Wait();
 
                     //var log4NetConfig = new XmlDocument();
                     //log4NetConfig.Load(File.OpenRead("log4net.config"));

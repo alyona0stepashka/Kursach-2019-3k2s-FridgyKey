@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;  
+using System.Threading.Tasks;
+using FK.BLL.Models;
 using FK.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreWebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/userprofile")]
+    [Route("api/userpage")]
     public class UserPageController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
@@ -26,12 +27,15 @@ namespace CoreWebApi.Controllers
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
-            return new
+            var model = new ApplicationUserModel
             {
-                user.Id,
-                user.FullName,
-                user.Email 
+                Id = user.Id,
+                Email = user.Email,
+                FullName = user.FullName,
+                Password = user.PasswordHash,
+                Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
             };
+            return Ok(model);
         }
 
         [HttpGet]

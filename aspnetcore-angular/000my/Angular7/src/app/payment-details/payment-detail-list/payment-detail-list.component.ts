@@ -30,7 +30,7 @@ export class PaymentDetailListComponent implements OnInit {
   }
 
   onDelete(PMId){
-    if (confirm('Are ypu sure?')) {
+    if (confirm('Are you sure?')) {
     this._service.deletePaymentDetail(PMId).subscribe(
       res=>{ 
         this._toastrService.warning('Submitted (delete) successfully', 'Payment Detail Register');
