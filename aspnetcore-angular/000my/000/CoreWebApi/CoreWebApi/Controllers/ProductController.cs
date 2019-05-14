@@ -2,67 +2,65 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FK.DAL;
+using FK.BLL.Interfaces;
 using FK.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CoreWebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/product")]
+    [Route("api/productы")]
     public class ProductController : Controller
     {
-        private readonly AppDbContext _context;
-
-        public ProductController(AppDbContext context)
+        private readonly IProductService _productService;
+        private readonly IUserService _userService;
+        public ProductController(IProductService prodService, IUserService userService)
         {
-            _context = context;
+            _productService = prodService;
+            _userService = userService;
         }
 
-        // GET: api/PaymentDetail
+
         [HttpGet]
-        public async Task<ActionResult> GetProductDetails()
+        [Route("general")]
+        public async Task<ActionResult> GetProductList()
         {
-            return Ok(await _context.Products.ToListAsync());
+            //var products = (await _productService.Get()).ToList();
+            //return Ok(products); 
+            return Ok(await _productService.Get());
         }
 
-
-        // PUT: api/PaymentDetail/5
+        [HttpGet]
+        [Route("user")]
+        public async Task<ActionResult> GetProductListByUser()
+        {
+            var user = await _userService.GetUser(User.Identity.Name);
+            var products = (await _productService.Get()).ToList().Where(m => m.UserId == user.Id);
+            return Ok(products);
+        }
+  
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutPaymentDetail(int id, [FromBody]Product product)
+        public async Task<ActionResult> PutProductDetail(int id, [FromBody]Product product)
         {
             if (id != product.Id)
             {
                 return BadRequest();
             }
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
+            var db_prod = await _productService.Get(id);
+            if (db_prod != null)
             {
-                await _context.SaveChangesAsync();
+                await _productService.Update(product);
+                return Ok(product);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
 
-        // GET: api/PaymentDetail/5
+     
         [HttpGet("{id}")]
         public async Task<ActionResult> GetProductDetail(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _productService.Get(id);
 
             if (product == null)
             {
@@ -72,35 +70,26 @@ namespace CoreWebApi.Controllers
             return Ok(product);
         }
 
-        // POST: api/PaymentDetail
+       
         [HttpPost]
-        public async Task<ActionResult> PostPaymentDetail([FromBody]Product product)
+        public async Task<ActionResult> PostProductDetail([FromBody]Product product)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
+            await _productService.Add(product);
             return CreatedAtAction("GetProductDetail", new { id = product.Id }, product);
         }
 
-        // DELETE: api/PaymentDetail/5
+       
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProductDetail(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _productService.Get(id);
             if (product == null)
             {
                 return NotFound();
             }
-
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            await _productService.Delete(product);
 
             return Ok(product);
-        }
-
-        private bool ProductExists(int id)
-        {
-            return _context.Products.Any(e => e.Id == id);
         }
     }
 }

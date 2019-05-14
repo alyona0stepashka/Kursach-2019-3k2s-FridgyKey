@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent implements OnInit {
 
   userDetails: UserDetail; 
+  isAdmin = false;
 
   constructor(private router: Router, private service: UserService) { }
 
@@ -18,6 +19,12 @@ export class HomeComponent implements OnInit {
     this.service.getUserProfile().subscribe(
       res => {
         this.userDetails = res as UserDetail;
+    if (this.userDetails.Role=="admin") {
+      this.isAdmin=true;
+    }
+    else{
+      this.isAdmin=false;
+    }
       },
       err => {
         console.log(err);

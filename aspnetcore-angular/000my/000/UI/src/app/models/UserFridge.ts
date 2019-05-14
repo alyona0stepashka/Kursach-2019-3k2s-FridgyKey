@@ -1,14 +1,13 @@
-﻿// import { Fridge } from './Fridge';
-// import { UserDetail } from './UserDetail';
+﻿import { Fridge } from './Fridge';
+import { UserDetail } from './UserDetail';
 
  
 
-// export class UserFridge {
-//     Id: number;
-
-//     Fridge: Fridge;
-//     User: UserDetail;
-// }
+export class UserFridge {
+    Id: number;
+    Fridge: Fridge;
+    User: UserDetail;
+}
 
 /*
  public int Id { get; set; }

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using FK.API.Models;
+using System.Threading.Tasks; 
+using FK.BLL.Interfaces;
+using FK.BLL.Models;
+using FK.BLL.Services;
 using FK.DAL;
+using FK.DAL.Interfaces;
+using FK.DAL.Repositories;
 using FK.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -68,6 +72,18 @@ namespace FK.API
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IUnitOfWork, EFUnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IFridgeService, FridgeService>();
+            services.AddScoped<IProductInfoService, ProductInfoService>();
+            services.AddScoped<IUserFridgeService, UserFridgeService>();
+            services.AddScoped<IFridgeProductService, FridgeProductService>();
+            services.AddScoped<IStickerService, StickerService>();
+            services.AddScoped<ICartProductService, CartProductService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

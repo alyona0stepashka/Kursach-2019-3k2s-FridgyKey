@@ -27,7 +27,7 @@ namespace CoreWebApi.Controllers
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
-            var model = new ApplicationUserModel
+            var model = new CurrentUser
             {
                 Id = user.Id,
                 Email = user.Email,
@@ -38,28 +38,28 @@ namespace CoreWebApi.Controllers
             return Ok(model);
         }
 
-        [HttpGet]
-        [Authorize(Roles = "admin")]
-        [Route("admin")]
-        public string GetForAdmin()
-        {
-            return "Web method for Admin";
-        }
+        //[HttpGet]
+        //[Authorize(Roles = "admin")]
+        //[Route("admin")]
+        //public string GetForAdmin()
+        //{
+        //    return "Web method for Admin";
+        //}
 
-        [HttpGet]
-        [Authorize(Roles = "user")]
-        [Route("customer")]
-        public string GetCustomer()
-        {
-            return "Web method for Customer";
-        }
+        //[HttpGet]
+        //[Authorize(Roles = "user")]
+        //[Route("customer")]
+        //public string GetCustomer()
+        //{
+        //    return "Web method for Customer";
+        //}
 
-        [HttpGet]
-        [Authorize(Roles = "admin,user")]
-        [Route("foradminorcustomer")]
-        public string GetForAdminOrCustomer()
-        {
-            return "Web method for Admin or Customer";
-        }
+        //[HttpGet]
+        //[Authorize(Roles = "admin,user")]
+        //[Route("foradminorcustomer")]
+        //public string GetForAdminOrCustomer()
+        //{
+        //    return "Web method for Admin or Customer";
+        //}
     }
 }

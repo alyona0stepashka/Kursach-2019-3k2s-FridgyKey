@@ -1,20 +1,17 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand text-white">FridgeKeyApp</a>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item" *ngIf="userDetails.Role=='admin'">
-      <a class="nav-link" routerLink="/adminpanel">Admin Panel</a>
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" routerLink="/home/admin">Admin Panel</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/product">Products</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/fridge">My Fridges</a>
-    </li>
+      <a class="nav-link" routerLink="/home/user">User Panel</a>
+    </li> 
   </ul>
   <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
 </nav>
 
-<div class="card m-5" style="width:18rem" *ngIf="userDetails">
+<div class="card m-5" style="width:24rem" *ngIf="userDetails">
   <ul class="list-group">
     <li class="list-group-item"><strong>Id : </strong>{{userDetails.Id}}</li>
     <li class="list-group-item"><strong>FullName : </strong>{{userDetails.FullName}}</li>
