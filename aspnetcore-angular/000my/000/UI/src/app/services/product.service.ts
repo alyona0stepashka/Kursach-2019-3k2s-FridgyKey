@@ -29,9 +29,37 @@ export class ProductService {
  } 
  
  refreshList(){
-   this._http.get(this.rootURL+'/product')
+   this._http.get(this.rootURL+'/product/user')
+   .toPromise()
+   .then(res=> this.list = res as Product[]);
+ }
+
+ refreshListGeneral(){
+   this._http.get(this.rootURL+'/product/general')
    .toPromise()
    .then(res=> this.list = res as Product[]);
  }
  
+ resetForm(){
+  this.formData = {
+    Id:0,
+    Name: '',
+    Description: '',
+    ImgURL: '',
+    ProdInfo: {
+      Id:0,
+      Fat: 0,
+      Carb: 0,
+      Protein: 0,
+      Kkal: 0
+    },
+    User: {
+      Id: '',
+      FullName: '',
+      Email: '',
+      Password: '',
+      Role: ''
+  }
+  };    
+}
 }

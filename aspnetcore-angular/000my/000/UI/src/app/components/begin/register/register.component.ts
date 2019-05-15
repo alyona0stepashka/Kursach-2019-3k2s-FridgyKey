@@ -10,18 +10,18 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private router: Router,public service: UserService, private toastr: ToastrService) { }
+  constructor(private router: Router, public service: UserService, private toastr: ToastrService) { }
 
 
   ngOnInit() {
-    this.service.formModel.reset();
+    this.service.resetForm();
   }
 
   onSubmit() {
       this.service.register().subscribe(
       (res: any) => {
         if (res.succeeded) {
-          this.service.formModel.reset();
+          this.service.resetForm();
           this.toastr.success('New user created!', 'Registration successful.');
           this.router.navigate(['/begin/login']);
         } else {

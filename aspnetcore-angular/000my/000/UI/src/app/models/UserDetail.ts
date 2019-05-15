@@ -1,5 +1,4 @@
-﻿ 
-
+﻿
 export class UserDetail {
     Id: string;
     FullName: string;

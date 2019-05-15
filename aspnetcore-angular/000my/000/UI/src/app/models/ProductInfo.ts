@@ -1,7 +1,7 @@
 ﻿export class ProductInfo {
     Id: number;
     Fat: number;
-    Card: number;
+    Carb: number;
     Protein: number;
     Kkal: number;
     //Product: Product;

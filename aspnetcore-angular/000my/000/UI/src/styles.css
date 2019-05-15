@@ -35,6 +35,15 @@ table tr:hover{
   ::-ms-input-placeholder { /* Microsoft Edge */
    color: #fff;
   }
+
+.mynav-cirlce{    
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+
  
 th{
     color: rgba(255, 255, 255, 0.367); 
@@ -97,8 +106,8 @@ div.form-group.required>label:first-child:after{
     border-radius: 10px 10px 10px 10px;
     background: #2e3137;
     padding: 30px;
-    width: 90%;
-    max-width: 450px;
+    width: 95%;
+    /* max-width: 450px; */
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);

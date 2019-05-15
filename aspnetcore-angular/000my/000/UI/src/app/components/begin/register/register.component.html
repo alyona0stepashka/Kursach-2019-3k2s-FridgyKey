@@ -1,36 +1,43 @@
-<form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">  
-   
-  <div class="form-group">
-    <label>Email</label>
-    <input class="form-control" placeholder="Email..." formControlName="Email">
-    <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid
-      email address.</label>
-  </div>
-  <div class="form-group">
-    <label>Full Name</label>
-    <input class="form-control" placeholder="FullName..." formControlName="FullName">
-  </div>
-  <div formGroupName="Passwords">
-    <div class="form-group required">
-      <label>Password</label>
-      <input placeholder="Password..." type="password" class="form-control" formControlName="Password">
-      <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">This
-        field is mandatory.</label>
-      <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum
-        4 characters required.</label>
-    </div> 
-    <div class="form-group required">
-      <label>Confirm Password</label>
-      <input placeholder="Confirm Password..." type="password" class="form-control" formControlName="ConfirmPassword">
-      <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">This
-        field is mandatory.</label>
-      <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm
-        Password does not match.</label>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)"> 
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-at" [class.green-icon]="Email.valid" [class.red-icon]="Email.invalid && Email.touched"></i>
+          </div>
+        </div>
+        <input name="Email" #Email="ngModel" [(ngModel)]="service.formData.Email" class="form-control"
+          placeholder="Email..." required maxlength="400">
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-8 offset-md-2">
-      <button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-user-alt"  [class.green-icon]="FullName.valid" [class.red-icon]="FullName.invalid && FullName.touched"></i>
+          </div>
+        </div>
+        <input name="FullName" #FullName="ngModel" [(ngModel)]="service.formData.FullName" 
+        class="form-control" placeholder="FullName..." required maxlength="400">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-key"  [class.green-icon]="Password.valid" [class.red-icon]="Password.invalid && Password.touched"></i>
+          </div>
+        </div>
+        <input type="password" name="Password" #Password="ngModel" [(ngModel)]="service.formData.Password" 
+        class="form-control" placeholder="Password..." required maxlength="400">
+      </div>
     </div> 
-  </div>
-</form> 
+    <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+      <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Sign Up</button>
+      </div> 
+      </div> 
+    </div>
+  </form>
+ 
