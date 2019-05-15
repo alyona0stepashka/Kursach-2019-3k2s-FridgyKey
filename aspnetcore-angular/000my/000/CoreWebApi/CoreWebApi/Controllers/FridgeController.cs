@@ -18,14 +18,10 @@ namespace CoreWebApi.Controllers
     {
         private readonly IUserService _userService;
         private readonly IFridgeService _fridgeService;
-        private readonly IUserFridgeService _userfridgeService;
-        private readonly AppDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserFridgeService _userfridgeService; 
 
-        public FridgeController(IUserService userService, IFridgeService fridgeService, IUserFridgeService userfridgeService, AppDbContext context, UserManager<ApplicationUser> userManager)
-        {
-            _context = context;
-            _userManager = userManager;
+        public FridgeController(IUserService userService, IFridgeService fridgeService, IUserFridgeService userfridgeService)
+        { 
             _fridgeService = fridgeService;
             _userfridgeService = userfridgeService;
             _userService = userService;
@@ -37,6 +33,7 @@ namespace CoreWebApi.Controllers
         public async Task<ActionResult> GetFridgeList()
         {
             var retval = await _fridgeService.Get();
+            //var fridgesV = new List<FridgeM>
 
             return Ok(retval);
         }

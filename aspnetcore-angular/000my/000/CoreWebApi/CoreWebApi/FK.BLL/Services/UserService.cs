@@ -166,6 +166,7 @@ namespace FK.BLL.Services
             {
                 var user = new CurrentUser
                 {
+                    Password = userDb.PasswordHash, 
                     Id = userDb.Id,
                     Role = (await _signInManager.UserManager.GetRolesAsync(userDb)).SingleOrDefault(),
                     Email = userDb.Email,

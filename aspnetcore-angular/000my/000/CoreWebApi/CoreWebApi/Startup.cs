@@ -42,6 +42,7 @@ namespace FK.API
                 var resolver = options.SerializerSettings.ContractResolver;
                 if (resolver != null)
                     (resolver as DefaultContractResolver).NamingStrategy = null;
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
             
             services.AddDbContext<AppDbContext>(options =>

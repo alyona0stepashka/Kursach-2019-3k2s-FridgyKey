@@ -26,10 +26,10 @@ namespace FK.BLL.Services
             userService = userService1;
         }
 
-        async Task<bool> IUserFridgeService.IsAccess(int id, string password)
+        async Task<bool> IUserFridgeService.IsAccess(string name, string password)
         {
             password = userService.Hash(password);  //???
-            var access = (await db.Fridges.Get(m => m.Id == id && m.PasswordHash == password)).ToList();
+            var access = (await db.Fridges.Get(m => m.Name==name && m.PasswordHash == password)).ToList();
             return (access.Count == 1); 
         }
 

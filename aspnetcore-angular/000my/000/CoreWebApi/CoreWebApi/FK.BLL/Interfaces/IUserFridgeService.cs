@@ -11,7 +11,7 @@ namespace FK.BLL.Interfaces
     {
         Task<List<ApplicationUser>> GetListOwner(int fridge_id);
 
-        Task<bool> IsAccess(int id, string password);
+        Task<bool> IsAccess(string name, string password);
         //    void Create(UserFridge userFridge);  //запись о конретном холодильнике конкретного юзера (добавить холодос юзеру) 
         //    void Delete(UserFridge userFridge);  //удалить холодос от юзера
         //    void Update(UserFridge product); //update

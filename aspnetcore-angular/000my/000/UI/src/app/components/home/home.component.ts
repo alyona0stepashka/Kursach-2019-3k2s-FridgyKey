@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private service: UserService) { }
 
   ngOnInit() {
+    //this.userDetails = localStorage.getItem('currentUser');
     this.service.getUserProfile().subscribe(
       res => {
         this.userDetails = res as UserDetail;
@@ -32,9 +33,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
-
   onLogout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token'); 
+    localStorage.removeItem('role'); 
+    //localStorage.removeItem('currentUser');
     this.router.navigate(['/begin/login']);
   }
 }

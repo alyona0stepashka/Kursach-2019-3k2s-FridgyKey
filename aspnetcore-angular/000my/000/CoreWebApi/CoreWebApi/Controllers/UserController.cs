@@ -42,6 +42,8 @@ namespace CoreWebApi.Controllers
         {
             var user = (await _userService.GetUsers()).Where(m=>m.Email==model.UserName).SingleOrDefault(); 
             var checkPassw = await _userService.CheckPassword(user, model.Password);
+            //var role = (await _userService.GetUserRoles(user.Email)).FirstOrDefault();
+            //var currentUser = await _userService.GetUser(user.Email);
             if (user != null && checkPassw)
             { 
                 var token = await _userService.LoginForToken(user);

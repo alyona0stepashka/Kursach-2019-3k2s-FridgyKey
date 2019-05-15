@@ -10,58 +10,60 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreWebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/product")]
-    public class ProductController : Controller
+    [Route("api/cartproduct")]
+    public class CartProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICartProductService _cartproductService;
+        private readonly IFridgeProductService _fridgeproductService;
         private readonly IUserService _userService;
-        public ProductController(IProductService prodService, IUserService userService)
+        public CartProductController(IProductService prodService, IUserService userService, IFridgeProductService fridgeproductService, ICartProductService cartproductService)
         {
+            _cartproductService = cartproductService;
             _productService = prodService;
             _userService = userService;
+            _fridgeproductService = fridgeproductService;
         }
 
 
         [HttpGet]
         [Route("general")]
-        public async Task<ActionResult> GetProductList()
+        public async Task<ActionResult> GetCartProductList()
         {
-            var products = (await _productService.Get()).ToList();
-
+            var products = (await _cartproductService.Get()).ToList();
             return Ok(products);
             //return Ok(await _productService.Get());
         }
 
-        [HttpGet]
-        [Route("user")]
-        public async Task<ActionResult> GetProductListByUser()
+        [HttpGet("{id}")]
+        [Route("fridge")]
+        public async Task<ActionResult> GetCartProductListByFridgeId(int id)
         {
-            string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var products = (await _productService.Get()).ToList().Where(m => m.UserId == userId);
+            var products = (await _cartproductService.Get()).ToList().Where(m => m.FridgeId == id);
             return Ok(products);
-        }
-  
+        } 
+
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutProductDetail(int id, [FromBody]Product product)
+        public async Task<ActionResult> PutFridgeProductDetail(int id, [FromBody]CartProduct product)
         {
             if (id != product.Id)
             {
                 return BadRequest();
             }
-            var db_prod = await _productService.Get(id);
+            var db_prod = await _cartproductService.Get(id);
             if (db_prod != null)
             {
-                await _productService.Update(product);
+                await _cartproductService.Update(product);
                 return Ok(product);
             }
             return NotFound();
         }
 
-     
+
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetProductDetail(int id)
+        public async Task<ActionResult> GetCartProductDetail(int id)
         {
-            var product = await _productService.Get(id);
+            var product = await _cartproductService.Get(id);
 
             if (product == null)
             {
@@ -71,25 +73,24 @@ namespace CoreWebApi.Controllers
             return Ok(product);
         }
 
-       
+
         [HttpPost]
-        public async Task<ActionResult> PostProductDetail([FromBody]Product product)
+        public async Task<ActionResult> PostCartProductDetail([FromBody]CartProduct product)
         {
-            await _productService.Add(product);
-            return CreatedAtAction("GetProductDetail", new { id = product.Id }, product);
+            await _cartproductService.Add(product);
+            return CreatedAtAction("GetCartProductDetail", new { id = product.Id }, product);
         }
 
-       
+
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteProductDetail(int id)
+        public async Task<ActionResult> DeleteCartProductDetail(int id)
         {
-            var product = await _productService.Get(id);
+            var product = await _cartproductService.Get(id);
             if (product == null)
             {
                 return NotFound();
             }
-            await _productService.Delete(product);
-
+            await _cartproductService.Delete(product);
             return Ok(product);
         }
 

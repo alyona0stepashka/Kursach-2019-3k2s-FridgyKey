@@ -5,10 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BeginComponent } from './components/begin/begin.component';
 import { LoginComponent } from './components/begin/login/login.component';
-import { RegisterComponent } from './components/begin/register/register.component';
-import { ProductComponent } from './components/home/product/product.component';
-import { ProductDetailComponent } from './components/home/product/product-detail/product-detail.component';
-import { ProductListComponent } from './components/home/product/product-list/product-list.component';
+import { RegisterComponent } from './components/begin/register/register.component'; 
 import { HomeComponent } from './components/home/home.component';
 import { Forbidden403Component } from './components/home/forbidden403/forbidden403.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -45,10 +42,7 @@ import { UserFridgeDetailComponent } from './components/home/user-panel/user-fri
     AppComponent,
     BeginComponent,
     LoginComponent,
-    RegisterComponent,
-    ProductComponent,
-    ProductDetailComponent,
-    ProductListComponent,
+    RegisterComponent, 
     HomeComponent,
     Forbidden403Component,
     AdminPanelComponent,
