@@ -15,8 +15,7 @@
           <p *ngFor="let user of pd.Users">{{user.Fullname}}</p>
         </td> 
         <td>
-          <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.Id)"></i>
-          <i class="fas fa-door-open text-danger" (click)="onOpen(pd.Id)"></i>
+          <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.Id)"></i> | <i class="fas fa-door-open " (click)="onOpen(pd.Id)"></i>
         </td>
       </tr>
     </table>

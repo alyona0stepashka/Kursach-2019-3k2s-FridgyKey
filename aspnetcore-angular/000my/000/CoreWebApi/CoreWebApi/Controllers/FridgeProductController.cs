@@ -35,7 +35,7 @@ namespace CoreWebApi.Controllers
 
         [HttpGet("{id}")]
         [Route("fridge")]
-        public async Task<ActionResult> GetFridgeProductListByFridgeId(int id)
+        public async Task<ActionResult> GetFridgeProductListByFridgeId(int id)  //fridge_id
         { 
             var products = (await _fridgeproductService.Get()).ToList().Where(m => m.FridgeId==id);
             return Ok(products);

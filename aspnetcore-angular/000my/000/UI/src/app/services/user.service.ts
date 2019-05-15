@@ -54,7 +54,7 @@ export class UserService {
   }
 
   refreshList() {
-    this.http.get(this.BaseURI+'/userpage/general')
+    this.http.get(this.BaseURI+'/user/general')
    .toPromise()
    .then(res=> this.list = res as UserDetail[]);
   }

@@ -8,9 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OpenComponent implements OnInit {
  
+  public fridgeId: number;
   constructor( ) { }
 
   ngOnInit() { 
+    this.fridgeId = parseInt(localStorage.getItem("fridgeId"));
   }
 
 }

@@ -32,6 +32,9 @@ import { FridgeProductListComponent } from './components/home/open/fridge-produc
 import { StickerComponent } from './components/home/open/sticker/sticker.component';
 import { StickerDetailComponent } from './components/home/open/sticker/sticker-detail/sticker-detail.component';
 import { StickerListComponent } from './components/home/open/sticker/sticker-list/sticker-list.component';
+import { CartComponent } from './components/home/open/cart/cart.component';
+import { CartDetailComponent } from './components/home/open/cart/cart-detail/cart-detail.component';
+import { CartListComponent } from './components/home/open/cart/cart-list/cart-list.component';
 
 
 const routes: Routes = 
@@ -111,6 +114,13 @@ const routes: Routes =
                     { path: 'detail', component: StickerDetailComponent },
                     { path: 'list', component: StickerListComponent } 
                   ] 
+              },
+              { path: 'cart', component: CartComponent,
+                children: 
+                [
+                  { path: 'detail', component: CartDetailComponent },
+                  { path: 'list', component: CartListComponent } 
+                ] 
               }
             ]
         }     

@@ -37,6 +37,25 @@ namespace CoreWebApi.Controllers
             };
             return Ok(model);
         }
+        //[HttpGet]
+        //[Route("general")]
+        //[Authorize]
+        ////GET : /api/UserProfile
+        //public async Task<Object> GetUsersProfile()
+        //{
+        //    var users = 
+        //    string userId = User.Claims.First(c => c.Type == "UserID").Value;
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    var model = new CurrentUser
+        //    {
+        //        Id = user.Id,
+        //        Email = user.Email,
+        //        FullName = user.FullName,
+        //        Password = user.PasswordHash,
+        //        Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
+        //    };
+        //    return Ok(model);
+        //}
 
         //[HttpGet]
         //[Authorize(Roles = "admin")]

@@ -1,6 +1,5 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="PMId" [value]="_service.formData.Id">
-    <input type="hidden" name="DateBuy" [value]="_service.formData.DateBuy"> 
+    <input type="hidden" name="PMId" [value]="_service.formData.Id"> 
     <input type="hidden" name="User" [value]="_service.formData.User"> 
     <input type="hidden" name="Fridge" [value]="_service.formData.Fridge"> 
     <input type="hidden" name="Product" [value]="_service.formData.Product"> 
@@ -28,9 +27,9 @@
         <input name="Description" #Description="ngModel" [(ngModel)]="_service.formData.Description" class="form-control"
           placeholder="Description..." required maxlength="400">
       </div>
-    </div>  
+    </div> 
     <div class="form-row">
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-8">
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text bg-white">
@@ -51,34 +50,7 @@
           <input name="EI" #EI="ngModel" [(ngModel)]="_service.formData.EI" class="form-control" 
             placeholder="EI..." required >
         </div>
-      </div>
-      <div class="form-group col-md-4">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text bg-white">
-              <i class="fas fa-key"  [class.green-icon]="Price.valid" [class.red-icon]="Price.invalid && Price.touched"></i>
-            </div>
-          </div>
-          <input name="Price" #Price="ngModel" [(ngModel)]="_service.formData.Price" class="form-control" 
-            placeholder="Price..." required >
-        </div>
-      </div> 
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text bg-white">
-              <i class="fas fa-hamburger" [class.green-icon]="DateValid.valid" [class.red-icon]="DateValid.invalid && DateValid.touched"></i>
-            </div>
-          </div>
-          <!-- <select id="select_product" required name="Name" #Name="ngModel" [(ngModel)]="_service.formData.Product.Name" class="form-control" placeholder="Name...">
-            <option *ngFor="product of products" value="{{product.Name}}">{{product.Name}}</option>
-          </select> -->
-          <input name="DateValid" #DateValid="ngModel" [(ngModel)]="_service.formData.DateValid" class="form-control"
-            placeholder="DateValid..." >
-        </div>
-      </div>
-    <div>
+      </div>  
       <div class="form-group">
         <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit Form Data</button> 
         <button class="btn btn-lg btn-block" type="button" (onClick)="resetForm(form)" style="background-color: slategray; border-radius: 20px; color:#ffff"><i class="fas fa-database"></i> Clear</button>

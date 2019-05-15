@@ -1,3 +1,16 @@
-<p>
-  open works!
-</p>
+ 
+<div class="wrapper">
+    <div class="wrapped-div">
+      <div class="tab-header">
+        <p class="text-center display-4">You Open Fridge (Id={{fridgeId}})</p>
+        <h2 routerLink='/home/open/fridgeproduct' routerLinkActive='active'>Products</h2>
+        <h2 routerLink='/home/open/sticker' routerLinkActive='active'>Stickers</h2> 
+        <h2 routerLink='/home/open/cart' routerLinkActive='active'>Shopping Cart</h2> 
+      </div>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>

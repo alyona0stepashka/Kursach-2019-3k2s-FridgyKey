@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FridgeProduct } from '../models/FridgeProduct';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +29,57 @@ export class FridgeproductService {
  } 
  
  refreshList(id){  //fridge_id
-   this._http.get(this.rootURL+'/fridgeproduct/'+id)
+   this._http.get(this.rootURL+'/fridgeproduct/fridge/'+id)
    .toPromise()
    .then(res=> this.list = res as FridgeProduct[]);
  }
  
+ resetForm(){
+  this.formData = {
+    Id:0,
+    Amount: 0,
+    Description: '',
+    EI: '',
+    Price: 0,
+    DateBuy: new Date(),
+    DateValid: new Date(),
+    Fridge: {
+      Id:0,
+      Name: '',
+      Description: '',
+      PasswordHash: '',
+      DateCreate: new Date(),
+      Stickers: null,
+      FridgeProducts: null,
+      Users: null
+    },
+    Product: {
+      Id:0,
+      Name: '',
+      Description: '',
+      ImgURL: '',
+      ProdInfo: {
+        Id:0,
+        Fat: 0,
+        Carb: 0,
+        Protein: 0,
+        Kkal: 0
+      },
+      User: {
+        Id: '',
+        FullName: '',
+        Email: '',
+        Password: '',
+        Role: ''
+    }
+    },
+    User: {
+      Id:'',
+      FullName: '',
+      Email: '',
+      Password: '',
+      Role: ''
+   } 
+  };
+}
 }

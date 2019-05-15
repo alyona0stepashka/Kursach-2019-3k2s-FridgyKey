@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetail } from 'src/app/models/UserDetail';
-import { FridgeproductService } from 'src/app/services/fridgeproduct.service';
+import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { Product } from 'src/app/models/Product';
 import { Router } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
-import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/Product';
 
 @Component({
-  selector: 'app-fridge-product-detail',
-  templateUrl: './fridge-product-detail.component.html',
+  selector: 'app-cart-detail',
+  templateUrl: './cart-detail.component.html',
   styles: []
 })
-export class FridgeProductDetailComponent implements OnInit {
+export class CartDetailComponent implements OnInit {
 
   public fridgeId: number;
   public userDetails: UserDetail; 
-  public _service: FridgeproductService;
+  public _service: CartService;
   private _toastrService: ToastrService;
   public products: Product[];
 
   constructor(private router: Router,
-    service: FridgeproductService,
+    service: CartService,
     toastr: ToastrService,
     private prodService: ProductService,
     private userService: UserService) {
@@ -46,13 +46,12 @@ export class FridgeProductDetailComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this._service.formData.Fridge.Id=this.fridgeId; 
     if (this._service.formData.Id==0) this.insertRecord(form);  
     else this.updateRecord(form);
   } 
 
   insertRecord(form: NgForm){
-    this._service.postFridgeProductDetail().subscribe(
+    this._service.postCartDetail().subscribe(
       res=>{
         this.resetForm(form);
         this._toastrService.success('Submitted (post) successfully', 'Product Detail Register');
@@ -65,7 +64,7 @@ export class FridgeProductDetailComponent implements OnInit {
   }
 
   updateRecord(form: NgForm){
-    this._service.putFridgeProductDetail().subscribe(
+    this._service.putCartDetail().subscribe(
       res=>{
         this.resetForm(form);
         this._toastrService.info('Submitted (put) successfully', 'Product Detail Register');

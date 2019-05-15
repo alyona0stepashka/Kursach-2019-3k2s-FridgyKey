@@ -45,6 +45,10 @@ import { FridgeProductListComponent } from './components/home/open/fridge-produc
 import { StickerComponent } from './components/home/open/sticker/sticker.component';
 import { StickerDetailComponent } from './components/home/open/sticker/sticker-detail/sticker-detail.component';
 import { StickerListComponent } from './components/home/open/sticker/sticker-list/sticker-list.component';
+import { CartComponent } from './components/home/open/cart/cart.component';
+import { CartDetailComponent } from './components/home/open/cart/cart-detail/cart-detail.component';
+import { CartListComponent } from './components/home/open/cart/cart-list/cart-list.component';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -79,7 +83,10 @@ import { StickerListComponent } from './components/home/open/sticker/sticker-lis
     FridgeProductListComponent,
     StickerComponent,
     StickerDetailComponent,
-    StickerListComponent
+    StickerListComponent,
+    CartComponent,
+    CartDetailComponent,
+    CartListComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +100,7 @@ import { StickerListComponent } from './components/home/open/sticker/sticker-lis
     FormsModule
   ],
   providers: [
+    CartService,
     ProductService, 
     UserService, 
     FridgeService, 

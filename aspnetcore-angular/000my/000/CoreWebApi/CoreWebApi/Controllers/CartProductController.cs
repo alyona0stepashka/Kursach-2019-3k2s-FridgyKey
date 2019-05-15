@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreWebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/cartproduct")]
+    [Route("api/cart")]
     public class CartProductController : Controller
     {
         private readonly IProductService _productService;
@@ -35,9 +35,9 @@ namespace CoreWebApi.Controllers
             //return Ok(await _productService.Get());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] 
         [Route("fridge")]
-        public async Task<ActionResult> GetCartProductListByFridgeId(int id)
+        public async Task<ActionResult> GetCartProductListByFridgeId(int id)  //fridge_id
         {
             var products = (await _cartproductService.Get()).ToList().Where(m => m.FridgeId == id);
             return Ok(products);
@@ -52,7 +52,7 @@ namespace CoreWebApi.Controllers
             }
             var db_prod = await _cartproductService.Get(id);
             if (db_prod != null)
-            {
+            { 
                 await _cartproductService.Update(product);
                 return Ok(product);
             }

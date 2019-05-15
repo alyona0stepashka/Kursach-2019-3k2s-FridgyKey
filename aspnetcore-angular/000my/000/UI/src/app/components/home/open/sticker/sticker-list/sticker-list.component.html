@@ -1,3 +1,18 @@
-<p>
-  sticker-list works!
-</p>
+<div *ngIf="isLoaded">
+    <table class="table wrapped-div" style="width: 100%">
+      <thead>
+        <th>Text</th>
+        <th>DateAdd</th>
+        <th>User</th> 
+      </thead>
+      <tr *ngFor="let pd of _service.list"> 
+        <td >{{pd.Text}}</td>
+        <td >{{pd.DateAdd}}</td>
+        <td >{{pd.User.FullName}}</td> 
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="!isLoaded" class="text-center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Lightness_rotate_36f_cw.gif" style="max-height: 70px; max-width: 70px"/>
+  </div>
+  

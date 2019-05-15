@@ -18,18 +18,19 @@ namespace CoreWebApi.Controllers
         private readonly IFridgeService _fridgeService;
         private readonly IUserFridgeService _userfridgeService;
 
-        public StickerController(IUserService userService, IFridgeService fridgeService, IUserFridgeService userfridgeService)
+        public StickerController(IUserService userService, IFridgeService fridgeService, IUserFridgeService userfridgeService, IStickerService stickerService)
         {
             _fridgeService = fridgeService;
             _userfridgeService = userfridgeService;
             _userService = userService;
+            _stickerService = stickerService;
         }   
 
         // GET: api/PaymentDetail/5
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetStickerDetail(int id)
+        public async Task<ActionResult> GetStickerDetail(int id)  //fridge_id
         {
-            var sticker = await _stickerService.Get(id);
+            var sticker = await _stickerService.Get(m=>m.FridgeId==id);
 
             if (sticker == null)
             {
