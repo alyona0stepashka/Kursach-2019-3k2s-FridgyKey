@@ -37,7 +37,7 @@ namespace CoreWebApi.Controllers
         public async Task<ActionResult> GetProductListByUser()
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
-            var products = (await _productService.Get()).ToList().Where(m => m.UserId == userId);
+            var products = (await _productService.Get()).ToList().Where(m => m.UserId == userId || m.User.Email == "admin@mail.ru");
             return Ok(products);
         }
   
@@ -75,6 +75,7 @@ namespace CoreWebApi.Controllers
         [HttpPost]
         public async Task<ActionResult> PostProductDetail([FromBody]Product product)
         {
+            product.UserId = User.Claims.First(c => c.Type == "UserID").Value; 
             await _productService.Add(product);
             return CreatedAtAction("GetProductDetail", new { id = product.Id }, product);
         }

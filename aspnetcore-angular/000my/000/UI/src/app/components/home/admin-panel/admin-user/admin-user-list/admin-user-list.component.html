@@ -1,3 +1,21 @@
-<p>
-  admin-user-list works!
-</p>
+<div *ngIf="isLoaded">
+    <table class="table wrapped-div" style="width: 100%">
+      <thead> 
+        <th>Id</th>
+        <th>Email</th>
+        <th>FullName</th>
+        <th>Role</th> 
+        <th><i class="fas fa-cogs"></i></th>
+      </thead>
+      <tr *ngFor="let pd of userService.list"> 
+        <td >{{pd.Id}}</td>
+        <td >{{pd.Email}}</td>
+        <td >{{pd.FullName}}</td>
+        <td >{{pd.Role}}}</td>  
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="!isLoaded" class="text-center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Lightness_rotate_36f_cw.gif" style="max-height: 70px; max-width: 70px"/>
+  </div>
+  

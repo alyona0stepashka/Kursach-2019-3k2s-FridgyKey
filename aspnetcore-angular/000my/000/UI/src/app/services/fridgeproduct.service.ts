@@ -28,8 +28,8 @@ export class FridgeproductService {
    return this._http.delete(this.rootURL+'/fridgeproduct/'+ id);
  } 
  
- refreshList(){
-   this._http.get(this.rootURL+'/fridgeproduct')
+ refreshList(id){  //fridge_id
+   this._http.get(this.rootURL+'/fridgeproduct/'+id)
    .toPromise()
    .then(res=> this.list = res as FridgeProduct[]);
  }

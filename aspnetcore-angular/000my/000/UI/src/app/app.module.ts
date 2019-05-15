@@ -36,6 +36,15 @@ import { UserFridgeComponent } from './components/home/user-panel/user-fridge/us
 import { UserProductComponent } from './components/home/user-panel/user-product/user-product.component';
 import { UserPanelComponent } from './components/home/user-panel/user-panel.component';
 import { UserFridgeDetailComponent } from './components/home/user-panel/user-fridge/user-fridge-detail/user-fridge-detail.component';
+import { UserPageComponent } from './components/home/user-panel/user-page/user-page.component';
+import { UserFridgeAddComponent } from './components/home/user-panel/user-fridge/user-fridge-add/user-fridge-add.component';
+import { OpenComponent } from './components/home/open/open.component';
+import { FridgeProductComponent } from './components/home/open/fridge-product/fridge-product.component';
+import { FridgeProductDetailComponent } from './components/home/open/fridge-product/fridge-product-detail/fridge-product-detail.component';
+import { FridgeProductListComponent } from './components/home/open/fridge-product/fridge-product-list/fridge-product-list.component';
+import { StickerComponent } from './components/home/open/sticker/sticker.component';
+import { StickerDetailComponent } from './components/home/open/sticker/sticker-detail/sticker-detail.component';
+import { StickerListComponent } from './components/home/open/sticker/sticker-list/sticker-list.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +70,16 @@ import { UserFridgeDetailComponent } from './components/home/user-panel/user-fri
     UserFridgeDetailComponent,
     UserFridgeComponent,
     UserProductComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    UserPageComponent,
+    UserFridgeAddComponent,
+    OpenComponent,
+    FridgeProductComponent,
+    FridgeProductDetailComponent,
+    FridgeProductListComponent,
+    StickerComponent,
+    StickerDetailComponent,
+    StickerListComponent
   ],
   imports: [
     BrowserModule,

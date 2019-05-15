@@ -1,0 +1,13 @@
+<div class="wrapper">
+    <h1 class="display-4 text-center">User Detail Register</h1>
+    <hr>
+    <div clas="row"></div>
+    <div class="card m-5 text-center" style="width:24rem" *ngIf="userDetails">
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Id : </strong>{{userDetails.Id}}</li>
+          <li class="list-group-item"><strong>FullName : </strong>{{userDetails.FullName}}</li>
+          <li class="list-group-item"><strong>Email : </strong>{{userDetails.Email}}</li>
+          <li class="list-group-item"><strong>Role : </strong>{{userDetails.Role}}</li> 
+        </ul>
+      </div>
+  </div>

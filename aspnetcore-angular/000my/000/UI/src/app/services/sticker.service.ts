@@ -24,8 +24,8 @@ export class StickerService {
    return this._http.post(this.rootURL+'/sticker', this.formData);
  }   
  
- refreshList(){
-   this._http.get(this.rootURL+'/sticker')
+ refreshList(id){  //fridge_id
+   this._http.get(this.rootURL+'/sticker/'+id)
    .toPromise()
    .then(res=> this.list = res as Sticker[]);
 }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark mynav-cirlce" style="width: 100%; border-top-left-radius: 0%; border-top-right-radius: 0%">
-  <a class="navbar-brand text-white">FridgeKeyApp</a>
+  <a class="navbar-brand text-white" routerLink='/home/user/page' routerLinkActive='active'>FridgeKeyApp</a>
   <!-- <ul class="navbar-nav mr-auto">
     <li class="nav-item" *ngIf="isAdmin">
       <a class="nav-link" routerLink="/home/admin">Admin Panel</a>
@@ -26,6 +26,7 @@
     <div class="tab-header">
       <h2 *ngIf="isAdmin" routerLink='/home/admin' routerLinkActive='active'>Admin Panel</h2>
       <h2 routerLink='/home/user' routerLinkActive='active'>User Panel</h2>
+      <h2 *ngIf="isFridge" routerLink='/home/open' routerLinkActive='active'>Open Fridge</h2>
     </div>
     <div class="row">
       <div style="width: 100%">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetail } from 'src/app/models/UserDetail';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service'; 
 
 @Component({
@@ -10,13 +10,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomeComponent implements OnInit {
 
+  isFridge = false;
   userDetails: UserDetail; 
   isAdmin = false;
 
   constructor(private router: Router, private service: UserService) { }
 
   ngOnInit() {
-    //this.userDetails = localStorage.getItem('currentUser');
+
+    if (localStorage.getItem('fridgeId') != null)
+    {
+      this.isFridge = true;
+    }
     this.service.getUserProfile().subscribe(
       res => {
         this.userDetails = res as UserDetail;

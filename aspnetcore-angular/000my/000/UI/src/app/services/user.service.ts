@@ -11,6 +11,7 @@ export class UserService {
   constructor(private fb: FormBuilder, private http: HttpClient) { }
   readonly BaseURI = 'http://localhost:8491/api';
   public formData: UserDetail;
+  list: UserDetail[];
 
 
   // formModel1 = this.fb.group({
@@ -47,9 +48,15 @@ export class UserService {
   login(formData1) {
     return this.http.post(this.BaseURI + '/user/login', formData1);
   }
-
+  
   getUserProfile() {
     return this.http.get(this.BaseURI + '/userpage');
+  }
+
+  refreshList() {
+    this.http.get(this.BaseURI+'/userpage/general')
+   .toPromise()
+   .then(res=> this.list = res as UserDetail[]);
   }
 
   roleMatch(allowedRoles): boolean {
@@ -58,8 +65,7 @@ export class UserService {
     var userRole = payLoad.role;
     allowedRoles.forEach(element => {
       if (userRole == element) {
-        isMatch = true;
-        //return false;
+        isMatch = true; 
       }
     });
     return isMatch;

@@ -1,3 +1,28 @@
-<p>
-  admin-product-list works!
-</p>
+<div *ngIf="isLoaded">
+    <table class="table wrapped-div" style="width: 100%">
+      <thead>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>p/f/c</th>
+        <th>Kkal</th>
+        <th><i class="fas fa-cogs"></i></th>
+      </thead>
+      <tr *ngFor="let pd of _service.list">
+        <td >      
+            <img *ngIf="pd.ImgURL==''" src="https://www.diamondbathrooms.com/sites/default/files/default_images/no_image_available.png" style="max-height: 75px; max-width: 75px; opacity:0.3"/>
+            <img *ngIf="pd.ImgURL!=''" src="{{pd.ImgURL}}" style="max-height: 75px; max-width: 75px"></td>
+        <td >{{pd.Name}}</td>
+        <td >{{pd.Description}}</td>
+        <td >{{pd.ProdInfo.Protein}} / {{pd.ProdInfo.Fat}} / {{pd.ProdInfo.Carb}} </td>
+        <td >{{pd.ProdInfo.Kkal}}</td>
+        <td>
+          <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.Id)"></i> 
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="!isLoaded" class="text-center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Lightness_rotate_36f_cw.gif" style="max-height: 70px; max-width: 70px"/>
+  </div>
+  

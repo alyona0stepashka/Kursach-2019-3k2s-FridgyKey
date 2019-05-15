@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Fridge } from '../models/Fridge';
 import { AddFridge } from '../models/AddFridge';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Sticker } from '../models/Sticker';
+import { FridgeProduct } from '../models/FridgeProduct';
+import { UserDetail } from '../models/UserDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +33,27 @@ export class FridgeService {
  } 
  
  refreshList(){
-   this._http.get(this.rootURL+'/fridge')
+   this._http.get(this.rootURL+'/fridge/user')
    .toPromise()
    .then(res=> this.list = res as Fridge[]);
- }
+ } 
  
-
-
+ refreshListGeneral(){
+  this._http.get(this.rootURL+'/fridge/general')
+  .toPromise()
+  .then(res=> this.list = res as Fridge[]);
+}
  
+ resetForm(){
+    this.formData = {
+      Id:0,
+      Name: '',
+      Description: '',
+      PasswordHash: '',
+      DateCreate: new Date(),
+      Stickers: null,
+      FridgeProducts: null,
+      Users: null
+    }; 
+  }
 }

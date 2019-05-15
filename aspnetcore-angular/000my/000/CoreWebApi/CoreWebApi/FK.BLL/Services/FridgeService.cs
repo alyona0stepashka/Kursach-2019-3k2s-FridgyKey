@@ -43,7 +43,10 @@ namespace FK.BLL.Services
 
         async Task<Fridge> IService<Fridge, int>.Add(Fridge entity)
         {
+            var user_id = entity.UserFridges.FirstOrDefault().UserId;
+            entity.UserFridges = null;
             var Fridge = await db.Fridges.Add(entity);
+            var usfridge = await db.UserFridges.Add(new UserFridge { FridgeId=entity.Id, UserId=user_id});
             return Fridge;
         }
 

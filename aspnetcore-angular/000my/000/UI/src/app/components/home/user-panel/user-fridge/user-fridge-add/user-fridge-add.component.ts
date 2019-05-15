@@ -5,20 +5,21 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
+import { UserfridgeService } from 'src/app/services/userfridge.service';
 
 @Component({
-  selector: 'app-user-fridge-detail',
-  templateUrl: './user-fridge-detail.component.html',
+  selector: 'app-user-fridge-add',
+  templateUrl: './user-fridge-add.component.html',
   styles: []
 })
-export class UserFridgeDetailComponent implements OnInit {
+export class UserFridgeAddComponent implements OnInit {
 
   public userDetails: UserDetail; 
-  public _service: FridgeService;
+  public _service: UserfridgeService;
   private _toastrService: ToastrService;
 
   constructor(private router: Router,
-    service: FridgeService,
+    service: UserfridgeService,
     toastr: ToastrService,
     private userService: UserService) {
     this._service = service;
@@ -38,35 +39,20 @@ export class UserFridgeDetailComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (this._service.formData.Id==0) this.insertRecord(form);  
-    else this.updateRecord(form);
+    this.insertRecord(form);  
   } 
 
   insertRecord(form: NgForm){
-    this._service.postFridgeDetail().subscribe(
+    this._service.postUserFridgeDetail().subscribe(
       res=>{
         this.resetForm(form);
-        this._toastrService.success('Submitted (post) successfully', 'Fridge Detail Register');
-        this._service.refreshList();
+        this._toastrService.success('Submitted (post) successfully', 'Fridge Detail Register'); 
       },
       err=>{
         console.log(err);
       }
     )
-  }
-
-  updateRecord(form: NgForm){
-    this._service.putFridgeDetail().subscribe(
-      res=>{
-        this.resetForm(form);
-        this._toastrService.info('Submitted (put) successfully', 'Fridge Detail Register');
-        this._service.refreshList();
-      },
-      err=>{
-        console.log(err);
-      }
-    )
-  }
+  } 
 
   resetForm(form?:NgForm){
     if (form!=null) form.resetForm();
