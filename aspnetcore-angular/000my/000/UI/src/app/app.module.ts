@@ -54,6 +54,8 @@ import { CartService } from './services/cart.service';
   declarations: [
     AppComponent,
     BeginComponent,
+    // FormsModule,
+    // ReactiveFormsModule,
     LoginComponent,
     RegisterComponent, 
     HomeComponent,
@@ -90,7 +92,9 @@ import { CartService } from './services/cart.service';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

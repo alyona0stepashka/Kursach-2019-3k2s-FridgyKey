@@ -11,7 +11,7 @@
           </div>
         </div>
         <!-- <select id="select_product" required name="Name" #Name="ngModel" [(ngModel)]="_service.formData.Product.Name" class="form-control" placeholder="Name...">
-          <option *ngFor="product of products" value="{{product.Name}}">{{product.Name}}</option>
+          <option *ngFor="prod of products" [value]="_service.formData.Product">{{product.Name}}</option>
         </select> -->
         <input name="Name" #Name="ngModel" [(ngModel)]="_service.formData.Product.Name" class="form-control"
           placeholder="Name..." required maxlength="400">
@@ -51,9 +51,9 @@
             placeholder="EI..." required >
         </div>
       </div>  
+    </div>
       <div class="form-group">
         <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit Form Data</button> 
         <button class="btn btn-lg btn-block" type="button" (onClick)="resetForm(form)" style="background-color: slategray; border-radius: 20px; color:#ffff"><i class="fas fa-database"></i> Clear</button>
       </div>
-    </div>
   </form>

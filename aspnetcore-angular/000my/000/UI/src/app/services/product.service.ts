@@ -21,11 +21,11 @@ export class ProductService {
  } 
  
  putProductDetail(){
-   return this._http.put(this.rootURL+'/product/'+ this.formData.Id, this.formData);
+   return this._http.put(this.rootURL+'/product?id='+ this.formData.Id, this.formData);
  } 
  
  deleteProductDetail(id){
-   return this._http.delete(this.rootURL+'/product/'+ id);
+   return this._http.delete(this.rootURL+'/product?id='+ id);
  } 
  
  refreshList(){

@@ -82,6 +82,7 @@ namespace CoreWebApi.Controllers
         [HttpPost]
         public async Task<ActionResult> PostFridgeDetail([FromBody]Fridge fridge)
         {
+            fridge.DateCreate = DateTime.Now;
             fridge.UserFridges = new List<UserFridge> { new UserFridge { UserId = User.Claims.First(c => c.Type == "UserID").Value } };
             await _fridgeService.Add(fridge);
             return CreatedAtAction("GetFridgeDetail", new { id = fridge.Id }, fridge);

@@ -21,15 +21,15 @@ export class CartService {
  } 
  
  putCartDetail(){
-   return this._http.put(this.rootURL+'/cart/'+ this.formData.Id, this.formData);
+   return this._http.put(this.rootURL+'/cart?id='+ this.formData.Id, this.formData);
  } 
  
  deleteCartDetail(id){
-   return this._http.delete(this.rootURL+'/cart/'+ id);
+   return this._http.delete(this.rootURL+'/cart?id='+ id);
  } 
  
  refreshList(id){  //fridge_id
-   this._http.get(this.rootURL+'/cart/fridge/'+id)
+   this._http.get(this.rootURL+'/cart/fridge?id='+id)
    .toPromise()
    .then(res=> this.list = res as Cart[]);
  }

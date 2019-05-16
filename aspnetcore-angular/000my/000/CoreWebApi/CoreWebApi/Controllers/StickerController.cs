@@ -27,6 +27,7 @@ namespace CoreWebApi.Controllers
         }   
 
         // GET: api/PaymentDetail/5
+        [Route("fridge")]
         [HttpGet("{id}")]
         public async Task<ActionResult> GetStickerDetail(int id)  //fridge_id
         {

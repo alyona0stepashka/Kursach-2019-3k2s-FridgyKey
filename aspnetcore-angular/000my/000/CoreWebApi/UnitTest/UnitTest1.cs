@@ -1,4 +1,7 @@
+using CoreWebApi.Controllers;
 using FK.DAL.Interfaces;
+using FK.Models;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using Xunit;
@@ -7,6 +10,29 @@ namespace UnitTest
 {
     public class UnitTest1
     {
+
+
+
+        [Fact]
+        public void IndexViewDataMessage()
+        {
+            //ProductController controller = new ProductController(); 
+            //var result = controller.GetProductList() as ViewResult; 
+            //Assert.Equal("Hello world!", result?.ViewData["Message"]);
+
+            // Arrange
+            //var mock = new Mock<IRepository<Product,int>>();
+            //mock.Setup(repo => repo.Get(1)).Returns(new Product {a });
+            //var controller = new HomeController(mock.Object);
+
+            //// Act
+            //var result = controller.Index();
+
+            //// Assert
+            //var viewResult = Assert.IsType<ViewResult>(result);
+            //var model = Assert.IsAssignableFrom<IEnumerable<Phone>>(viewResult.Model);
+            //Assert.Equal(GetTestPhones().Count, model.Count());
+        }
         //[Fact]
         //public void IndexReturnsAViewResultWithAListOfMedicines()
         //{

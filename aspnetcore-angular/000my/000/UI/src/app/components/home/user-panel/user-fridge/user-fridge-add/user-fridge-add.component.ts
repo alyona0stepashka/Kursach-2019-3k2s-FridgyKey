@@ -49,7 +49,9 @@ export class UserFridgeAddComponent implements OnInit {
         this._toastrService.success('Submitted (post) successfully', 'Fridge Detail Register'); 
       },
       err=>{
+        if (err)
         console.log(err);
+        this._toastrService.error('Submitted (post) error', 'Fridge Detail Register'); 
       }
     )
   } 

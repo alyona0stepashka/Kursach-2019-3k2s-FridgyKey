@@ -26,7 +26,7 @@ export class UserfridgeService {
 }  
 
 deleteUserFridgeDetail(id){
-  return this._http.delete(this.rootURL+'/userfridge/'+ id);  //fridge_id
+  return this._http.delete(this.rootURL+'/userfridge?id='+ id);  //fridge_id
 } 
 
 resetForm(){

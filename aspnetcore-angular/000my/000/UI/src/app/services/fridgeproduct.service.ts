@@ -21,15 +21,15 @@ export class FridgeproductService {
  } 
  
  putFridgeProductDetail(){
-   return this._http.put(this.rootURL+'/fridgeproduct/'+ this.formData.Id, this.formData);
+   return this._http.put(this.rootURL+'/fridgeproduct?id='+ this.formData.Id, this.formData);
  } 
  
  deleteFridgeProductDetail(id){
-   return this._http.delete(this.rootURL+'/fridgeproduct/'+ id);
+   return this._http.delete(this.rootURL+'/fridgeproduct?id='+ id);
  } 
  
  refreshList(id){  //fridge_id
-   this._http.get(this.rootURL+'/fridgeproduct/fridge/'+id)
+   this._http.get(this.rootURL+'/fridgeproduct/fridge?id='+id)
    .toPromise()
    .then(res=> this.list = res as FridgeProduct[]);
  }

@@ -25,11 +25,11 @@ export class FridgeService {
  } 
  
  putFridgeDetail(){
-   return this._http.put(this.rootURL+'/fridge/'+ this.formData.Id, this.formData);
+   return this._http.put(this.rootURL+'/fridge?id='+ this.formData.Id, this.formData);
  } 
  
  deleteFridgeDetail(id){
-   return this._http.delete(this.rootURL+'/fridge/'+ id);
+   return this._http.delete(this.rootURL+'/fridge?id='+ id);
  } 
  
  refreshList(){

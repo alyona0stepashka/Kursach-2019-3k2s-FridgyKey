@@ -16,8 +16,8 @@ namespace FK.BLL.Models
         public string Name { get; set; } 
         public string Description { get; set; } 
         public DateTime? DateCreate { get; set; }  
-        public List<Sticker> Stickers { get; set; }
-        public List<FridgeProduct> FridgeProducts { get; set; }         
+        //public List<Sticker> Stickers { get; set; }
+        //public List<FridgeProduct> FridgeProducts { get; set; }         
         public List<CurrentUser> Users { get; set; }
 
         public FridgeModel(Fridge fridge, List<CurrentUser> list)
@@ -27,8 +27,8 @@ namespace FK.BLL.Models
             Name = fridge.Name;
             Description = fridge.Description;
             DateCreate = fridge.DateCreate;
-            Stickers = fridge.Stickers.ToList();
-            FridgeProducts = fridge.FridgeProducts.ToList();
+           // Stickers = fridge.Stickers.ToList();
+            //FridgeProducts = fridge.FridgeProducts.ToList();
             Users = list;
         }
     }

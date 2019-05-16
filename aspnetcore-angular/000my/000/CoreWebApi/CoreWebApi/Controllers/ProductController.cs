@@ -75,6 +75,7 @@ namespace CoreWebApi.Controllers
         [HttpPost]
         public async Task<ActionResult> PostProductDetail([FromBody]Product product)
         {
+            product.User = null;
             product.UserId = User.Claims.First(c => c.Type == "UserID").Value; 
             await _productService.Add(product);
             return CreatedAtAction("GetProductDetail", new { id = product.Id }, product);
