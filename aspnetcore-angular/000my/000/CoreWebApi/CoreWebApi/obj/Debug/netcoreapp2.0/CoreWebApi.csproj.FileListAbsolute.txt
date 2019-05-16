@@ -30,4 +30,5 @@ D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\aspnetcore-angular\000my\000\Co
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\aspnetcore-angular\000my\000\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.0\CoreWebApi.AssemblyInfo.cs
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\aspnetcore-angular\000my\000\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.0\CoreWebApi.dll
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\aspnetcore-angular\000my\000\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.0\CoreWebApi.pdb
+D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\aspnetcore-angular\000my\000\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.0\CoreWebApi.xml
 D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\aspnetcore-angular\000my\000\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.0\CoreWebApi.csprojResolveAssemblyReference.cache

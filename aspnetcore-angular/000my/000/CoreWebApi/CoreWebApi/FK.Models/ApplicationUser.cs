@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FK.Models
-{
-    // Add profile data for application users by adding properties to the ApplicationUser class
+{ 
     public class ApplicationUser : IdentityUser
     { 
         public ApplicationUser()
@@ -16,8 +15,7 @@ namespace FK.Models
             Stickers = new HashSet<Sticker>();
             FridgeProducts = new HashSet<FridgeProduct>();
             Products = new HashSet<Product>();
-            UserFridges = new HashSet<UserFridge>();
-            //Recipes = new HashSet<Recipe>();
+            UserFridges = new HashSet<UserFridge>(); 
         }
 
         [StringLength(450)] 
@@ -29,8 +27,6 @@ namespace FK.Models
          
         public virtual ICollection<Product> Products { get; set; } 
 
-        public virtual ICollection<UserFridge> UserFridges { get; set; }
-
-       // public virtual ICollection<Recipe> Recipes { get; set; }
+        public virtual ICollection<UserFridge> UserFridges { get; set; } 
     }
 }

@@ -12,8 +12,7 @@ namespace FK.DAL
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
                 : base(options)
-        {
-            //Database.EnsureCreated();
+        { 
         }
 
         public DbSet<Sticker> Stickers { get; set; }
