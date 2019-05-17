@@ -1,8 +1,0 @@
-version: '3'
-
-services:
-  fk.api:
-    image: fkapi
-    build:
-      context: .
-      dockerfile: FK.API\Dockerfile

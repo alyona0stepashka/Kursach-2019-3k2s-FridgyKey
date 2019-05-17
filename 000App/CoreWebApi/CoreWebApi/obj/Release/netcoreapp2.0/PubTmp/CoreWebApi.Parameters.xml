@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="FridgeKey" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Study\\3k2s\\GitRep\\Kursach-2019-3k2s-FridgyKey\\aspnetcore-angular\\000my\\000\\CoreWebApi\\CoreWebApi\\obj\\Release\\netcoreapp2\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

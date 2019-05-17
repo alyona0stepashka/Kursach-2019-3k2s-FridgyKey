@@ -1,4 +1,0 @@
-D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.UI\obj\Debug\netcoreapp2.0\FK.UI.csprojResolveAssemblyReference.cache
-D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.UI\obj\Debug\netcoreapp2.0\FK.UI.csproj.CoreCompileInputs.cache
-D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.UI\obj\Debug\netcoreapp2.0\FK.UI.AssemblyInfoInputs.cache
-D:\Study\3k2s\GitRep\Kursach-2019-3k2s-FridgyKey\FridgyKeyApp\FK.UI\obj\Debug\netcoreapp2.0\FK.UI.AssemblyInfo.cs
