@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA3lCM5QEEak+N+c7EeElemQAAAAACAAAAAAAQZgAAAAEAACAAAABZhYZgIHBeM88gVaeskYwpDlpC/80f7nvagpJL8ktkeQAAAAAOgAAAAAIAACAAAADUCiRtRamh0ikkri8ub0XDkuJSD3SpnUQGNJnq5+QW7oAAAAAmUmW+PTLvgEJ/b9uA7igbFTpc6ZVgSEjSM+ARi9wSGNpc+OPS3ZKn0WZAVxjVha4yBfqFpN9fODlLXgIWtxqNch5OFF+jSwE/MTa43MoG8HwbCOzGkxIzYVHMAwcxWUYuj4qEu4ZAF/brR4a31KyGkVjPDBgLIM56XMpTScJClEAAAAAdP5vGeiVr5mYquoVqnY6JzlGqydU2qXDTMFJ/8G0ErA/ZF00kbrceb4cAjg26u9HzwFPLQu7ezACXwT1H1GcC</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DevConnection">
+      <Value>Data Source=tcp:fridgekeydbserver.database.windows.net,1433;Initial Catalog=KursachDB3k2s;User Id=db_admin@fridgekeydbserver;Password=password1!</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

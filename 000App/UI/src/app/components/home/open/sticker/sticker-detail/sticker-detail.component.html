@@ -1,0 +1,17 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input type="hidden" name="PMId" [value]="_service.formData.Id">  
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text bg-white">
+          <i class="fas fa-hamburger" [class.green-icon]="Text.valid" [class.red-icon]="Text.invalid && Text.touched"></i>
+        </div>
+      </div> 
+      <input name="Text" #Text="ngModel" [(ngModel)]="_service.formData.Text" class="form-control"
+        placeholder="Text..." required maxlength="400">
+    </div>
+  </div>  
+    <div class="form-group">
+      <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit Form Data</button>  
+    </div> 
+</form>

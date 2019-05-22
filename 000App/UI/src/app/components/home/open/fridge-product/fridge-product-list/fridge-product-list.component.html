@@ -1,0 +1,33 @@
+<div *ngIf="isLoaded">
+    <table class="table wrapped-div" style="width: 100%">
+      <thead>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>DateBuy</th>
+        <th>DateValid</th>
+        <th><i class="fas fa-cogs"></i></th>
+      </thead>
+      <tr *ngFor="let pd of _service.list">
+        <td (click)="populateForm(pd)">      
+            <img *ngIf="pd.Product.ImgURL==''" src="https://www.diamondbathrooms.com/sites/default/files/default_images/no_image_available.png" style="max-height: 75px; max-width: 75px; opacity:0.3"/>
+            <img *ngIf="pd.Product.ImgURL!=''" src="{{pd.Product.ImgURL}}" style="max-height: 75px; max-width: 75px"></td>
+        <td (click)="populateForm(pd)">{{pd.Product.Name}}</td>
+        <td (click)="populateForm(pd)">{{pd.Description}}</td>
+        <td (click)="populateForm(pd)">{{pd.Amount}} {{pd.EI}} </td>
+        <td (click)="populateForm(pd)">{{pd.Price}}</td>
+        <td (click)="populateForm(pd)">{{pd.DateBuy}}</td>
+        <td (click)="populateForm(pd)">{{pd.DateValid}}</td>
+        <td>
+          <i *ngIf="pd.User.Id==userDetails.Id" class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.Id)"></i>
+          <i *ngIf="pd.User.Id!=userDetails.Id" class="far fa-trash-alt fa-lg text-danger" style="opacity: 0.3"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="!isLoaded" class="text-center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Lightness_rotate_36f_cw.gif" style="max-height: 70px; max-width: 70px"/>
+  </div>
+  

@@ -1,0 +1,45 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="PMId" [value]="_service.formData.Id">
+    <input type="hidden" name="PMId" [value]="_service.formData.Stickers">
+    <input type="hidden" name="PMId" [value]="_service.formData.FridgeProducts"> 
+    <input type="hidden" name="PMId" [value]="_service.formData.Users"> 
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-hamburger" [class.green-icon]="Name.valid" [class.red-icon]="Name.invalid && Name.touched"></i>
+          </div>
+        </div>
+        <input name="Name" #Name="ngModel" [(ngModel)]="_service.formData.Name" class="form-control"
+          placeholder="Name..." required maxlength="400">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-align-center" [class.green-icon]="Description.valid" [class.red-icon]="Description.invalid && Description.touched"></i>
+          </div>
+        </div>
+        <input name="Description" #Description="ngModel" [(ngModel)]="_service.formData.Description" 
+        class="form-control" placeholder="Description..." required maxlength="400">
+      </div>
+    </div>  
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-key"  [class.green-icon]="PasswordHash.valid" [class.red-icon]="PasswordHash.invalid && PasswordHash.touched"></i>
+            </div>
+          </div>
+          <input type="password" name="PasswordHash" #PasswordHash="ngModel" [(ngModel)]="_service.formData.PasswordHash" class="form-control" 
+            placeholder="PasswordHash..." required >
+        </div>
+      </div> 
+    <div>
+      <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit Form Data</button> 
+        <button class="btn btn-lg btn-block" type="button" (onClick)="resetForm(form)" style="background-color: slategray; border-radius: 20px; color:#ffff"><i class="fas fa-database"></i> Clear</button>
+      </div>
+    </div>
+  </form>

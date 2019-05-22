@@ -1,0 +1,37 @@
+<nav class="navbar navbar-dark bg-dark mynav-cirlce" style="width: 100%; border-top-left-radius: 0%; border-top-right-radius: 0%">
+  <a class="navbar-brand text-white" routerLink='/home/user/page' routerLinkActive='active'><img src="https://image.flaticon.com/icons/png/512/823/823231.png" style="max-height: 50px; max-width: 75px">FridgeKeyApp</a>
+  <!-- <ul class="navbar-nav mr-auto">
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" routerLink="/home/admin">Admin Panel</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home/user">User Panel</a>
+    </li> 
+  </ul> -->
+  <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+</nav>
+<!-- 
+<div class="card m-5" style="width:24rem" *ngIf="userDetails">
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Id : </strong>{{userDetails.Id}}</li>
+    <li class="list-group-item"><strong>FullName : </strong>{{userDetails.FullName}}</li>
+    <li class="list-group-item"><strong>Email : </strong>{{userDetails.Email}}</li>
+    <li class="list-group-item"><strong>Role : </strong>{{userDetails.Role}}</li> 
+  </ul>
+</div>
+<br/> -->
+
+<div class="wrapper">
+  <div class="wrapped-div">
+    <div class="tab-header">
+      <h2 *ngIf="isAdmin" routerLink='/home/admin' routerLinkActive='active'>Admin Panel</h2>
+      <h2 routerLink='/home/user' routerLinkActive='active'>User Panel</h2>
+      <h2 *ngIf="isFridge" routerLink='/home/open' routerLinkActive='active'>Open Fridge</h2>
+    </div>
+    <div class="row">
+      <div style="width: 100%">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="PMId" [value]="_service.formData.Id">
+    <input type="hidden" name="PMId" [value]="_service.formData.ProdInfo.Id">
+    <input type="hidden" name="PMId" [value]="_service.formData.User"> 
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-hamburger" [class.green-icon]="Name.valid" [class.red-icon]="Name.invalid && Name.touched"></i>
+          </div>
+        </div>
+        <input name="Name" #Name="ngModel" [(ngModel)]="_service.formData.Name" class="form-control"
+          placeholder="Name..." required maxlength="400">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-align-center" [class.green-icon]="Description.valid" [class.red-icon]="Description.invalid && Description.touched"></i>
+          </div>
+        </div>
+        <input name="Description" #Description="ngModel" [(ngModel)]="_service.formData.Description" 
+        class="form-control" placeholder="Description..." required maxlength="400">
+      </div>
+    </div>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-image" [class.green-icon]="ImgURL.valid" [class.red-icon]="ImgURL.invalid && ImgURL.touched"></i>
+            </div>
+          </div>
+          <input name="ImgURL" #ImgURL="ngModel" [(ngModel)]="_service.formData.ImgURL" class="form-control"
+            placeholder="ImgURL..." maxlength=256>
+            <div>
+                <img *ngIf="_service.formData.ImgURL==''" src="https://www.diamondbathrooms.com/sites/default/files/default_images/no_image_available.png" style="max-height: 38px; max-width: 38px"/>
+                <img *ngIf="_service.formData.ImgURL!=''" src="{{_service.formData.ImgURL}}" style="max-height: 38px; max-width: 38px"/>
+            </div> 
+        </div>
+      </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-fire-alt"  [class.green-icon]="Fat.valid" [class.red-icon]="Fat.invalid && Fat.touched"></i>
+            </div>
+          </div>
+          <input name="Fat" #Fat="ngModel" [(ngModel)]="_service.formData.ProdInfo.Fat" class="form-control" 
+            placeholder="Fat..." required >
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-key"  [class.green-icon]="Carb.valid" [class.red-icon]="Carb.invalid && Carb.touched"></i>
+            </div>
+          </div>
+          <input name="Carb" #Carb="ngModel" [(ngModel)]="_service.formData.ProdInfo.Carb" class="form-control" 
+            placeholder="Carb..." required >
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-key"  [class.green-icon]="Protein.valid" [class.red-icon]="Protein.invalid && Protein.touched"></i>
+            </div>
+          </div>
+          <input name="Protein" #Protein="ngModel" [(ngModel)]="_service.formData.ProdInfo.Protein" class="form-control" 
+            placeholder="Protein..." required >
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-key"  [class.green-icon]="Kkal.valid" [class.red-icon]="Kkal.invalid && Kkal.touched"></i>
+            </div>
+          </div>
+          <input name="Kkal" #Kkal="ngModel" [(ngModel)]="_service.formData.ProdInfo.Kkal" class="form-control" 
+            placeholder="Carb..." required >
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit Form Data</button> 
+        <button class="btn btn-lg btn-block" type="button" (onClick)="resetForm(form)" style="background-color: slategray; border-radius: 20px; color:#ffff"><i class="fas fa-database"></i> Clear</button>
+      </div>
+    </div>
+  </form>
